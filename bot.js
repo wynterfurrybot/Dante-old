@@ -8,7 +8,7 @@ client.on('ready', () => {
 
 var cmds = {};
 
-config['cmd-sources'].array.forEach(file => {
+config.cmdSources.forEach(file => {
   var cmdModule = require(file);
   cmdModule.addCmds(cmds);
 });
