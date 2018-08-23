@@ -1,5 +1,6 @@
 const config = require ('./config.js');
 const token = config.token;
+const prefix = config.prefix;
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
