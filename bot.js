@@ -19,7 +19,8 @@ config.cmdSources.forEach(file => {
   cmdModule.addCmds(cmds);
 });
 
-log('Found commands: ' + cmds)
+log('Found commands: ' + cmds);
+log(`cmds['debug'] == ${cmds['debug']}`);
 
 function tryCommand(msg) {
   var msgContent = msg.content;
