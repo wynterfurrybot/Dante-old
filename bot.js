@@ -2,8 +2,14 @@ const config = require ('./config.js');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+function log(x) {
+  if (config.logging) {
+    console.log('LOG | ' + x);
+  }
+}
+
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  log(`Logged in as ${client.user.tag}!`);
 });
 
 var cmds = {};
@@ -12,6 +18,8 @@ config.cmdSources.forEach(file => {
   var cmdModule = require(file);
   cmdModule.addCmds(cmds);
 });
+
+log('Found commands: ' + cmds)
 
 function tryCommand(msg) {
   var msgContent = msg.content;
@@ -42,6 +50,8 @@ function tryCommand(msg) {
 }
 
 client.on('message', msg => {
+  log()
+
   tryCommand(msg);
 });
 
