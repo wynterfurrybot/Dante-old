@@ -4,7 +4,7 @@ function debug(x) {
 }
 
 function hug(x){
-    x.msg.channel.send("<@" + x.msg.author.id + "> *walks upto *" + x.args + "* sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
+    x.msg.channel.send("<@" + x.msg.author.id + "> *walks upto*" + x.args + "*sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
 }
 
 function addCmds(x) {
