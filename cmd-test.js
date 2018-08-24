@@ -4,7 +4,7 @@ function debug(x) {
 }
 
 function hug(x){
-x.msg.send(x.args);
+    x.msg.channel.send(x.args);
 }
 
 function addCmds(x) {
