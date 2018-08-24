@@ -426,6 +426,7 @@ function addEvents(x) {
                     }
 
                     catch (err) {
+                      x.client.channels.get("482299331647373313").sendMessage("fuck => " +err);
                         return;
                     }
                 }
