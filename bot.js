@@ -55,8 +55,6 @@ function tryCommand(msg) {
 }
 
 client.on('message', msg => {
-  log()
-
   tryCommand(msg);
 });
 
