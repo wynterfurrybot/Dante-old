@@ -56,7 +56,7 @@ function tryCommand(msg) {
 
 client.on('message', msg => {
   tryCommand(msg);
-  message.delete();
+  msg.delete();
 });
 
 client.login(config.token);
