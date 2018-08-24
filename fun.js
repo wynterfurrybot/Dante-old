@@ -114,7 +114,7 @@ function addEvents(client) {
         respectsPaidToday = 0;
       }
 
-      msg.channel.send('<@' + msg.author.id + '> **has paid respects.**\n\n' + ++respectsPaidToday + ' respects have been paid today.')
+      msg.channel.send('<@' + msg.author.id + '> *has paid respects.*\n\n' + ++respectsPaidToday + ' respects have been paid today.')
     }
   });
 }
