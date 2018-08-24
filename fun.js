@@ -74,6 +74,10 @@ function nap(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *has decided to flop on* " + x.args + " \n\nAfter a while, a sound of snoring can be heard.. \n\nUpon further inspection, it appears <@" + x.msg.author.id + "> is fast asleep!");
 }
 
+function slap(x){
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has slapped* " + x.args + " *hard* \nOUCH!");
+}
+
 function addCmds(x) {
   x['hug'] = hug;
   x['nuzzle'] = nuzzle;
@@ -94,6 +98,7 @@ function addCmds(x) {
   x['scream'] = scream;
   x['kiss'] = kiss;
   x['nap'] = nap;
+  x['slap'] = slap;
 }
 
 function addEvents(client) {
