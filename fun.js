@@ -98,7 +98,7 @@ function addCmds(x) {
 
 function addEvents(client) {
   client.on('message', msg => {
-    if (msg.toLowerCase() == 'f') {
+    if (msg.content.toLowerCase() == 'f') {
       msg.reply('has paid respects (ye i know it looks awful shut up its a test)');
     }
   });
