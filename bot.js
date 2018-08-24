@@ -29,7 +29,7 @@ function tryCommand(msg) {
     return false;
   }
 
-  if (msgContent.slice(config.prefix.length) !== config.prefix) {
+  if (msgContent.slice(0, config.prefix.length) !== config.prefix) {
     // Doesn't start with prefix
     log(`${msgContent} failed because the prefix didn't match.`);
     return false;
