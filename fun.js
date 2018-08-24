@@ -101,11 +101,11 @@ function addCmds(x) {
   x['slap'] = slap;
 }
 
-function addEvents(client) {
+function addEvents(x) {
   var respectsPaidToday = 0;
   var respectsPaidDay = new Date().getUTCDay();
 
-  client.on('message', msg => {
+  x.client.on('message', msg => {
     if (msg.content.toLowerCase() == 'f') {
       var thisRespectDay = new Date().getUTCDate();
 
