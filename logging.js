@@ -1,9 +1,9 @@
 
-function addEvents(client) {
-    client.on("messageDelete", (messageDelete) => {
+function addEvents(x) {
+    x.client.on("messageDelete", (messageDelete) => {
 
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + messageDelete.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + messageDelete.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -26,7 +26,7 @@ function addEvents(client) {
                     .setTimestamp();
 
                 try {
-                    client.channels.get(result[0].msglogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].msglogs).sendMessage({ embed });
                 }
 
                 catch (err)
@@ -44,7 +44,7 @@ function addEvents(client) {
     
     });
 
-    client.on('messageUpdate', (oldMessage, newMessage) => {
+    x.client.on('messageUpdate', (oldMessage, newMessage) => {
 
     if(newMessage.channel.id === "475003135220383744")
     {
@@ -72,7 +72,7 @@ function addEvents(client) {
         
 
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + oldMessage.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldMessage.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -96,7 +96,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].msglogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].msglogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -115,11 +115,11 @@ function addEvents(client) {
 
     // Channel logs:
 
-    client.on('channelCreate', channel => {
+    x.client.on('channelCreate', channel => {
 
         try {
             console.log(channel.guild.id);
-            con.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id , function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id , function (err, result, fields) {
 
 
                 if (err) {
@@ -148,7 +148,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].additionallogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].additionallogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -163,11 +163,11 @@ function addEvents(client) {
 
     })
 
-    client.on('channelDelete', channel => {
+    x.client.on('channelDelete', channel => {
 
         try {
             console.log(channel.guild.id);
-            con.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -196,7 +196,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].additionallogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].additionallogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -211,11 +211,11 @@ function addEvents(client) {
 
     })
 
-    client.on('channelUpdate', (oldchan, newchan)  => {
+    x.client.on('channelUpdate', (oldchan, newchan)  => {
 
         try {
             console.log(oldchan.guild.id);
-            con.query("SELECT * FROM guilds WHERE guild_id = " + oldchan.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldchan.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -241,7 +241,7 @@ function addEvents(client) {
                 {
                     embed.setDescription('Channel name changed! \n\nPrevious name: ' + oldchan.name + '\nNew name: ' + newchan.name);
                     try {
-                        client.channels.get(result[0].additionallogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].additionallogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -258,7 +258,7 @@ function addEvents(client) {
 
                     embed.setDescription('Channel topic changed! \n\nPrevious topic: ' + oldchan.topic + '\nNew topic: ' + newchan.topic);
                     try {
-                        client.channels.get(result[0].additionallogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].additionallogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -282,12 +282,12 @@ function addEvents(client) {
 
     // User logs:
 
-    client.on('guildMemberAdd', member => {
+    x.client.on('guildMemberAdd', member => {
 
     
 
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -319,7 +319,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].userlogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -336,9 +336,9 @@ function addEvents(client) {
 
 
 
-    client.on('guildMemberRemove', member => {
+    x.client.on('guildMemberRemove', member => {
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
 
             
 
@@ -363,7 +363,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].userlogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -378,9 +378,9 @@ function addEvents(client) {
 
     });
 
-    client.on('guildMemberUpdate', (oldmember, newmember) => {
+    x.client.on('guildMemberUpdate', (oldmember, newmember) => {
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -405,7 +405,7 @@ function addEvents(client) {
                 {
                     embed.setDescription('Nickname changed: \nDetails: \n\nOld name: ' + oldmember.nickname + '\nNew name: ' + newmember.nickname);
                     try {
-                        client.channels.get(result[0].userlogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -416,7 +416,7 @@ function addEvents(client) {
                 if (oldmember.user.username != newmember.user.username) {
                     embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.user.username + '\nNew name: ' + newmember.user.username);
                     try {
-                        client.channels.get(result[0].userlogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -429,7 +429,7 @@ function addEvents(client) {
                     embed.setThumbnail(oldmember.user.avatarURL);
                     embed.setImage(newmember.user.avatarURL);
                     try {
-                        client.channels.get(result[0].userlogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -442,7 +442,7 @@ function addEvents(client) {
                     embed.setDescription('Users roles were updated');
                 
                     try {
-                        client.channels.get(result[0].userlogs).sendMessage({ embed });
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                     }
 
                     catch (err) {
@@ -463,10 +463,10 @@ function addEvents(client) {
 
     // Ban logs:
 
-    client.on('guildBanAdd', (guild, member) => {
+    x.client.on('guildBanAdd', (guild, member) => {
 
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -490,7 +490,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].caselogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].caselogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -505,10 +505,10 @@ function addEvents(client) {
 
     })
 
-    client.on('guildBanRemove', (guild, member) => {
+    x.client.on('guildBanRemove', (guild, member) => {
 
         try {
-            con.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function (err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function (err, result, fields) {
 
 
                 if (err) {
@@ -532,7 +532,7 @@ function addEvents(client) {
 
 
                 try {
-                    client.channels.get(result[0].caselogs).sendMessage({ embed });
+                    x.client.channels.get(result[0].caselogs).sendMessage({ embed });
                 }
 
                 catch (err) {
@@ -551,22 +551,22 @@ function addEvents(client) {
 
     // Statuses (playing)
 
-    client.on("guildCreate", guild => {
+    x.client.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
         console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-        client.user.setActivity(`Serving ${client.guilds.size} servers`);
+        x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 
-    client.on("guildDelete", guild => {
+    x.client.on("guildDelete", guild => {
         // this event triggers when the bot is removed from a guild.
         console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-    client.user.setActivity(`Serving ${client.guilds.size} servers`);
+    x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 
-    client.on("guildCreate", guild => {
+    x.client.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
         console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-        client.user.setActivity(`Serving ${client.guilds.size} servers`);
+        x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 
 }

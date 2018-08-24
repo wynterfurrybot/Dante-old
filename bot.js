@@ -1,5 +1,6 @@
 const config = require ('./config.js');
 const Discord = require('discord.js');
+const mysql = require('mysql');
 const client = new Discord.Client();
 
 function log(x) {
@@ -10,6 +11,13 @@ function log(x) {
 
 client.on('ready', () => {
   log(`Logged in as ${client.user.tag}!`);
+});
+
+var database = mysql.createConnection({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database
 });
 
 var cmds = {};
@@ -26,7 +34,10 @@ config.cmdSources.forEach(file => {
   var addEventsFunc = cmdModule.addEvents;
   if (addEventsFunc !== undefined) {
     // Module adds events
-    addEventsFunc(client);
+    addEventsFunc({
+      'client': client,
+      'database': database
+    });
   }
 });
 
