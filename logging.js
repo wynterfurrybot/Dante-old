@@ -43,14 +43,14 @@ function addEvents(x) {
         }
 
 
-    
+
     });
 
     x.client.on('messageUpdate', (oldMessage, newMessage) => {
 
     if(newMessage.channel.id === "475003135220383744")
     {
-    // On receive message, (Given string `msg`) from channel #awoo 
+    // On receive message, (Given string `msg`) from channel #awoo
     if (!/^(\*|_)*awo+f?(!|\*|_)*( ?(:3|<3|owo|uwu))?( ?❤️)?(\*|_)*$/ui.test(newMessage.content)) {
 
     try{
@@ -68,10 +68,10 @@ function addEvents(x) {
         {
             return;
         }
-        
-            
 
-        
+
+
+
 
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldMessage.guild.id, function (err, result, fields) {
@@ -109,10 +109,10 @@ function addEvents(x) {
 
                 catch(err)
                 {
-                    
+
                 }
 
-        
+
     });
 
     // Channel logs:
@@ -142,11 +142,11 @@ function addEvents(x) {
                     .setFooter('Channel Created ' + ' | Damien Beta')
                     .setTimestamp();
 
-            
-                    embed.setDescription('New channel has been made \nDetails: \n\n**Channel Name**: ' + channel.name + '\n**Channel ID**: ' +channel.id)
-                
 
-            
+                    embed.setDescription('New channel has been made \nDetails: \n\n**Channel Name**: ' + channel.name + '\n**Channel ID**: ' +channel.id)
+
+
+
 
 
                 try {
@@ -272,7 +272,7 @@ function addEvents(x) {
 
 
 
-            
+
             })
         }
 
@@ -286,7 +286,7 @@ function addEvents(x) {
 
     x.client.on('guildMemberAdd', member => {
 
-    
+
 
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
@@ -342,7 +342,7 @@ function addEvents(x) {
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function (err, result, fields) {
 
-            
+
 
                 if (err) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
@@ -371,6 +371,69 @@ function addEvents(x) {
                 catch (err) {
                     return;
                 }
+            })
+        }
+
+        catch (err) {
+
+        }
+
+    });
+
+    x.client.on('userUpdate', (oldmember, newmember) => {
+        try {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function (err, result, fields) {
+
+
+                if (err) {
+                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                }
+
+                if (x.logging) {
+                    console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
+                }
+
+                var embed = new Discord.RichEmbed()
+                    .setTitle("Member Updated Details")
+                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    /*
+                    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+                    */
+                    .setColor('#00FFFF')
+                    .setFooter('User updated profile | ' + newmember.user.username + '#'+ newmember.user.discriminator + ' | Damien Beta')
+                    .setTimestamp();
+
+                if (oldmember.username != newmember.username)
+                {
+                    embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.username + '\nNew name: ' + newmember.username);
+                    try {
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
+                    }
+
+                    catch (err) {
+                        return;
+                    }
+                }
+
+
+
+                if (oldmember.user.avatarURL != newmember.user.avatarURL) {
+                    embed.setDescription('User updated their profile picture');
+                    embed.setThumbnail(oldmember.user.avatarURL);
+                    embed.setImage(newmember.user.avatarURL);
+                    try {
+                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
+                    }
+
+                    catch (err) {
+                        return;
+                    }
+                }
+
+
+
+
+
             })
         }
 
@@ -442,7 +505,7 @@ function addEvents(x) {
                 if (oldmember.roles.length != newmember.roles.length)
                 {
                     embed.setDescription('Users roles were updated');
-                
+
                     try {
                         x.client.channels.get(result[0].userlogs).sendMessage({ embed });
                     }
@@ -453,7 +516,7 @@ function addEvents(x) {
                 }
 
 
-            
+
             })
         }
 
