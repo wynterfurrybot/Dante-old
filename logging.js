@@ -1,5 +1,6 @@
 
 function addEvents(x) {
+
     x.client.on("messageDelete", (messageDelete) => {
 
         try {
@@ -10,7 +11,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Deleted Message: '.gray + ' Content: '.cyan + messageDelete.content);
                 }
 
@@ -79,7 +80,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' Old message: '.cyan + oldMessage.content + ' New message: ' + newMessage.content +'\n\nMessage ID:\n' + newMessage.id);
                 }
 
@@ -126,7 +127,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' Channel Created: '.cyan + channel.id);
                 }
 
@@ -174,7 +175,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' Channel Destroyed: '.cyan + channel.id);
                 }
 
@@ -222,7 +223,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' Channel Updated: '.cyan + oldchan.id);
                 }
 
@@ -294,7 +295,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' User Joined: '.cyan + member.displayName);
                 }
 
@@ -346,7 +347,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' User Left: '.cyan + member.displayName);
                 }
 
@@ -387,7 +388,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
                 }
 
@@ -473,7 +474,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' User Banned: '.cyan + member.username);
                 }
 
@@ -515,7 +516,7 @@ function addEvents(x) {
                     console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
-                if (debug === 1) {
+                if (x.logging) {
                     console.log('Logging: '.gray + ' User unbanned: '.cyan + member.username);
                 }
 

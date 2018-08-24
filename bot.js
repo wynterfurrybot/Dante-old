@@ -37,7 +37,8 @@ config.cmdSources.forEach(file => {
     // Module adds events
     addEventsFunc({
       'client': client,
-      'database': database
+      'database': database,
+      'logging': config.logging
     });
   }
 });
