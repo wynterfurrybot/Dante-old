@@ -20,17 +20,18 @@ config.cmdSources.forEach(file => {
 });
 
 log('Found commands: ' + cmds);
-log(`cmds['debug'] == ${cmds['debug']}`);
 
 function tryCommand(msg) {
   var msgContent = msg.content;
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
+    log(`${msgContent} failed because it's too short`);
     return false;
   }
 
   if (msgContent.slice(config.prefix.length) !== config.prefix) {
     // Doesn't start with prefix
+    log(`${msgContent} failed because the prefix didn't match.`);
     return false;
   }
 
@@ -39,6 +40,7 @@ function tryCommand(msg) {
 
   if (cmdFunction === undefined) {
     // Command wasn't found
+    log(`${msgContent} failed because the command wasn't found.`);
     return false;
   }
 
@@ -46,6 +48,8 @@ function tryCommand(msg) {
     msg: msg,
     args: msgContent.slice(config.prefix.length + cmd.length)
   });
+
+  log(`${msgContent} succeded.`)
 
   return true;
 }
