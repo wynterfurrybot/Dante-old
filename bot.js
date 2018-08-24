@@ -23,7 +23,7 @@ var database = mysql.createConnection({
 
 database.connect(function (err) {
     if (err) {
-        console.error('ERROR: Could not connect to database! '+ err;
+        console.error('ERROR: Could not connect to database! '+ err);
 
         return;
     }
