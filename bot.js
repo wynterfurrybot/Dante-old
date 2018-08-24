@@ -55,6 +55,7 @@ function tryCommand(msg) {
 }
 
 client.on('message', msg => {
+  if(msg.author.bot){return;}
   tryCommand(msg);
 });
 
