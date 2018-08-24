@@ -106,5 +106,5 @@ function addEvents(client) {
 
 module.exports = {
   addCmds: addCmds,
-  addEvents: addEvent
+  addEvents: addEvents
 };
