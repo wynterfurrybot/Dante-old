@@ -1,4 +1,6 @@
-
-# Hide token
+# Hide token and DB
 config.js
+
+# Hide mac generated files
+.DS_Store
 
