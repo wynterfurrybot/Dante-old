@@ -15,11 +15,9 @@ client.on('ready', () => {
 
 var database = mysql.createConnection({
   host: config.host,
-  port: config.port,
   user: config.user,
   password: config.password,
   database: config.database,
-  socketPath: config.socketPath
 });
 
 database.connect(function (err) {
