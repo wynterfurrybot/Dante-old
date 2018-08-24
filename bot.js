@@ -50,7 +50,7 @@ function tryCommand(msg) {
   });
 
   log(`${msgContent} succeded.`)
-
+  msg.delete();
   return true;
 }
 
