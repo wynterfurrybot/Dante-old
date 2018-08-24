@@ -97,9 +97,19 @@ function addCmds(x) {
 }
 
 function addEvents(client) {
+  var respectsPaidToday = 0;
+  var respectsPaidDay = new Date().getUTCDay();
+
   client.on('message', msg => {
     if (msg.content.toLowerCase() == 'f') {
-      msg.reply('has paid respects (ye i know it looks awful shut up its a test)');
+      var thisRespectDay = new Date().getUTCDate();
+
+      if (thisRespectDay != respectsPaidDay) {
+        respectsPaidDay = thisRespectDay;
+        respectsPaidToday = 0;
+      }
+
+      msg.channel.send('<@' + msg.author.id + '> **has paid respects.**\n\n' + ++respectsPaidToday + ' respects have been paid today.')
     }
   });
 }
