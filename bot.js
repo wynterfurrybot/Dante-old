@@ -21,6 +21,16 @@ var database = mysql.createConnection({
   database: config.database
 });
 
+database.connect(function (err) {
+    if (err) {
+        console.error('ERROR: Could not connect to database! '+ err;
+
+        return;
+    }
+
+    console.log('Database: Connection secured!');
+});
+
 var cmds = {};
 
 config.cmdSources.forEach(file => {
