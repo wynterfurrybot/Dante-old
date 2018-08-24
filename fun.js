@@ -96,6 +96,15 @@ function addCmds(x) {
   x['nap'] = nap;
 }
 
+function addEvents(client) {
+  client.on('message', msg => {
+    if (msg.toLowerCase() == 'f') {
+      msg.reply('has paid respects (ye i know it looks awful shut up its a test)');
+    }
+  });
+}
+
 module.exports = {
-  addCmds: addCmds
+  addCmds: addCmds,
+  addEvents: addEvent
 };

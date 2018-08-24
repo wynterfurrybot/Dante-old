@@ -16,7 +16,18 @@ var cmds = {};
 
 config.cmdSources.forEach(file => {
   var cmdModule = require(file);
-  cmdModule.addCmds(cmds);
+
+  var addCmdsFunc = cmdModule.addCmds;
+  if (addCmdsFunc !== undefined) {
+    // Module adds commands
+    addCmdsFunc(cmds);
+  }
+
+  var addEventsFunc = cmdModule.addEvents;
+  if (addEventsFunc !== undefined) {
+    // Module adds events
+    addEventsFunc(client);
+  }
 });
 
 log('Found commands: ' + cmds);
