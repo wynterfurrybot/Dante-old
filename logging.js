@@ -1,5 +1,11 @@
 const Discord = require('discord.js');
 
+function getGuildsFromUser(user) {
+    return x.client.guilds.filter(guild => {
+        return guild.member(user) !== undefined;
+    });
+}
+
 function addEvents(x) {
 
     x.client.on("messageDelete", (messageDelete) => {
@@ -382,60 +388,67 @@ function addEvents(x) {
 
     x.client.on('userUpdate', (oldmember, newmember) => {
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function (err, result, fields) {
+
+          var guilds = getGuildsFromUser(oldmember);
+
+          guilds.forEach(function (g)
+        {
+          x.database.query("SELECT * FROM guilds WHERE guild_id = " + g.id, function (err, result, fields) {
 
 
-                if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
-                }
+              if (err) {
+                  console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+              }
 
-                if (x.logging) {
-                    console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
-                }
+              if (x.logging) {
+                  console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
+              }
 
-                var embed = new Discord.RichEmbed()
-                    .setTitle("Member Updated Details")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
-                    /*
-                    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-                    */
-                    .setColor('#00FFFF')
-                    .setFooter('User updated profile | ' + newmember.user.username + '#'+ newmember.user.discriminator + ' | Damien Beta')
-                    .setTimestamp();
+              var embed = new Discord.RichEmbed()
+                  .setTitle("Member Updated Details")
+                  .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                  /*
+                  * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+                  */
+                  .setColor('#00FFFF')
+                  .setFooter('User updated profile | ' + newmember.user.username + '#'+ newmember.user.discriminator + ' | Damien Beta')
+                  .setTimestamp();
 
-                if (oldmember.username != newmember.username)
-                {
-                    embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.username + '\nNew name: ' + newmember.username);
-                    try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
-                    }
+              if (oldmember.username != newmember.username)
+              {
+                  embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.username + '\nNew name: ' + newmember.username);
+                  try {
+                      x.client.channels.get(result[0].userlogs).sendMessage({ embed });
+                  }
 
-                    catch (err) {
-                        return;
-                    }
-                }
-
-
-
-                if (oldmember.user.avatarURL != newmember.user.avatarURL) {
-                    embed.setDescription('User updated their profile picture');
-                    embed.setThumbnail(oldmember.user.avatarURL);
-                    embed.setImage(newmember.user.avatarURL);
-                    try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({ embed });
-                    }
-
-                    catch (err) {
-                      x.client.channels.get("482299331647373313").sendMessage("fuck => " +err);
-                        return;
-                    }
-                }
+                  catch (err) {
+                      return;
+                  }
+              }
 
 
 
+              if (oldmember.user.avatarURL != newmember.user.avatarURL) {
+                  embed.setDescription('User updated their profile picture');
+                  embed.setThumbnail(oldmember.user.avatarURL);
+                  embed.setImage(newmember.user.avatarURL);
+                  try {
+                      x.client.channels.get(result[0].userlogs).sendMessage({ embed });
+                  }
+
+                  catch (err) {
+                    x.client.channels.get("482299331647373313").sendMessage("fuck => " +err);
+                      return;
+                  }
+              }
 
 
-            })
+
+
+
+          })
+        })
+
         }
 
         catch (err) {
