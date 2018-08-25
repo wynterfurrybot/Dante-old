@@ -106,16 +106,22 @@ function addEvents(x) {
   var respectsPaidDay = new Date().getUTCDay();
 
   x.client.on('message', msg => {
-    if (msg.content.toLowerCase() == 'f') {
-      var thisRespectDay = new Date().getUTCDate();
-
-      if (thisRespectDay != respectsPaidDay) {
-        respectsPaidDay = thisRespectDay;
-        respectsPaidToday = 0;
+    var content = msg.content;
+    if (content.length == 0) return;
+    for (var i = 0; i < content.length; i++) {
+      if (content[i].toLowerCase() !== 'f') {
+        return;
       }
-
-      msg.channel.send('<@' + msg.author.id + '> *has paid respects.*\n\n' + ++respectsPaidToday + ' respects have been paid today.')
     }
+
+    var thisRespectDay = new Date().getUTCDate();
+
+    if (thisRespectDay != respectsPaidDay) {
+      respectsPaidDay = thisRespectDay;
+      respectsPaidToday = 0;
+    }
+
+    msg.channel.send('<@' + msg.author.id + (content.length == 1 ? '> *has paid respects.*\n\n' : '> *has paid ' + content.length + ' respects.*\n\n') + (respectsPaidToday += content.length) + ' respects have been paid today.')
   });
 }
 
