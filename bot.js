@@ -47,7 +47,8 @@ config.cmdSources.forEach(file => {
     addEventsFunc({
       'client': client,
       'database': database,
-      'logging': config.logging
+      'logging': config.logging,
+      'config': config
     });
   }
 });

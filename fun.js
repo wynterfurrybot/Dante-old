@@ -121,7 +121,9 @@ function addEvents(x) {
       respectsPaidToday = 0;
     }
 
-    msg.channel.send('<@' + msg.author.id + (content.length == 1 ? '> *has paid respects.*\n\n' : '> *has paid ' + content.length + ' respects.*\n\n') + (respectsPaidToday += content.length) + ' respects have been paid today.')
+    var respectsPaid = Math.min(content.length, x.config.maxRespectsPerMessage);
+
+    msg.channel.send('<@' + msg.author.id + (respectsPaid == 1 ? '> *has paid respects.*\n\n' : '> *has paid ' + respectsPaid + ' respects.*\n\n') + (respectsPaidToday += respectsPaid) + ' respects have been paid today.')
   });
 }
 
