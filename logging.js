@@ -390,6 +390,7 @@ function addEvents(x) {
         try {
 
           var guilds = getGuildsFromUser(oldmember);
+          console.log(guilds);
 
           guilds.forEach(function (g)
         {
