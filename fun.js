@@ -106,7 +106,7 @@ function addEvents(x) {
   var respectsPaidDay = new Date().getUTCDay();
 
   x.client.on('message', msg => {
-    if (msg.channel.id == '475003135220383744')
+    if (msg.channel.id == '475003135220383744') return;
 
     var content = msg.content;
     if (content.length == 0) return;
