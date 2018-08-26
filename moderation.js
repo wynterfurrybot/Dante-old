@@ -62,6 +62,7 @@ function warn(x) {
 function kick(x) {
   var usr = x.msg.mentions.users.array()[0];
   var member = x.msg.mentions.members.array()[0];
+  x.log(usr + ", "+ member);
 
   try {
     x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
