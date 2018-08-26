@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 const mysql = require('mysql');
 const client = new Discord.Client();
 
-log('Loading config...');
+console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-log('Done. Read ' + config);
+console.log('Done. Read ' + config);
 
 function log(x) {
   if (config.logging) {
