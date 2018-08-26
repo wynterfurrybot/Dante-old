@@ -9,10 +9,10 @@ function warn(x){
 
       if(err)
       {
-        console.log(err);
+        x.log(err);
       }
 
-      console.log(result);
+      x.log(result);
 
       var embed = new Discord.RichEmbed()
       .setTitle("A new case has been created")
@@ -30,14 +30,14 @@ function warn(x){
           embed
         });
       } catch (err) {
-        return;
+        x.log('ERROR - warn - ' + e);
       }
     })
   }
 
   catch(e)
   {
-    console.log(e);
+    x.log('ERROR - warn - ' + e);
   }
 }
 
