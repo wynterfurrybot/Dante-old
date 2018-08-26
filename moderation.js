@@ -25,6 +25,11 @@ function warn(x){
       }
     })
   }
+
+  catch(e)
+  {
+    console.log(e);
+  }
 }
 
 function addCmds(x) {
