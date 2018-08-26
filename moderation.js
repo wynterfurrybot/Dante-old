@@ -64,7 +64,7 @@ function warn(x){
   }
 }
 
-function kick(x){
+function kick(x) {
   var usr = x.msg.mentions.users.array()[0];
   var member = x.msg.mentions.members.array()[0];
 
