@@ -5,7 +5,7 @@ function warn(x){
   usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + x.args);
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = " + x.msg.guild.id, function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
 
       if(err)
       {
