@@ -382,7 +382,7 @@ function addEvents(x) {
                          * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                          */
                         .setColor('#00FFFF')
-                        .setFooter('User updated profile | ' + newmember.user.username + '#' + newmember.user.discriminator + ' | Damien Beta')
+                        .setFooter('User updated profile | ' + newmember.username + '#' + newmember.discriminator + ' | Damien Beta')
                         .setTimestamp();
 
                     if (oldmember.username != newmember.username) {
@@ -398,10 +398,10 @@ function addEvents(x) {
 
 
 
-                    if (oldmember.user.avatarURL != newmember.user.avatarURL) {
+                    if (oldmember.avatarURL != newmember.avatarURL) {
                         embed.setDescription('User updated their profile picture');
-                        embed.setThumbnail(oldmember.user.avatarURL);
-                        embed.setImage(newmember.user.avatarURL);
+                        embed.setThumbnail(oldmember.avatarURL);
+                        embed.setImage(newmember.avatarURL);
                         try {
                             x.client.channels.get(result[0].userlogs).sendMessage({
                                 embed
