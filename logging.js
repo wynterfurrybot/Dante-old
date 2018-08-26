@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 function getGuildsFromUser(user, client) {
-    return x.client.guilds.filter(guild => {
+    return client.guilds.filter(guild => {
         console.log('getGuildFromUser: ' + guild.name + ', ' + guild.member(user))
         return guild.member(user) !== undefined;
     });
