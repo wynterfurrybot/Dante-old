@@ -84,13 +84,13 @@ function user(x){
       })
 
       var embed = new Discord.RichEmbed()
-      .setTitle(usr.username)
+      .setTitle(usr.user.username)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.user.joinedAt + "\n\n__Punishments__\n" + punishmentinfo)
+      .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\n\n__Punishments__\n" + punishmentinfo)
       .setFooter('User Info | Dantè Beta')
       .setTimestamp();
 
