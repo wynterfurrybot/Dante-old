@@ -17,8 +17,10 @@ function warn(x){
       var reason;
       if (spaceIndex == -1) {
         reason = '<None given>';
+        x.log('no reason given');
       } else {
         reason = x.args.slice(x.args.indexOf(' ') + 1);
+        x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
       }
 
       var embed = new Discord.RichEmbed()
