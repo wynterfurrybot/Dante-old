@@ -10,7 +10,7 @@ function log(x) {
 }
 
 log('Loading config...');
-var json = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 
 client.on('ready', () => {
   log(`Logged in as ${client.user.tag}!`);
