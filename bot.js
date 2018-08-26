@@ -1,4 +1,4 @@
-const config = require ('./config.js');
+const fs = require('fs');
 const Discord = require('discord.js');
 const mysql = require('mysql');
 const client = new Discord.Client();
@@ -9,30 +9,32 @@ function log(x) {
   }
 }
 
+log('Loading config...');
+var json = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+
 client.on('ready', () => {
   log(`Logged in as ${client.user.tag}!`);
 });
 
 var database = mysql.createConnection({
-  host: config.host,
-  user: config.user,
-  password: config.password,
-  database: config.database,
+  host: config.database.host,
+  user: config.database.user,
+  password: config.database.password,
+  database: config.database.id
 });
 
-database.connect(function (err) {
-    if (err) {
-        console.error('ERROR: Could not connect to database! '+ err);
+database.connect(err => {
+  if (err) {
+    console.error('ERROR: Could not connect to database! '+ err);
+    return;
+  }
 
-        return;
-    }
-
-    console.log('Database: Connection secured!');
+  console.log('Database: Connection secured!');
 });
 
 var cmds = {};
 
-config.cmdSources.forEach(file => {
+fs.readdirSync('./modules').forEach(file => {
   var cmdModule = require(file);
 
   var addCmdsFunc = cmdModule.addCmds;
