@@ -1,5 +1,6 @@
+
 # Hide token and DB
-config.js
+config.json
 
 # Hide mac generated files
 .DS_Store
