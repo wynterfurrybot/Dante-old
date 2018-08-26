@@ -1,0 +1,4 @@
+Displays help on a command
+
+Usage:
+  help <command>

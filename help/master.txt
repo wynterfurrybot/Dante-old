@@ -1,0 +1,6 @@
+List of commands:
+
+help
+[dark you finish this]
+
+Type help
