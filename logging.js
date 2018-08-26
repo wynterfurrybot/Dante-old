@@ -7,7 +7,7 @@ function getGuildsFromUser(user, client) {
     });
 }
 
-function msgOwner(guild,chanid) {
+function msgOwner(guild, channelid) {
   guild.owner.send("Hey there, Dantè has noticed an error whilst trying to log. \nPlease check that Dantè can access the channel <#" + chanid + ">");
 }
 
@@ -41,8 +41,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].msglogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -105,9 +103,7 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].msglogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
-                    });;
+                    });
                 } catch (err) {
                     return;
                 }
@@ -155,8 +151,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].additionallogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -202,8 +196,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].additionallogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -246,8 +238,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].additionallogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -264,8 +254,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].additionallogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -320,8 +308,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].userlogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -364,8 +350,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].userlogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -410,8 +394,6 @@ function addEvents(x) {
                         try {
                             x.client.channels.get(result[0].userlogs).sendMessage({
                                 embed
-                            }).catch({
-                              msgOwner(x.msg.guild, result[0].additionallogs)
                             });
                         } catch (err) {
                             return;
@@ -427,8 +409,6 @@ function addEvents(x) {
                         try {
                             x.client.channels.get(result[0].userlogs).sendMessage({
                                 embed
-                            }).catch({
-                              msgOwner(x.msg.guild, result[0].additionallogs)
                             });
                         } catch (err) {
                             x.client.channels.get("482299331647373313").sendMessage("fuck => " + err);
@@ -476,8 +456,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].userlogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -489,8 +467,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].userlogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -504,8 +480,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].userlogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -518,8 +492,6 @@ function addEvents(x) {
                     try {
                         x.client.channels.get(result[0].userlogs).sendMessage({
                             embed
-                        }).catch({
-                          msgOwner(x.msg.guild, result[0].additionallogs)
                         });
                     } catch (err) {
                         return;
@@ -566,8 +538,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].caselogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
@@ -608,8 +578,6 @@ function addEvents(x) {
                 try {
                     x.client.channels.get(result[0].caselogs).sendMessage({
                         embed
-                    }).catch({
-                      msgOwner(x.msg.guild, result[0].additionallogs)
                     });
                 } catch (err) {
                     return;
