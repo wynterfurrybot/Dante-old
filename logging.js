@@ -361,6 +361,7 @@ function addEvents(x) {
         try {
 
             var guilds = getGuildsFromUser(oldmember);
+            console.log(x);
             x.log(guilds);
 
             guilds.forEach(g => {
