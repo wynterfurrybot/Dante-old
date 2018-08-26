@@ -26,7 +26,7 @@ function warn(x){
       .setTimestamp();
 
       try {
-        x.msg.channels.get(result[0].caselogs).sendMessage({
+        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
           embed
         });
       } catch (err) {
