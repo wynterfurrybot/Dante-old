@@ -163,7 +163,7 @@ function ban(x) {
       } catch (err) {
         x.log('ERROR - ban - ' + err);
       }
-      member.kick();
+      member.ban();
       usr.send("You have been banned from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
       x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"BAN\")", function(err, result, fields) {
