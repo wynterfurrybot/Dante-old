@@ -30,7 +30,7 @@ function warn(x){
           embed
         });
       } catch (err) {
-        x.log('ERROR - warn - ' + e);
+        x.log('ERROR - warn - ' + err);
       }
     })
   }
