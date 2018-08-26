@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 function getGuildsFromUser(user) {
     return x.client.guilds.filter(guild => {
+        console.log('getGuildFromUser: ' + guild.name + ', ' + guild.member(user))
         return guild.member(user) !== undefined;
     });
 }
@@ -15,11 +16,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Deleted Message: '.gray + ' Content: '.cyan + messageDelete.content);
+                    x.log('Deleted Message: '.gray + ' Content: '.cyan + messageDelete.content);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -76,11 +77,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' Old message: '.cyan + oldMessage.content + ' New message: ' + newMessage.content + '\n\nMessage ID:\n' + newMessage.id);
+                    x.log('Logging: '.gray + ' Old message: '.cyan + oldMessage.content + ' New message: ' + newMessage.content + '\n\nMessage ID:\n' + newMessage.id);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -115,16 +116,16 @@ function addEvents(x) {
     x.client.on('channelCreate', channel => {
 
         try {
-            console.log(channel.guild.id);
+            x.log(channel.guild.id);
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function(err, result, fields) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' Channel Created: '.cyan + channel.id);
+                    x.log('Logging: '.gray + ' Channel Created: '.cyan + channel.id);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -160,16 +161,16 @@ function addEvents(x) {
     x.client.on('channelDelete', channel => {
 
         try {
-            console.log(channel.guild.id);
+            x.log(channel.guild.id);
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function(err, result, fields) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' Channel Destroyed: '.cyan + channel.id);
+                    x.log('Logging: '.gray + ' Channel Destroyed: '.cyan + channel.id);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -205,16 +206,16 @@ function addEvents(x) {
     x.client.on('channelUpdate', (oldchan, newchan) => {
 
         try {
-            console.log(oldchan.guild.id);
+            x.log(oldchan.guild.id);
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldchan.guild.id, function(err, result, fields) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' Channel Updated: '.cyan + oldchan.id);
+                    x.log('Logging: '.gray + ' Channel Updated: '.cyan + oldchan.id);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -276,11 +277,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' User Joined: '.cyan + member.displayName);
+                    x.log('Logging: '.gray + ' User Joined: '.cyan + member.displayName);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -323,11 +324,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' User Left: '.cyan + member.displayName);
+                    x.log('Logging: '.gray + ' User Left: '.cyan + member.displayName);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -360,18 +361,18 @@ function addEvents(x) {
         try {
 
             var guilds = getGuildsFromUser(oldmember);
-            console.log(guilds);
+            x.log(guilds);
 
             guilds.forEach(g => {
                 x.database.query("SELECT * FROM guilds WHERE guild_id = " + g.id, function(err, result, fields) {
 
 
                     if (err) {
-                        console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                        x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                     }
 
                     if (x.logging) {
-                        console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
+                        x.log(' User Updated: '.cyan + oldmember.displayName);
                     }
 
                     var embed = new Discord.RichEmbed()
@@ -418,7 +419,7 @@ function addEvents(x) {
             })
 
         } catch (err) {
-
+            x.log('ERROR: ' + err);
         }
 
     });
@@ -429,11 +430,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
+                    x.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -511,11 +512,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' User Banned: '.cyan + member.username);
+                    x.log('Logging: '.gray + ' User Banned: '.cyan + member.username);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -551,11 +552,11 @@ function addEvents(x) {
 
 
                 if (err) {
-                    console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
 
                 if (x.logging) {
-                    console.log('Logging: '.gray + ' User unbanned: '.cyan + member.username);
+                    x.log('Logging: '.gray + ' User unbanned: '.cyan + member.username);
                 }
 
                 var embed = new Discord.RichEmbed()
@@ -590,19 +591,19 @@ function addEvents(x) {
 
     x.client.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
-        console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+        x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
         x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 
     x.client.on("guildDelete", guild => {
         // this event triggers when the bot is removed from a guild.
-        console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+        x.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
         x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 
     x.client.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
-        console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+        x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
         x.client.user.setActivity(`Serving ${x.client.guilds.size} servers`);
     });
 

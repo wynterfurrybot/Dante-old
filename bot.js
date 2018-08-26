@@ -48,7 +48,8 @@ config.cmdSources.forEach(file => {
       'client': client,
       'database': database,
       'logging': config.logging,
-      'config': config
+      'config': config,
+      'log': log
     });
   }
 });
@@ -82,7 +83,8 @@ function tryCommand(msg) {
     msg: msg,
     args: msgContent.slice(config.prefix.length + cmd.length),
     config: config,
-    database: database
+    database: database,
+    log: log
   });
 
   log(`${msgContent} succeded.`)
