@@ -622,7 +622,7 @@ function addEvents(x) {
         }
 
         catch (err) {
-
+  
         }
 
     })

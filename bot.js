@@ -80,7 +80,9 @@ function tryCommand(msg) {
 
   cmdFunction({
     msg: msg,
-    args: msgContent.slice(config.prefix.length + cmd.length)
+    args: msgContent.slice(config.prefix.length + cmd.length),
+    config: config,
+    database: database
   });
 
   log(`${msgContent} succeded.`)
