@@ -29,7 +29,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Message Deleted")
-                    .setAuthor("Dantè Debugging", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè Debugging", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -90,7 +90,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Message Edited")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -134,7 +134,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Channel Created!")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -179,7 +179,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle(":wastebasket: Channel Removed!")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -224,7 +224,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Channel Updated")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -290,7 +290,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Joined!")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -337,7 +337,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Left!")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -381,7 +381,7 @@ function addEvents(x) {
 
                     var embed = new Discord.RichEmbed()
                         .setTitle("Member Updated Details")
-                        .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                         /*
                          * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                          */
@@ -443,7 +443,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Updated Details")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -525,7 +525,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Banned")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
@@ -565,7 +565,7 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Pardoned")
-                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */

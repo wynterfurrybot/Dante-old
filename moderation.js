@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 
 function warn(x){
   var usr = x.msg.mentions.users.array()[0];
-  usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + x.args);
 
   try {
     x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
@@ -24,7 +23,7 @@ function warn(x){
 
       var embed = new Discord.RichEmbed()
       .setTitle("A new case has been created")
-      .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
@@ -40,12 +39,14 @@ function warn(x){
       } catch (err) {
         x.log('ERROR - warn - ' + err);
       }
+
+    usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + reason);
     })
   }
 
-  catch(e)
+  catch(err)
   {
-    x.log('ERROR - warn - ' + e);
+    x.log('ERROR - warn - ' + err);
   }
 }
 
