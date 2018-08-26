@@ -21,7 +21,7 @@ function warn(x){
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('**A new case has been created!** \n\n*Type:* WARNING \nReason: ' + x.args)
+      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + x.args + '**')
       .setFooter('User Warned <@' + usr.id + '>' + ' | Damien Beta')
       .setTimestamp();
 
