@@ -14,13 +14,13 @@ function displayHelp(user, file) {
 
 function help(x) {
     if (x.args.length == 0) {
-        displayHelp('./help/master.txt');
+        displayHelp(x.msg.author, './help/master.txt');
     } else {
         if (x.args.indexOf('.') != -1 || x.args.indexOf('/') != -1) {
             // Someone is being malicious. Stop them.
             return;
         }
-        displayHelp(`./help/${x.args}.txt`);
+        displayHelp(x.msg.author, `./help/${x.args}.txt`);
     }
 }
 
