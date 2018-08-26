@@ -5,7 +5,7 @@ const client = new Discord.Client();
 
 console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-console.log('Done. Read ' + config);
+console.log('Done. Read ' + config + ', ' + config.logging);
 
 function log(x) {
   if (config.logging) {
