@@ -5,3 +5,4 @@ config.json
 # Hide mac generated files
 .DS_Store
 
+.vscode

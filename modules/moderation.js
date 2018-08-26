@@ -1,7 +1,18 @@
 const Discord = require('discord.js');
 
+function hasPermission(msg, cmd, permission) {
+  if (msg.member.hasPermission(permission)) {
+    return true;
+  } else {
+    msg.author.send(`You don't have permission to use '${cmd}'.`)
+    return false;
+  }
+}
+
 function warn(x) {
   var usr = x.msg.mentions.users.array()[0];
+
+  if (!hasPermission(x.msg, 'warn', 'KICK_MEMBERS')) return;
 
   try {
     x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
@@ -61,8 +72,9 @@ function warn(x) {
 
 function kick(x) {
   var usr = x.msg.mentions.users.array()[0];
+  if (!hasPermission(x.msg, 'kick', 'KICK_MEMBERS')) return;
+
   var member = x.msg.mentions.members.array()[0];
-  x.log(usr + ", "+ member);
 
   try {
     x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
@@ -122,6 +134,8 @@ function kick(x) {
 
 function ban(x) {
   var usr = x.msg.mentions.users.array()[0];
+  if (!hasPermission(x.msg, 'ban', 'BAN_MEMBERS')) return;
+
   var member = x.msg.mentions.members.array()[0];
 
   try {
@@ -179,6 +193,8 @@ function ban(x) {
 
 function user(x) {
   var usr = x.msg.mentions.members.array()[0];
+  if (!hasPermission(x.msg, 'ban', 'KICK_MEMBERS')) return;
+
   var punishmentinfo = "";
 
   x.database.query("SELECT * FROM `cases` WHERE userid = '" + usr.id + "'", function(err, result, fields) {
