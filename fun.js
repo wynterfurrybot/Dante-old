@@ -97,6 +97,7 @@ function furpile(x){
 
 function addCmds(x) {
   x['hug'] = hug;
+  x['cuddle'] = hug;
   x['nuzzle'] = nuzzle;
   x['rubs'] = rubs;
   x['boop'] = boop;
@@ -116,7 +117,6 @@ function addCmds(x) {
   x['kiss'] = kiss;
   x['nap'] = nap;
   x['slap'] = slap;
-  x['cuddle'] = hug;
   x['furpile'] = furpile;
 }
 
