@@ -19,7 +19,7 @@ function warn(x){
       if (spaceIndex == -1) {
         reason = '<None given>';
       } else {
-        var reason = x.args.slice(x.args.indexOf(' ') + 1);
+        reason = x.args.slice(x.args.indexOf(' ') + 1);
       }
 
       var embed = new Discord.RichEmbed()
