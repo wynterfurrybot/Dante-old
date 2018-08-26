@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 function getGuildsFromUser(user, client) {
     return client.guilds.filter(guild => {
         console.log('getGuildFromUser: ' + guild.name + ', ' + guild.member(user))
-        return guild.member(user) !== undefined;
+        return guild.member(user) !== null;
     });
 }
 
@@ -29,13 +29,13 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Message Deleted")
-                    .setAuthor("Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè Debugging", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FF0000')
                     .setDescription('Message content:\n' + messageDelete.content + '\n\nMessage ID:\n' + messageDelete.id + '\n\nChannel:\n' + messageDelete.channel.name)
-                    .setFooter('Message sent by ' + messageDelete.author.username + '#' + messageDelete.author.discriminator + ' | Damien Beta')
+                    .setFooter('Message sent by ' + messageDelete.author.username + '#' + messageDelete.author.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
                 try {
@@ -90,13 +90,13 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Message Edited")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FFA500')
                     .setDescription('Old Message:\n' + oldMessage.content + '\n\nNew Message:\n' + newMessage.content + '\n\nChannel:\n' + newMessage.channel.name)
-                    .setFooter('Message sent by ' + oldMessage.author.username + '#' + oldMessage.author.discriminator + ' | Damien Beta')
+                    .setFooter('Message sent by ' + oldMessage.author.username + '#' + oldMessage.author.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -134,12 +134,12 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Channel Created!")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#00ff11')
-                    .setFooter('Channel Created ' + ' | Damien Beta')
+                    .setFooter('Channel Created ' + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -179,12 +179,12 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle(":wastebasket: Channel Removed!")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FF0000')
-                    .setFooter('Channel Deleted ' + ' | Damien Beta')
+                    .setFooter('Channel Deleted ' + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -224,12 +224,12 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Channel Updated")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#00FFFF')
-                    .setFooter('Channel Updated ' + ' | Damien Beta')
+                    .setFooter('Channel Updated ' + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -290,12 +290,12 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Joined!")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#00ff11')
-                    .setFooter('User joined: ' + member.user.username + '#' + member.user.discriminator + ' | Damien Beta')
+                    .setFooter('User joined: ' + member.user.username + '#' + member.user.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
                 try {
@@ -337,13 +337,13 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Left!")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FF0000')
                     .setDescription('A user has left the guild! \nID: ' + member.user.id)
-                    .setFooter('User left: ' + member.user.username + '#' + member.user.discriminator + ' | Damien Beta')
+                    .setFooter('User left: ' + member.user.username + '#' + member.user.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -381,12 +381,12 @@ function addEvents(x) {
 
                     var embed = new Discord.RichEmbed()
                         .setTitle("Member Updated Details")
-                        .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                        .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                         /*
                          * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                          */
                         .setColor('#00FFFF')
-                        .setFooter('User updated profile | ' + newmember.username + '#' + newmember.discriminator + ' | Damien Beta')
+                        .setFooter('User updated profile | ' + newmember.username + '#' + newmember.discriminator + ' | Dantè Debugging Beta')
                         .setTimestamp();
 
                     if (oldmember.username != newmember.username) {
@@ -443,12 +443,12 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Updated Details")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#00FFFF')
-                    .setFooter('User updated profile | ' + newmember.user.username + '#' + newmember.user.discriminator + ' | Damien Beta')
+                    .setFooter('User updated profile | ' + newmember.user.username + '#' + newmember.user.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
                 if (oldmember.nickname != newmember.nickname) {
@@ -525,13 +525,13 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Banned")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FF0000')
                     .setDescription('A user has been vanished! \nID: ' + member.id)
-                    .setFooter('User banned: ' + member.username + '#' + member.discriminator + ' | Damien Beta')
+                    .setFooter('User banned: ' + member.username + '#' + member.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 
@@ -565,13 +565,13 @@ function addEvents(x) {
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Pardoned")
-                    .setAuthor("Darkmane the lion's Damien", "https://darkmanethelion.co.uk/img/profile.png")
+                    .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
                     /*
                      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
                      */
                     .setColor('#FF0000')
                     .setDescription('A user has been revived from the dead! \nID: ' + member.id)
-                    .setFooter('User unbanned: ' + member.username + '#' + member.discriminator + ' | Damien Beta')
+                    .setFooter('User unbanned: ' + member.username + '#' + member.discriminator + ' | Dantè Debugging Beta')
                     .setTimestamp();
 
 

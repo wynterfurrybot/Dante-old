@@ -82,17 +82,17 @@ function furpile(x){
   x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
 
-      if (err) {
-          console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
-      }
+    if (err) {
+      console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+    }
 
-      else{
-        var count = result[0].count;
-        x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them! \n\nDEMO: Furpile isn't done yet!")
-      }
+    else{
+      var count = result[0].count;
+      x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them! \n\nDEMO: Furpile isn't done yet!")
+    }
 
 
-    });
+  });
 }
 
 function addCmds(x) {
