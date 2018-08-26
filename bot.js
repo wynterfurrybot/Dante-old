@@ -81,7 +81,7 @@ function tryCommand(msg) {
 
   cmdFunction({
     msg: msg,
-    args: msgContent.slice(config.prefix.length + cmd.length),
+    args: msgContent.slice(config.prefix.length + cmd.length + 1),
     config: config,
     database: database,
     log: log
