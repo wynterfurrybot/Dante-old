@@ -235,6 +235,8 @@ function user(x){
 function addCmds(x) {
   x['warn'] = warn;
   x['user'] = user;
+  x['kick'] = kick;
+  x['ban'] = ban;
 }
 
 
