@@ -46,7 +46,7 @@ function warn(x){
 
       usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `guilds` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id +"\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"WARNING\")", function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id +"\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"WARNING\")", function(err, result, fields) {
 
         if(err)
         {
@@ -68,7 +68,7 @@ function user(x){
   var usr = x.msg.mentions.members.array()[0];
   var punishmentinfo = "";
 
-  x.database.query("SELECT * FROM cases WHERE userid = '" + usr.id + "'", function(err, result, fields) {
+  x.database.query("SELECT * FROM `cases` WHERE userid = '" + usr.id + "'", function(err, result, fields) {
 
     if(err)
     {
