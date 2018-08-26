@@ -12,6 +12,8 @@ function warn(x){
         console.log(err);
       }
 
+      console.log(result);
+
       var embed = new Discord.RichEmbed()
       .setTitle("A new case has been created")
       .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
