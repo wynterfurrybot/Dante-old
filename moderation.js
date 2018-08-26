@@ -1,3 +1,8 @@
+
+function msgOwner(guild, text) {
+  guild.owner.send(text);
+}
+
 function warn(x){
   x.msg.channel.send("Test");
 }
