@@ -15,6 +15,8 @@ function warn(x){
 
       var spaceIndex = x.args.indexOf(' ');
       var reason;
+      var unix = Math.floor(new Date() / 1000);
+      var caseid = x.msg.guild.nameAcronym + unix;
       if (spaceIndex == -1) {
         reason = '<None given>';
         x.log('no reason given');
@@ -24,7 +26,7 @@ function warn(x){
       }
 
       var embed = new Discord.RichEmbed()
-      .setTitle("A new case has been created")
+      .setTitle("Case #" + caseid)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
