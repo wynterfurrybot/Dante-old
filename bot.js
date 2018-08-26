@@ -36,7 +36,7 @@ database.connect(err => {
 var cmds = {};
 
 fs.readdirSync('./modules').forEach(file => {
-  var cmdModule = require(file);
+  var cmdModule = require(`./modules/${file}`);
 
   var addCmdsFunc = cmdModule.addCmds;
   if (addCmdsFunc !== undefined) {
