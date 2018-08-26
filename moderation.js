@@ -20,7 +20,7 @@ function warn(x){
       */
       .setColor('#FF0000')
       .setDescription('**A new case has been created!** \n\n*Type:* WARNING \nReason: ' + x.args)
-      .setFooter('Message sent by ' + messageDelete.author.username + '#' + messageDelete.author.discriminator + ' | Damien Beta')
+      .setFooter('User Warned <@' + user.id + '>' + ' | Damien Beta')
       .setTimestamp();
 
       try {
