@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-function getGuildsFromUser(user) {
+function getGuildsFromUser(user, client) {
     return x.client.guilds.filter(guild => {
         console.log('getGuildFromUser: ' + guild.name + ', ' + guild.member(user))
         return guild.member(user) !== undefined;
@@ -360,8 +360,7 @@ function addEvents(x) {
     x.client.on('userUpdate', (oldmember, newmember) => {
         try {
 
-            var guilds = getGuildsFromUser(oldmember);
-            console.log(x);
+            var guilds = getGuildsFromUser(oldmember, x.client);
             x.log(guilds);
 
             guilds.forEach(g => {
