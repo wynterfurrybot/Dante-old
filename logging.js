@@ -43,7 +43,7 @@ function addEvents(x) {
                         embed
                     }).catch({
                       msgOwner(x.msg.guild, result[0].additionallogs)
-                    });;
+                    });
                 } catch (err) {
                     return;
                 }
