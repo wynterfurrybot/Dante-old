@@ -14,6 +14,14 @@ function warn(x){
 
       x.log(result);
 
+      var spaceIndex = x.args.indexOf(' ');
+      var reason;
+      if (spaceIndex == -1) {
+        reason = '<None given>';
+      } else {
+        var reason = x.args.slice(x.args.indexOf(' ') + 1);
+      }
+
       var embed = new Discord.RichEmbed()
       .setTitle("A new case has been created")
       .setAuthor("Dantè", "https://darkmanethelion.co.uk/img/profile.png")
@@ -21,7 +29,7 @@ function warn(x){
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + x.args + '** \nUser: <@' + usr.id + '>')
+      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
       .setFooter('User Warned | Damien Beta')
       .setTimestamp();
 
