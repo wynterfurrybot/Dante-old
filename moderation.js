@@ -1,5 +1,5 @@
 function warn(x){
-  var usr = x.msg.mentions.users[0];
+  var usr = x.msg.mentions.users.array()[0];
   usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + x.args);
 
   try {
