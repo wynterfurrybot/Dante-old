@@ -64,6 +64,136 @@ function warn(x){
   }
 }
 
+function kick(x){
+  var usr = x.msg.mentions.users.array()[0];
+  var member = x.msg.mentions.members.array()[0];
+
+  try {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
+
+      if(err)
+      {
+        x.log(err);
+      }
+
+      x.log(result);
+
+      var spaceIndex = x.args.indexOf(' ');
+      var reason;
+      var unix = Math.floor(new Date() / 1000);
+      var caseid = x.msg.guild.nameAcronym + unix;
+      if (spaceIndex == -1) {
+        reason = '<None given>';
+        x.log('no reason given');
+      } else {
+        reason = x.args.slice(x.args.indexOf(' ') + 1);
+        x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
+      }
+
+      var embed = new Discord.RichEmbed()
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**KICK**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Kicked | Dantè Beta')
+      .setTimestamp();
+
+      try {
+        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+          embed
+        });
+      } catch (err) {
+        x.log('ERROR - kick - ' + err);
+      }
+      member.kick();
+      usr.send("You have been kicked from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
+
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id +"\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"KICK\")", function(err, result, fields) {
+
+        if(err)
+        {
+          x.log(err);
+        }
+
+
+      })
+    })
+  }
+
+  catch(err)
+  {
+    x.log('ERROR - kick - ' + err);
+  }
+}
+
+function ban(x){
+  var usr = x.msg.mentions.users.array()[0];
+  var member = x.msg.mentions.members.array()[0];
+
+  try {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
+
+      if(err)
+      {
+        x.log(err);
+      }
+
+      x.log(result);
+
+      var spaceIndex = x.args.indexOf(' ');
+      var reason;
+      var unix = Math.floor(new Date() / 1000);
+      var caseid = x.msg.guild.nameAcronym + unix;
+      if (spaceIndex == -1) {
+        reason = '<None given>';
+        x.log('no reason given');
+      } else {
+        reason = x.args.slice(x.args.indexOf(' ') + 1);
+        x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
+      }
+
+      var embed = new Discord.RichEmbed()
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**BAN**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Banned | Dantè Beta')
+      .setTimestamp();
+
+      try {
+        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+          embed
+        });
+      } catch (err) {
+        x.log('ERROR - ban - ' + err);
+      }
+      member.kick();
+      usr.send("You have been banned from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
+
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id +"\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"BAN\")", function(err, result, fields) {
+
+        if(err)
+        {
+          x.log(err);
+        }
+
+
+      })
+    })
+  }
+
+  catch(err)
+  {
+    x.log('ERROR - ban - ' + err);
+  }
+}
+
 function user(x){
   var usr = x.msg.mentions.members.array()[0];
   var punishmentinfo = "";
