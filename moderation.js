@@ -210,9 +210,13 @@ function user(x) {
 
 function addCmds(x) {
   x['warn'] = warn;
+  x['w'] = warn;
   x['user'] = user;
+  x['u'] = user;
   x['kick'] = kick;
+  x['k'] = kick;
   x['ban'] = ban;
+  x['b'] = ban;
 }
 
 module.exports = {
