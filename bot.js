@@ -3,6 +3,22 @@ const Discord = require('discord.js');
 const mysql = require('mysql');
 const client = new Discord.Client();
 
+var clientOnRaw = client.on;
+
+var enabled = [true];
+
+function onWrapper(eventName, eventFunc) {
+  var id = enabled.length - 1;
+  
+  clientOnRaw(eventName, (a, b, c, d) => {
+    if (enabled[id]) {
+      eventFunc(a, b, c, d);
+    }
+  });
+}
+
+client.on = onWrapper;
+
 console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 console.log('Done. Read config.');
@@ -36,27 +52,29 @@ database.connect(err => {
 
 var cmds = {};
 
-fs.readdirSync('./modules').forEach(file => {
-  var cmdModule = require(`./modules/${file}`);
+function loadModules(x) {
+  fs.readdirSync('./modules').forEach(file => {
+    var cmdModule = require(`./modules/${file}`);
 
-  var addCmdsFunc = cmdModule.addCmds;
-  if (addCmdsFunc !== undefined) {
-    // Module adds commands
-    addCmdsFunc(cmds);
-  }
+    var addCmdsFunc = cmdModule.addCmds;
+    if (addCmdsFunc !== undefined) {
+      // Module adds commands
+      addCmdsFunc(cmds);
+    }
 
-  var addEventsFunc = cmdModule.addEvents;
-  if (addEventsFunc !== undefined) {
-    // Module adds events
-    addEventsFunc({
-      'client': client,
-      'database': database,
-      'logging': config.logging,
-      'config': config,
-      'log': log
-    });
-  }
-});
+    var addEventsFunc = cmdModule.addEvents;
+    if (addEventsFunc !== undefined) {
+      // Module adds events
+      addEventsFunc({
+        'client': client,
+        'database': database,
+        'logging': config.logging,
+        'config': config,
+        'log': log
+      });
+    }
+  });
+}
 
 log('Found commands: ' + cmds);
 
