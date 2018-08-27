@@ -3,7 +3,7 @@
  */
 const Discord = require('discord.js');
 
-async function hasPermission(msg, cmd, permission) {
+function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
     return true;
   } else {
