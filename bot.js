@@ -4,21 +4,21 @@ const mysql = require('mysql');
 const client = new Discord.Client();
 const readline = require('readline');
 
-var clientOnRaw = client.on;
+// var clientOnRaw = client.on;
 
-var enabled = [];
+// var enabled = [];
 
-function onWrapper(eventName, eventFunc) {
-  var id = enabled.length - 1;
+// function onWrapper(eventName, eventFunc) {
+//   var id = enabled.length - 1;
   
-  clientOnRaw(eventName, (a, b, c, d) => {
-    if (enabled[id]) {
-      eventFunc(a, b, c, d);
-    }
-  });
-}
+//   clientOnRaw(eventName, (a, b, c, d) => {
+//     if (enabled[id]) {
+//       eventFunc(a, b, c, d);
+//     }
+//   });
+// }
 
-client.on = onWrapper;
+//client.on = onWrapper;
 
 console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
