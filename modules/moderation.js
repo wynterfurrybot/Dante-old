@@ -347,9 +347,7 @@ if (!hasPermission(x.msg, 'clear', 'ADMINISTRATOR')) return;
     })
   }
 
-  else{
-    x.msg.channel.send("Hey! \n\nPlease use the !set command to set a channel as your log channels. \n\nRight now, there's `caselogs`, `messagelogs`, `userlogs` and `otherlogs`");
-  }
+
 }
 
 async function addCmds(x) {
