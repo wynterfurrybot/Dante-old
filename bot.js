@@ -16,9 +16,11 @@ function onWrapper(eventName, eventFunc) {
   });
 }
 
-console.log('Loading config...');
-var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-console.log('Done. Read config.');
+function loadConfig() {
+  console.log('Loading config...');
+  var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+  console.log('Done. Read config.');
+}
 
 async function log(x) {
   if (config.logging) {
@@ -80,6 +82,7 @@ var cmds = {};
 loadModules(cmds);
 
 function reload() {
+  loadConfig();
   cmds = {};
   loadModules(cmds);
 }
