@@ -277,7 +277,7 @@ x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'
 });
 }
 
-async function set()
+async function set(x)
 {
 if (!hasPermission(x.msg, 'clear', 'ADMINISTRATOR')) return;
 
