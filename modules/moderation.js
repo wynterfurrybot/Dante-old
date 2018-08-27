@@ -353,8 +353,10 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 async function mute(x){
 
   try{
-    var role = x.msg.guild.roles.find("Muted");
+    var role = x.msg.guild.roles.find(`name`, "muted");
+    var member = x.msg.mentions.members.array()[0];
     x.log('name: ' + role.name);
+    member.addRole(role);
   }
 
   catch(err){
