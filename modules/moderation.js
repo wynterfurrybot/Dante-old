@@ -224,7 +224,7 @@ async function user(x) {
   });
 }
 
-async async function clear(x) {
+async function clear(x) {
 var deleteCount = parseInt(count);
 if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
 
