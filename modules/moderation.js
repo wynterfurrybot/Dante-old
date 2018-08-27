@@ -352,6 +352,7 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
 async function mute(x){
   if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
+  var usr = x.msg.mentions.users.array()[0];
 
   x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
 
