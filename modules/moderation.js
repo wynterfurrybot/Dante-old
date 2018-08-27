@@ -262,7 +262,7 @@ x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'
      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
      */
     .setColor('#FF0000')
-    .setDescription('**' + deleteCount + " messages deleted**")
+    .setDescription('**' + deleteCount + " messages deleted in <#" + x.msg.channel.id +">** \nModerator: <@" + x.msg.author.id + ">")
     .setFooter('Messages purged | Dantè Beta')
     .setTimestamp();
 
