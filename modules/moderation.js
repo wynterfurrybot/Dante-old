@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-function hasPermission(msg, cmd, permission) {
+async function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
     return true;
   } else {
@@ -9,13 +9,13 @@ function hasPermission(msg, cmd, permission) {
   }
 }
 
-function warn(x) {
+async function warn(x) {
   var usr = x.msg.mentions.users.array()[0];
 
   if (!hasPermission(x.msg, 'warn', 'KICK_MEMBERS')) return;
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -56,7 +56,7 @@ function warn(x) {
 
       usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"WARNING\")", function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"WARNING\")", async function(err, result, fields) {
 
         if (err) {
           x.log(err);
@@ -70,14 +70,14 @@ function warn(x) {
   }
 }
 
-function kick(x) {
+async function kick(x) {
   var usr = x.msg.mentions.users.array()[0];
   if (!hasPermission(x.msg, 'kick', 'KICK_MEMBERS')) return;
 
   var member = x.msg.mentions.members.array()[0];
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -118,7 +118,7 @@ function kick(x) {
       member.kick();
       usr.send("You have been kicked from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"KICK\")", function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"KICK\")", async function(err, result, fields) {
 
         if (err) {
           x.log(err);
@@ -132,14 +132,14 @@ function kick(x) {
   }
 }
 
-function ban(x) {
+async function ban(x) {
   var usr = x.msg.mentions.users.array()[0];
   if (!hasPermission(x.msg, 'ban', 'BAN_MEMBERS')) return;
 
   var member = x.msg.mentions.members.array()[0];
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -180,7 +180,7 @@ function ban(x) {
       member.ban();
       usr.send("You have been banned from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"BAN\")", function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"BAN\")", async function(err, result, fields) {
         if (err) {
           x.log(err);
         }
@@ -191,18 +191,18 @@ function ban(x) {
   }
 }
 
-function user(x) {
+async function user(x) {
   var usr = x.msg.mentions.members.array()[0];
   if (!hasPermission(x.msg, 'ban', 'KICK_MEMBERS')) return;
 
   var punishmentinfo = "";
 
-  x.database.query("SELECT * FROM `cases` WHERE userid = '" + usr.id + "'", function(err, result, fields) {
+  x.database.query("SELECT * FROM `cases` WHERE userid = '" + usr.id + "'", async function(err, result, fields) {
     if (err) {
       x.log(err);
     } else {
 
-      result.forEach(function(data, pos, array) {
+      result.forEach(async function(data, pos, array) {
         punishmentinfo = punishmentinfo + "type: " + data.type + "\nreason: " + data.reason + "\nref: " + data.caseref + "\n\n";
       })
 
@@ -224,7 +224,7 @@ function user(x) {
   });
 }
 
-async function clear(x) {
+async async function clear(x) {
 var deleteCount = parseInt(count);
 if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
 
@@ -249,7 +249,7 @@ catch(err)
 }
 }
 
-function addCmds(x) {
+async function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;
   x['user'] = user;

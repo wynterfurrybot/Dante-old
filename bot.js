@@ -7,7 +7,7 @@ console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 console.log('Done. Read config.');
 
-function log(x) {
+async function log(x) {
   if (config.logging) {
     console.log('LOG | ' + x);
   }
@@ -59,7 +59,7 @@ fs.readdirSync('./modules').forEach(file => {
 
 log('Found commands: ' + cmds);
 
-function tryCommand(msg) {
+async function tryCommand(msg) {
   var msgContent = msg.content;
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
@@ -74,15 +74,15 @@ function tryCommand(msg) {
   }
 
   var cmd = msgContent.slice(config.prefix.length).split(' ')[0];
-  var cmdFunction = cmds[cmd];
+  var cmdasync function = cmds[cmd];
 
-  if (cmdFunction === undefined) {
+  if (cmdasync function === undefined) {
     // Command wasn't found
     log(`${msgContent} failed because the command wasn't found.`);
     return false;
   }
 
-  cmdFunction({
+  cmdasync function({
     msg: msg,
     args: msgContent.slice(config.prefix.length + cmd.length + 1),
     config: config,
