@@ -24,6 +24,8 @@ function loadConfig() {
   console.log('Done. Read config.');
 }
 
+loadConfig();
+
 async function log(x) {
   if (config.logging) {
     console.log('LOG | ' + x);
