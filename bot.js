@@ -16,9 +16,11 @@ function onWrapper(eventName, eventFunc) {
   });
 }
 
+var config;
+
 function loadConfig() {
   console.log('Loading config...');
-  var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+  config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
   console.log('Done. Read config.');
 }
 
