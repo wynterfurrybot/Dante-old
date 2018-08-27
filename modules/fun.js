@@ -100,6 +100,10 @@ function furpile(x){
   });
 }
 
+function test(x){
+  x.msg.channel.send("test");
+}
+
 function addCmds(x) {
   x['hug'] = hug;
   x['cuddle'] = hug;
@@ -123,6 +127,7 @@ function addCmds(x) {
   x['nap'] = nap;
   x['slap'] = slap;
   x['furpile'] = furpile;
+  x['test'] = test;
 }
 
 var fBlockedSet = new Set([264445053596991498, 110373943822540800]);
