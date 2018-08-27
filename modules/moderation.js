@@ -279,6 +279,7 @@ x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'
 
 async function set()
 {
+if (!hasPermission(x.msg, 'clear', 'ADMINISTRATOR')) return;
 
   x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES ('" + x.msg.guild.id +  "', '" + x.msg.guild.owner.id + "', ' " + x.msg.guild.name +"')", async function(err, result, fields) {
     if (err) {
@@ -345,6 +346,7 @@ async function addCmds(x) {
   x['ban'] = ban;
   x['b'] = ban;
   x['clear'] = clear;
+  x['set'] = set;
 }
 
 module.exports = {
