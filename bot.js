@@ -53,7 +53,7 @@ database.connect(err => {
 
 function loadModules(x) {
   // if (enabled.length != 0) enabled[enabled.length - 1] = false;
-  enabled.push(true);
+  // enabled.push(true);
   fs.readdirSync('./modules').forEach(file => {
     var cmdModule = require(`./modules/${file}`);
 
