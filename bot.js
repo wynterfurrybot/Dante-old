@@ -15,6 +15,7 @@ async function log(x) {
 
 client.on('ready', () => {
   log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity(`Serving ${x.client.guilds.size} servers | !help`);
 });
 
 var database = mysql.createConnection({
