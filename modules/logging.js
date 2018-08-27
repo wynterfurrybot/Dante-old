@@ -13,7 +13,7 @@ function msgOwner(guild, channelid) {
 
 function addEvents(x) {
 
-    x.client.on("messageDelete", (messageDelete) => {
+    x.on("messageDelete", (messageDelete) => {
 
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + messageDelete.guild.id, function(err, result, fields) {
@@ -54,7 +54,7 @@ function addEvents(x) {
 
     });
 
-    x.client.on('messageUpdate', (oldMessage, newMessage) => {
+    x.on('messageUpdate', (oldMessage, newMessage) => {
 
         if (newMessage.channel.id === "475003135220383744") {
             // On receive message, (Given string `msg`) from channel #awoo
@@ -117,7 +117,7 @@ function addEvents(x) {
 
     // Channel logs:
 
-    x.client.on('channelCreate', channel => {
+    x.on('channelCreate', channel => {
 
         try {
             x.log(channel.guild.id);
@@ -162,7 +162,7 @@ function addEvents(x) {
 
     })
 
-    x.client.on('channelDelete', channel => {
+    x.on('channelDelete', channel => {
 
         try {
             x.log(channel.guild.id);
@@ -207,7 +207,7 @@ function addEvents(x) {
 
     })
 
-    x.client.on('channelUpdate', (oldchan, newchan) => {
+    x.on('channelUpdate', (oldchan, newchan) => {
 
         try {
             x.log(oldchan.guild.id);
@@ -272,7 +272,7 @@ function addEvents(x) {
 
     // User logs:
 
-    x.client.on('guildMemberAdd', member => {
+    x.on('guildMemberAdd', member => {
 
 
 
@@ -338,7 +338,7 @@ function addEvents(x) {
 
 
 
-    x.client.on('guildMemberRemove', member => {
+    x.on('guildMemberRemove', member => {
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function(err, result, fields) {
 
@@ -378,7 +378,7 @@ function addEvents(x) {
 
     });
 
-    x.client.on('userUpdate', (oldmember, newmember) => {
+    x.on('userUpdate', (oldmember, newmember) => {
         try {
 
             var guilds = getGuildsFromUser(oldmember, x.client);
@@ -445,7 +445,7 @@ function addEvents(x) {
 
     });
 
-    x.client.on('guildMemberUpdate', (oldmember, newmember) => {
+    x.on('guildMemberUpdate', (oldmember, newmember) => {
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function(err, result, fields) {
 
@@ -526,7 +526,7 @@ function addEvents(x) {
 
     // Ban logs:
 
-    x.client.on('guildBanAdd', (guild, member) => {
+    x.on('guildBanAdd', (guild, member) => {
 
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function(err, result, fields) {
@@ -566,7 +566,7 @@ function addEvents(x) {
 
     })
 
-    x.client.on('guildBanRemove', (guild, member) => {
+    x.on('guildBanRemove', (guild, member) => {
 
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function(err, result, fields) {
@@ -610,19 +610,19 @@ function addEvents(x) {
 
     // Statuses (playing)
 
-    x.client.on("guildCreate", guild => {
+    x.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
         x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
     });
 
-    x.client.on("guildDelete", guild => {
+    x.on("guildDelete", guild => {
         // this event triggers when the bot is removed from a guild.
         x.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
     });
 
-    x.client.on("guildCreate", guild => {
+    x.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
         x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
