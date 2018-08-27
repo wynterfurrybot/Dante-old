@@ -354,6 +354,7 @@ async function mute(x){
 
   try{
     var role = x.msg.guild.roles.find("Muted");
+    x.log('name: ' + role.name);
   }
 
   catch(err){
