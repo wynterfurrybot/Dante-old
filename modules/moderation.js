@@ -277,6 +277,64 @@ x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'
 });
 }
 
+async function set()
+{
+
+  x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES ('" + x.msg.guild.id +  "', '" + x.msg.guild.owner.id + "', ' " + x.msg.guild.name +"')", async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+      // Likely this will be to say the guild ID already exists. As such, we will log the error but not take much notice of it.
+    }
+  })
+
+
+  var type = x.args;
+
+  if(type === "caselogs")
+  {
+    x.database.query("UPDATE `guilds` SET caselogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+    })
+  }
+
+  if(type === "messagelogs")
+  {
+    x.database.query("UPDATE `guilds` SET msglogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+    })
+  }
+
+  if(type === "userlogs")
+  {
+    x.database.query("UPDATE `guilds` SET userlogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+    })
+  }
+
+  if(type === "otherlogs")
+  {
+    x.database.query("UPDATE `guilds` SET additionallogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+    })
+  }
+
+  else{
+    x.msg.channel.send("Hey! \n\nPlease use the !set command to set a channel as your log channels. \n\nRight now, there's `caselogs`, `messagelogs`, `userlogs` and `otherlogs`");
+  }
+}
+
 async function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;

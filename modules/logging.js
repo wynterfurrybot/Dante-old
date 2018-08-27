@@ -411,7 +411,7 @@ function addEvents(x) {
                                 embed
                             });
                         } catch (err) {
-                            x.client.channels.get("482299331647373313").sendMessage("fuck => " + err);
+                            x.log(err);
                             return;
                         }
                     }
