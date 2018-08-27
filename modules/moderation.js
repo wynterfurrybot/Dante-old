@@ -246,6 +246,35 @@ catch(err)
 {
   x.log(err);
 }
+
+x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+
+  if (err) {
+    x.log(err);
+  }
+
+  x.log(result);
+
+  var embed = new Discord.RichEmbed()
+    .setTitle("Bulk delete")
+    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+    /*
+     * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+     */
+    .setColor('#FF0000')
+    .setDescription('**' + deleteCount + " messages deleted**")
+    .setFooter('Messages purged | Dantè Beta')
+    .setTimestamp();
+
+  try {
+    x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+      embed
+    });
+  } catch (err) {
+    x.log('ERROR - ban - ' + err);
+  }
+
+});
 }
 
 async function addCmds(x) {
