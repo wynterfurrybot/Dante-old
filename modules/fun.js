@@ -100,7 +100,7 @@ function furpile(x){
   });
 }
 
-function test(x){
+function test(x) {
   x.msg.channel.send("test");
 }
 

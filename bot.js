@@ -51,6 +51,7 @@ function loadModules(x) {
   if (enabled.length != 0) enabled[enabled.length - 1] = false;
   enabled.push(true);
   fs.readdirSync('./modules').forEach(file => {
+    delete require.cache[require.resolve(`./modules/${file}`)];
     var cmdModule = require(`./modules/${file}`);
 
     var addCmdsFunc = cmdModule.addCmds;
@@ -68,7 +69,8 @@ function loadModules(x) {
         logging: config.logging,
         config: config,
         log: log,
-        on: onWrapper
+        on: onWrapper,
+        reloadFunc: reload
       });
     }
   });
@@ -76,6 +78,11 @@ function loadModules(x) {
 
 var cmds = {};
 loadModules(cmds);
+
+function reload() {
+  cmds = {};
+  loadModules(cmds);
+}
 
 readline.createInterface({
   input: process.stdin,
@@ -118,7 +125,8 @@ async function tryCommand(msg) {
     config: config,
     database: database,
     log: log,
-    on: onWrapper
+    on: onWrapper,
+    reloadFunc: reload
   });
 
   log(`${msgContent} succeded.`)
@@ -127,7 +135,7 @@ async function tryCommand(msg) {
 }
 
 client.on('message', msg => {
-  if(msg.author.bot){return;}
+  if (msg.author.bot) return;
   tryCommand(msg);
 });
 
