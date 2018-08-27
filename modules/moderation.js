@@ -1,11 +1,9 @@
-
 /* Moderation with criminal records.
  * This makes moderation a lot easier.
  */
-
 const Discord = require('discord.js');
 
-async function hasPermission(msg, cmd, permission) {
+function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
     return true;
   } else {
@@ -198,7 +196,7 @@ async function ban(x) {
 
 async function user(x) {
   var usr = x.msg.mentions.members.array()[0];
-  if (!hasPermission(x.msg, 'ban', 'KICK_MEMBERS')) return;
+  if (!hasPermission(x.msg, 'user', 'KICK_MEMBERS')) return;
 
   var punishmentinfo = "";
 
@@ -230,63 +228,61 @@ async function user(x) {
 }
 
 async function clear(x) {
-if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
+  if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
 
-try{
-var deleteCount = parseInt(x.args);
-deleteCount = deleteCount+1;
-if(deleteCount >= 101)
-	{
-		deleteCount = 100;
-	}
+  try {
+    var deleteCount = parseInt(x.args);
+    deleteCount = deleteCount + 1;
+    if (deleteCount >= 101) {
+      deleteCount = 100;
+    }
 
-   if(!deleteCount || deleteCount < 3 || deleteCount > 100)
-     return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+    if (!deleteCount || deleteCount < 3 || deleteCount > 100)
+      return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
 
-   const fetched = await x.msg.channel.fetchMessages({limit: deleteCount});
-   x.msg.channel.bulkDelete(fetched)
-     .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
-}
-catch(err)
-{
-  x.log(err);
-}
-
-x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
-
-  if (err) {
+    const fetched = await x.msg.channel.fetchMessages({
+      limit: deleteCount
+    });
+    x.msg.channel.bulkDelete(fetched)
+      .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
+  } catch (err) {
     x.log(err);
   }
 
-  x.log(result);
+  x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
 
-  var embed = new Discord.RichEmbed()
-    .setTitle("Bulk delete")
-    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-    /*
-     * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-     */
-    .setColor('#FF0000')
-    .setDescription('**' + deleteCount + " messages deleted in <#" + x.msg.channel.id +">** \nModerator: <@" + x.msg.author.id + ">")
-    .setFooter('Messages purged | Dantè Beta')
-    .setTimestamp();
+    if (err) {
+      x.log(err);
+    }
 
-  try {
-    x.msg.guild.channels.get(result[0].caselogs).sendMessage({
-      embed
-    });
-  } catch (err) {
-    x.log('ERROR - ban - ' + err);
-  }
+    x.log(result);
 
-});
+    var embed = new Discord.RichEmbed()
+      .setTitle("Bulk delete")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+       */
+      .setColor('#FF0000')
+      .setDescription('**' + deleteCount + " messages deleted in <#" + x.msg.channel.id + ">** \nModerator: <@" + x.msg.author.id + ">")
+      .setFooter('Messages purged | Dantè Beta')
+      .setTimestamp();
+
+    try {
+      x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+        embed
+      });
+    } catch (err) {
+      x.log('ERROR - ban - ' + err);
+    }
+
+  });
 }
 
-async function set(x)
-{
-if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
+async function set(x) {
+  if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
-  x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES ('" + x.msg.guild.id +  "', '" + x.msg.guild.owner.id + "', ' " + x.msg.guild.name +"')", async function(err, result, fields) {
+  x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES ('" + x.msg.guild.id + "', '" + x.msg.guild.owner.id + "', ' " + x.msg.guild.name + "')", async function(err, result, fields) {
     if (err) {
       x.log(err);
       // Likely this will be to say the guild ID already exists. As such, we will log the error but not take much notice of it.
@@ -296,57 +292,45 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
   var type = x.args;
 
-  if(type === "caselogs")
-  {
-    x.database.query("UPDATE `guilds` SET caselogs = '" + x.msg.channel.id +"' WHERE guild_id = '" + x.msg.guild.id + "'" , async function(err, result, fields) {
+  if (type === "caselogs") {
+    x.database.query("UPDATE `guilds` SET caselogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      }
-
-      else{
+      } else {
         x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
-  if(type === "messagelogs")
-  {
-    x.database.query("UPDATE `guilds` SET msglogs = '" + x.msg.channel.id +"' WHERE guild_id = '" + x.msg.guild.id + "'" , async function(err, result, fields) {
+  if (type === "messagelogs") {
+    x.database.query("UPDATE `guilds` SET msglogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      }
-
-      else{
+      } else {
         x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
-  if(type === "userlogs")
-  {
-    x.database.query("UPDATE `guilds` SET userlogs = '" + x.msg.channel.id +"' WHERE guild_id = '" + x.msg.guild.id + "'" , async function(err, result, fields) {
+  if (type === "userlogs") {
+    x.database.query("UPDATE `guilds` SET userlogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      }
-
-      else{
+      } else {
         x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
-  if(type === "otherlogs")
-  {
-    x.database.query("UPDATE `guilds` SET additionallogs = '" + x.msg.channel.id +"' WHERE guild_id = '" + x.msg.guild.id + "'" , async function(err, result, fields) {
+  if (type === "otherlogs") {
+    x.database.query("UPDATE `guilds` SET additionallogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      }
-
-      else{
+      } else {
         x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
@@ -355,13 +339,13 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
 }
 
-async function mute(x){
+async function mute(x) {
 
 
-if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
+  if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
 
 
-  try{
+  try {
     var usr = x.msg.mentions.members.array()[0];
     usr.send("You were muted from " + x.msg.guild.name);
     var role = x.msg.guild.roles.find(`name`, "muted");
@@ -371,9 +355,7 @@ if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
     x.log('name: ' + role.name);
     member.addRole(role);
     x.msg.channel.send("Muted " + member.user.username);
-  }
-
-  catch(err){
+  } catch (err) {
     x.log(err);
   }
 
