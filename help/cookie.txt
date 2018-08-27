@@ -1,0 +1,4 @@
+Give a cookie a user
+
+Usage:
+  cookie [user]

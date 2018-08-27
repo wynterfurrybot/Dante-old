@@ -1,0 +1,4 @@
+Hugs a user
+
+Usage:
+  hug [user]

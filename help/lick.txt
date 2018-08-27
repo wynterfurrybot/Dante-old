@@ -1,0 +1,4 @@
+Lick a user
+
+Usage:
+  lick [user]

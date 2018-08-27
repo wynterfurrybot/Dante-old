@@ -1,0 +1,4 @@
+Tackle a user to the ground, in a big hug!
+
+Usage:
+  glomp [user]

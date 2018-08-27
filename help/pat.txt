@@ -1,0 +1,4 @@
+Pat / pet a user
+
+Usage:
+  pat [user]

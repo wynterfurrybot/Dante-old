@@ -1,0 +1,4 @@
+Warn a user
+
+Usage:
+  warn [user] <reason>

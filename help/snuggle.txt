@@ -1,0 +1,4 @@
+Snuggle a user
+
+Usage:
+  snuggle [user]

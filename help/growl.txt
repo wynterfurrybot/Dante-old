@@ -1,0 +1,4 @@
+Let out a light growl
+
+Usage:
+  growl

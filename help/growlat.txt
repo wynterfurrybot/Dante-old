@@ -1,0 +1,4 @@
+Growl at a user
+
+Usage:
+  growlat [user]

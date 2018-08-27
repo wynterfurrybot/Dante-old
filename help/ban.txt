@@ -1,0 +1,4 @@
+Ban a user
+
+Usage:
+  ban [user] <reason>

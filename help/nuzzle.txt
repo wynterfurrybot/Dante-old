@@ -1,0 +1,4 @@
+Nuzzle a user
+
+Usage:
+  nuzzle [user]

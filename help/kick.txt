@@ -1,0 +1,4 @@
+Kick a user
+
+Usage:
+  kick [user] <reason>

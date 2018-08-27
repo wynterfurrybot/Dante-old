@@ -1,0 +1,6 @@
+Are you a fucking fennec fox? Great! Scream to your heart's content.
+
+user is [state/emotion], therefore they must scream!
+
+Usage:
+  scream [state/emotion]

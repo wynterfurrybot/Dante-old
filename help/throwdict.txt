@@ -1,0 +1,4 @@
+Throw a dictionary at a user
+
+Usage:
+  throwdict [user]

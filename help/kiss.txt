@@ -1,0 +1,4 @@
+Kiss a user
+
+Usage:
+  kiss [user]

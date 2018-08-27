@@ -1,6 +1,29 @@
 List of commands:
 
-help
-[dark you finish this]
+  cuddle
+  hug
+  nuzzle
+  rubs
+  boop
+  flop
+  pat
+  growlat
+  glomp
+  growl
+  milk
+  snuggle
+  cookie
+  lick
+  cinnabon
+  throwdict
+  confetti
+  scream
+  kiss
+  nap
+  slap
+  kick
+  ban
+  warn
 
-Type help
+Type !help [command] to view specific info on a command.
+For example, !help help

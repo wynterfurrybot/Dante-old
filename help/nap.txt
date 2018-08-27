@@ -1,0 +1,4 @@
+Nap on a user
+
+Usage:
+  nap [user]

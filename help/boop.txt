@@ -1,0 +1,4 @@
+Boop a user
+
+Usage:
+  boop [user]

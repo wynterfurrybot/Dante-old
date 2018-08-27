@@ -1,0 +1,4 @@
+Cover a user in confetti
+
+Usage:
+  confetti [user]
