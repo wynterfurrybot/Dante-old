@@ -1,0 +1,10 @@
+Set a moderation channel (to be implemented)
+
+Usage:
+  set [type]
+
+Example:
+  set caselogs
+
+**NOTE: I still have to add this command, I was tired af and the target was to get it out by tomorrow xD.**
+**DM me with your channel ID and server ID for me to set it up manually for you.**

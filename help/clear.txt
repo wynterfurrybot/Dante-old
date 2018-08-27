@@ -1,0 +1,4 @@
+Clear x amount of messages
+
+Usage:
+  clear [amount]

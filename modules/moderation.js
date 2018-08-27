@@ -224,6 +224,31 @@ function user(x) {
   });
 }
 
+function clear(x) {
+var deleteCount = parseInt(count);
+if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
+
+try{
+var deleteCount = parseInt(x.args);
+deleteCount = deleteCount+1;
+if(deleteCount >= 101)
+	{
+		deleteCount = 100;
+	}
+
+   if(!deleteCount || deleteCount < 3 || deleteCount > 100)
+     return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+
+   const fetched = await message.channel.fetchMessages({limit: deleteCount});
+   message.channel.bulkDelete(fetched)
+     .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+}
+catch(err)
+{
+  x.log(err);
+}
+}
+
 function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;
@@ -233,6 +258,7 @@ function addCmds(x) {
   x['k'] = kick;
   x['ban'] = ban;
   x['b'] = ban;
+  x['clear'] = clear;
 }
 
 module.exports = {
