@@ -3,7 +3,7 @@
  */
 const Discord = require('discord.js');
 
-function hasPermission(msg, cmd, permission) {
+async function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
     return true;
   } else {
@@ -18,7 +18,7 @@ async function warn(x) {
   if (!hasPermission(x.msg, 'warn', 'KICK_MEMBERS')) return;
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [x.msg.guild.id], async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -59,7 +59,7 @@ async function warn(x) {
 
       usr.send("You have been warned on " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"WARNING\")", async function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (?, ?, ?, ?, ?, \"WARNING\")", [caseid, x.msg.guild.id, usr.id, x.msg.author.id, reason], async function(err, result, fields) {
 
         if (err) {
           x.log(err);
@@ -80,7 +80,7 @@ async function kick(x) {
   var member = x.msg.mentions.members.array()[0];
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [x.msg.guild.id], async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -121,7 +121,7 @@ async function kick(x) {
       member.kick();
       usr.send("You have been kicked from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"KICK\")", async function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (?, ?, ?, ?, ?, \"KICK\")", [caseid, x.msg.guild.id, usr.id, x.msg.author.id, reason], async function(err, result, fields) {
 
         if (err) {
           x.log(err);
@@ -142,7 +142,7 @@ async function ban(x) {
   var member = x.msg.mentions.members.array()[0];
 
   try {
-    x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [x.msg.guild.id], async function(err, result, fields) {
 
       if (err) {
         x.log(err);
@@ -183,7 +183,8 @@ async function ban(x) {
       member.ban();
       usr.send("You have been banned from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
-      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"BAN\")", async function(err, result, fields) {
+      x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (?, ?, ?, ?, ?, \"BAN\")", [caseid, x.msg.guild.id, usr.id, x.msg.author.id, reason], async function(err, result, fields) {
+
         if (err) {
           x.log(err);
         }
@@ -200,7 +201,7 @@ async function user(x) {
 
   var punishmentinfo = "";
 
-  x.database.query("SELECT * FROM `cases` WHERE userid = '" + usr.id + "'", async function(err, result, fields) {
+  x.database.query("SELECT * FROM `cases` WHERE userid = ?", [usr.id], async function(err, result, fields) {
     if (err) {
       x.log(err);
     } else {
@@ -249,7 +250,7 @@ async function clear(x) {
     x.log(err);
   }
 
-  x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+  x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [x.msg.guild.id], async function(err, result, fields) {
 
     if (err) {
       x.log(err);
@@ -282,7 +283,7 @@ async function clear(x) {
 async function set(x) {
   if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
-  x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES ('" + x.msg.guild.id + "', '" + x.msg.guild.owner.id + "', ' " + x.msg.guild.name + "')", async function(err, result, fields) {
+  x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES (?, ?, ?)", [x.msg.guild.id, x.msg.guild.owner.id, x.msg.guild.name], async function(err, result, fields) {
     if (err) {
       x.log(err);
       // Likely this will be to say the guild ID already exists. As such, we will log the error but not take much notice of it.
@@ -293,7 +294,7 @@ async function set(x) {
   var type = x.args;
 
   if (type === "caselogs") {
-    x.database.query("UPDATE `guilds` SET caselogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET caselogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
@@ -304,7 +305,7 @@ async function set(x) {
   }
 
   if (type === "messagelogs") {
-    x.database.query("UPDATE `guilds` SET msglogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET msglogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
@@ -315,7 +316,7 @@ async function set(x) {
   }
 
   if (type === "userlogs") {
-    x.database.query("UPDATE `guilds` SET userlogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET userlogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
@@ -326,7 +327,7 @@ async function set(x) {
   }
 
   if (type === "otherlogs") {
-    x.database.query("UPDATE `guilds` SET additionallogs = '" + x.msg.channel.id + "' WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET additionallogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");

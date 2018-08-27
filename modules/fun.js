@@ -101,6 +101,7 @@ function furpile(x){
 }
 
 function addCmds(x) {
+  x.log('added loggnig');
   x['hug'] = hug;
   x['cuddle'] = hug;
   x['nuzzle'] = nuzzle;

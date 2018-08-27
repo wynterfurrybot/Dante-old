@@ -21,7 +21,7 @@ function addEvents(x) {
     x.on("messageDelete", (messageDelete) => {
 
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + messageDelete.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [messageDelete.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -82,7 +82,7 @@ function addEvents(x) {
 
 
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldMessage.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [oldMessage.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -126,7 +126,7 @@ function addEvents(x) {
 
         try {
             x.log(channel.guild.id);
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [channel.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -171,7 +171,7 @@ function addEvents(x) {
 
         try {
             x.log(channel.guild.id);
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + channel.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [channel.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -216,7 +216,7 @@ function addEvents(x) {
 
         try {
             x.log(oldchan.guild.id);
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldchan.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [oldchan.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -282,7 +282,7 @@ function addEvents(x) {
 
 
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [member.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -345,7 +345,7 @@ function addEvents(x) {
 
     x.on('guildMemberRemove', member => {
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + member.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [member.guild.id], function(err, result, fields) {
 
 
 
@@ -390,7 +390,7 @@ function addEvents(x) {
             x.log(guilds);
 
             guilds.forEach(g => {
-                x.database.query("SELECT * FROM guilds WHERE guild_id = " + g.id, function(err, result, fields) {
+                x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [g.id], function(err, result, fields) {
 
 
                     if (err) {
@@ -452,7 +452,7 @@ function addEvents(x) {
 
     x.on('guildMemberUpdate', (oldmember, newmember) => {
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + oldmember.guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [oldmember.guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -534,7 +534,7 @@ function addEvents(x) {
     x.on('guildBanAdd', (guild, member) => {
 
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -574,7 +574,7 @@ function addEvents(x) {
     x.on('guildBanRemove', (guild, member) => {
 
         try {
-            x.database.query("SELECT * FROM guilds WHERE guild_id = " + guild.id, function(err, result, fields) {
+            x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [guild.id], function(err, result, fields) {
 
 
                 if (err) {
@@ -612,25 +612,18 @@ function addEvents(x) {
     })
 
 
-
     // Statuses (playing)
 
     x.on("guildCreate", guild => {
         // This event triggers when the bot joins a guild.
         x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-        x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
+        x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
     });
 
     x.on("guildDelete", guild => {
         // this event triggers when the bot is removed from a guild.
         x.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-        x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
-    });
-
-    x.on("guildCreate", guild => {
-        // This event triggers when the bot joins a guild.
-        x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-        x.client.user.setActivity(`over ${x.client.guilds.size} servers | !help`, { type: 'WATCHING' });
+        x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
     });
 
 }
