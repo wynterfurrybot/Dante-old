@@ -364,7 +364,7 @@ if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
     var member = x.msg.mentions.members.array()[0];
     x.log('name: ' + role.name);
     member.addRole(role);
-    user.send("You were muted from " + x.msg.guild.name);
+    usr.send("You were muted from " + x.msg.guild.name);
     x.msg.channel.send("Muted " + member.user.username);
   }
 
