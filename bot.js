@@ -74,15 +74,15 @@ async function tryCommand(msg) {
   }
 
   var cmd = msgContent.slice(config.prefix.length).split(' ')[0];
-  var cmdasync function = cmds[cmd];
+  var cmdFunction = cmds[cmd];
 
-  if (cmdasync function === undefined) {
+  if (cmdFunction === undefined) {
     // Command wasn't found
     log(`${msgContent} failed because the command wasn't found.`);
     return false;
   }
 
-  cmdasync function({
+  cmdFunction({
     msg: msg,
     args: msgContent.slice(config.prefix.length + cmd.length + 1),
     config: config,
