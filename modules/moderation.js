@@ -414,15 +414,13 @@ async function mute(x){
 
     usr.send("You have been muted from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
 
+
     x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"MUTE\")", async function(err, result, fields) {
       if (err) {
         x.log(err);
       }
     })
   })
-  } catch (err) {
-  x.log('ERROR - mute - ' + err);
-  }
 }
 
 async function addCmds(x) {
