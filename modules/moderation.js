@@ -371,6 +371,8 @@ async function addCmds(x) {
   x['k'] = kick;
   x['ban'] = ban;
   x['b'] = ban;
+  x['mute'] = mute;
+  x['m'] = mute;
   x['clear'] = clear;
   x['set'] = set;
 }
