@@ -2,10 +2,11 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const mysql = require('mysql');
 const client = new Discord.Client();
+const readline = require('readline');
 
 var clientOnRaw = client.on;
 
-var enabled = [true];
+var enabled = [];
 
 function onWrapper(eventName, eventFunc) {
   var id = enabled.length - 1;
@@ -50,16 +51,16 @@ database.connect(err => {
   console.log('Database: Connection secured!');
 });
 
-var cmds = {};
-
 function loadModules(x) {
+  if (enabled.length != 0) enabled[enabled.length - 1] = false;
+  enabled.push(true);
   fs.readdirSync('./modules').forEach(file => {
     var cmdModule = require(`./modules/${file}`);
 
     var addCmdsFunc = cmdModule.addCmds;
     if (addCmdsFunc !== undefined) {
       // Module adds commands
-      addCmdsFunc(cmds);
+      addCmdsFunc(x);
     }
 
     var addEventsFunc = cmdModule.addEvents;
@@ -75,6 +76,19 @@ function loadModules(x) {
     }
   });
 }
+
+var cmds = {};
+loadModules(cmds);
+
+readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+}).on('line', line => {
+  if (line == 'reload') {
+    loadModules(cmds);
+  }
+});
 
 log('Found commands: ' + cmds);
 
