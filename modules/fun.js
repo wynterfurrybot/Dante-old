@@ -128,6 +128,8 @@ function addCmds(x) {
 var fBlockedSet = new Set([264445053596991498, 110373943822540800]);
 
 function addEvents(x) {
+  return;
+
   var respectsPaidToday = 0;
   var respectsPaidDay = new Date().getUTCDay();
 
