@@ -5,3 +5,9 @@ Usage:
 
 Example:
   set caselogs
+
+Types:
+  caselogs (Logs of moderation commands)
+  messagelogs (Message edited, message deleted)
+  userlogs (User joined, user left, user updated)
+  otherlogs (Anything else)
