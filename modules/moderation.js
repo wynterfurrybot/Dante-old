@@ -358,12 +358,7 @@ if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
 
   try{
     var role = x.msg.guild.roles.find(`name`, "muted");
-    if (!role)
-    {
-      x.log("No mute role for the server to mute")
-      x.msg.channel.send("I couldn't find a role named `Muted` on this server.");
-      return;
-    }
+    if (!role) return;
 
     var member = x.msg.mentions.members.array()[0];
     x.log('name: ' + role.name);
