@@ -351,18 +351,78 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 }
 
 async function mute(x){
+  if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
 
-  try{
-    var role = x.msg.guild.roles.find(`name`, "muted");
-    var member = x.msg.mentions.members.array()[0];
-    x.log('name: ' + role.name);
-    member.addRole(role);
+  x.database.query("SELECT * FROM guilds WHERE guild_id = '" + x.msg.guild.id + "'", async function(err, result, fields) {
+
+    if (err) {
+      x.log(err);
+    }
+
+    x.log(result);
+
+    var spaceIndex = x.args.indexOf(' ');
+    var reason;
+    var unix = Math.floor(new Date() / 1000);
+    var caseid = x.msg.guild.nameAcronym + unix;
+    if (spaceIndex == -1) {
+      reason = '<None given>';
+      x.log('no reason given');
+    } else {
+      reason = x.args.slice(x.args.indexOf(' ') + 1);
+      x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
+    }
+
+    var embed = new Discord.RichEmbed()
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+       */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**MUTE**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Muted | Dantè Beta')
+      .setTimestamp();
+
+    try {
+      x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+        embed
+      });
+    } catch (err) {
+      x.log('ERROR - mute - ' + err);
+    }
+
+    try{
+      var role = x.msg.guild.roles.find(`name`, "muted");
+      if (!role){
+          x.log("No mute role on the server to mute");
+          x.msg.channel.send("I couldn't find a role named `Muted` on this server.");
+          return;
+        }
+
+      var member = x.msg.mentions.members.array()[0];
+      x.log('name: ' + role.name);
+      member.addRole(role);
+      x.msg.channel.send("Muted " + member.user.username);
+    }
+
+    catch(err){
+      x.log(err);
+      x.msg.channel.send("Error whilst muting");
+      return;
+    }
+
+    usr.send("You have been muted from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
+
+    x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (\"" + caseid + "\", \"" + x.msg.guild.id + "\", \"" + usr.id + "\", \"" + x.msg.author.id + "\", \"" + reason + "\", \"MUTE\")", async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+      }
+    })
+  })
+  } catch (err) {
+  x.log('ERROR - mute - ' + err);
   }
-
-  catch(err){
-    x.log(err);
-  }
-
 }
 
 async function addCmds(x) {

@@ -1,0 +1,4 @@
+Mute a user
+
+Usage:
+  mute [user] <reason>

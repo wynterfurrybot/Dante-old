@@ -21,6 +21,7 @@ List of commands:
   kiss
   nap
   slap
+  mute
   kick
   ban
   warn
