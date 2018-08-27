@@ -125,15 +125,14 @@ function addCmds(x) {
   x['furpile'] = furpile;
 }
 
-var fBlockedSet = new Set([264445053596991498, 110373943822540800]);
+var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);
 
 function addEvents(x) {
-  return;
-
   var respectsPaidToday = 0;
   var respectsPaidDay = new Date().getUTCDay();
 
   x.on('message', msg => {
+    x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
     if (msg.channel.id == '475003135220383744' || fBlockedSet.has(msg.guild.id)) return;
 
     var content = msg.content;
