@@ -1,5 +1,19 @@
 List of commands:
 
+help
+  help
+
+moderation
+  mute
+  kick
+  ban
+  warn
+
+logging
+  clear
+  set
+
+fun
   cuddle
   hug
   nuzzle
@@ -21,13 +35,6 @@ List of commands:
   kiss
   nap
   slap
-  mute
-  kick
-  ban
-  warn
-  clear
-  set
-
 
 Type !help [command] to view specific info on a command.
 For example, !help help
