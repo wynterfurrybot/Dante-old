@@ -309,6 +309,23 @@ function addEvents(x) {
                     x.client.channels.get(result[0].userlogs).sendMessage({
                         embed
                     });
+
+                    if(x.msg.guild.id === "462042360226775040")
+                    {
+                      var embed = new Discord.RichEmbed()
+                          .setTitle("Member Joined!")
+                          .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+                          .setDescription("Welcome! \n1. Please read #rules \n2.Go to #give-me-a-role and use reactions to get the roles you wish to have \n3.return to this channel (#new-furs) and say the word 'done'")
+                          /*
+                           * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+                           */
+                          .setColor('#00ff11')
+                          .setFooter('Welcome! | Dantè Debugging Beta')
+                          .setTimestamp();
+
+                      x.client.channels.get(result[0].userlogs).sendMessage("<@" + member.id + ">");
+                      x.client.channels.get(result[0].userlogs).sendMessage({embed});
+                    }
                 } catch (err) {
                     return;
                 }
