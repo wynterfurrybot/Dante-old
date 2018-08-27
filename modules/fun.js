@@ -1,5 +1,5 @@
 function hug(x){
-  x.msg.channel.send("<@" + x.msg.author.id + "> *walks upto* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
+  x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
 }
 
 function nuzzle(x){
@@ -35,7 +35,7 @@ function growl(x){
 }
 
 function milk(x){
-  x.msg.channel.send("<@" + x.msg.author.id + "> *walks upto* " + x.args + " *and suddenly gives them a litre of milk...* \nI guess they have milk now?");
+  x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* " + x.args + " *and suddenly gives them a litre of milk...* \nI guess they have milk now?");
 }
 
 function snuggle(x){
