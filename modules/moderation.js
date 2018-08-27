@@ -350,6 +350,18 @@ if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
 }
 
+async function mute(x){
+
+  try{
+    var role = x.msg.guild.roles.find("Muted");
+  }
+
+  catch(err){
+    x.log(err);
+  }
+
+}
+
 async function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;
