@@ -63,11 +63,12 @@ function loadModules(x) {
     if (addEventsFunc !== undefined) {
       // Module adds events
       addEventsFunc({
-        'client': client,
-        'database': database,
-        'logging': config.logging,
-        'config': config,
-        'log': log
+        client: client,
+        database: database,
+        logging: config.logging,
+        config: config,
+        log: log,
+        on: onWrapper
       });
     }
   });
@@ -116,7 +117,8 @@ async function tryCommand(msg) {
     args: msgContent.slice(config.prefix.length + cmd.length + 1),
     config: config,
     database: database,
-    log: log
+    log: log,
+    on: onWrapper
   });
 
   log(`${msgContent} succeded.`)
