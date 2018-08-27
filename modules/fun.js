@@ -1,3 +1,8 @@
+
+/* Commands not meant to be taken seriously.
+ * These are here for fun.
+ */
+
 function hug(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
 }
@@ -120,18 +125,20 @@ function addCmds(x) {
   x['furpile'] = furpile;
 }
 
+var fBlockedSet = new Set([264445053596991498, 110373943822540800]);
+
 function addEvents(x) {
   var respectsPaidToday = 0;
   var respectsPaidDay = new Date().getUTCDay();
 
   x.on('message', msg => {
-    if (msg.channel.id == '475003135220383744') return;
+    if (msg.channel.id == '475003135220383744' || fBlockedSet.has(msg.guild.id)) return;
 
     var content = msg.content;
     if (content.length == 0) return;
     for (var i = 0; i < content.length; i++) {
       if (content[i].toLowerCase() !== 'f') {
-        return;
+        return;   
       }
     }
 

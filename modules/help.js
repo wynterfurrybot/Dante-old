@@ -1,3 +1,8 @@
+
+/* Basic help command.
+ * Reads from './help' directory and displays them in DMs
+ */
+
 const fs = require('fs');
 
 function displayHelp(user, file) {

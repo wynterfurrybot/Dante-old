@@ -1,3 +1,8 @@
+
+/* Logs anything anyone does.
+ * Check deleted messages, username changes, edits, and more!
+ */
+
 const Discord = require('discord.js');
 
 function getGuildsFromUser(user, client) {
