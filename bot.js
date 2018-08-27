@@ -18,7 +18,7 @@ const readline = require('readline');
 //   });
 // }
 
-//client.on = onWrapper;
+// client.on = onWrapper;
 
 console.log('Loading config...');
 var config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
@@ -52,7 +52,7 @@ database.connect(err => {
 });
 
 function loadModules(x) {
-  if (enabled.length != 0) enabled[enabled.length - 1] = false;
+  // if (enabled.length != 0) enabled[enabled.length - 1] = false;
   enabled.push(true);
   fs.readdirSync('./modules').forEach(file => {
     var cmdModule = require(`./modules/${file}`);
