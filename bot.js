@@ -9,7 +9,7 @@ var enabled = [];
 function onWrapper(eventName, eventFunc) {
   var id = enabled.length - 1;
   
-  clientOnRaw(eventName, (a, b, c, d) => {
+  client.on(eventName, (a, b, c, d) => {
     if (enabled[id]) {
       eventFunc(a, b, c, d);
     }
