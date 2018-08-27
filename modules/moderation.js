@@ -364,6 +364,15 @@ if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
     x.log('name: ' + role.name);
     member.addRole(role);
     x.msg.channel.send("Muted " + member.user.username);
+    if (spaceIndex == -1) {
+      reason = '<None given>';
+      x.log('no reason given');
+    } else {
+      reason = x.args.slice(x.args.indexOf(' ') + 1);
+      x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
+    }
+
+    member.send("You were muted on the server " + x.msg.guild.name + " for the following reason: \n\n" + reason)
   }
 
   catch(err){
