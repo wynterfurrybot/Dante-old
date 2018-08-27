@@ -224,7 +224,7 @@ function user(x) {
   });
 }
 
-function clear(x) {
+async function clear(x) {
 var deleteCount = parseInt(count);
 if (!hasPermission(x.msg, 'clear', 'MANAGE_MESSAGES')) return;
 
@@ -237,11 +237,11 @@ if(deleteCount >= 101)
 	}
 
    if(!deleteCount || deleteCount < 3 || deleteCount > 100)
-     return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+     return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
 
-   const fetched = await message.channel.fetchMessages({limit: deleteCount});
-   message.channel.bulkDelete(fetched)
-     .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+   const fetched = await x.msg.channel.fetchMessages({limit: deleteCount});
+   x.msg.channel.bulkDelete(fetched)
+     .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
 }
 catch(err)
 {
