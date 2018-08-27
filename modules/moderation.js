@@ -293,40 +293,56 @@ if (!hasPermission(x.msg, 'clear', 'ADMINISTRATOR')) return;
 
   if(type === "caselogs")
   {
-    x.database.query("UPDATE `guilds` SET caselogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET caselogs = ' " + x.msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+
+      else{
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
   if(type === "messagelogs")
   {
-    x.database.query("UPDATE `guilds` SET msglogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET msglogs = ' " + x.msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+
+      else{
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
   if(type === "userlogs")
   {
-    x.database.query("UPDATE `guilds` SET userlogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET userlogs = ' " + x.msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+
+      else{
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
 
   if(type === "otherlogs")
   {
-    x.database.query("UPDATE `guilds` SET additionallogs = ' " + msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
+    x.database.query("UPDATE `guilds` SET additionallogs = ' " + x.msg.channel.id +"' WHERE guild_id = ''" + x.msg.guild.id + "'" , async function(err, result, fields) {
       if (err) {
         x.log(err);
         x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      }
+
+      else{
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
       }
     })
   }
