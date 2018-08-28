@@ -5,19 +5,7 @@ function gayyiff (x) {
   if(!x.msg.channel.nsfw) return;
   var fetch = true;
   var blockedtags = new Set(['father_and_son', 'young', 'cub']);
-
-  while(fetch){
   var request = e621.random("m/m", "E", 1, post => {
-  tags.forEach(function (t)
-{
-  if(blockedtags.has(t)) {
-    return;
-  }
-  else {
-    fetch = false;
-  }
-})
-
   var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
@@ -33,7 +21,7 @@ function gayyiff (x) {
     x.msg.channel.send({embed});
 })
 }
-}
+
 
 function addCmds(x) {
   x["gayyiff"] = gayyiff;
