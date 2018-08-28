@@ -17,7 +17,7 @@ function gayyiff (x) {
          * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
          */
         .setColor('#FF0000')
-        .setDescription('Could not post this image.'))
+        .setDescription('Could not post this image.')
         .setFooter('Image tags blocked. \nWill fix this tomorrow to generate a new image.')
         .setTimestamp();
 
