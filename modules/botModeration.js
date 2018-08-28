@@ -1,7 +1,7 @@
 
 /* Commands specific to developors.
- * Do not use as you will not be allowed
- */
+* Do not use as you will not be allowed
+*/
 
 function hasPermission(x, usrId) {
   x.log('checking permission');
@@ -23,8 +23,30 @@ function reload(x) {
   }
 }
 
+function servers(x){
+  if (hasPermission(x, x.msg.author.id)) {
+    var guilds = x.client.guilds.array();
+    var list = "";
+    guilds.forEach(function (g){
+      list = list + g.name;
+    })
+    var embed = new Discord.RichEmbed()
+      .setTitle("Guild list")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+       */
+      .setColor('#FF0000')
+      .setDescription(list)
+      .setFooter(${x.client.guilds.size} + ' servers | Dantè Beta')
+      .setTimestamp();
+    x.msg.channel.send({embed});
+  }
+}
+
 function addCmds(x) {
   x['reload'] = reload;
+  x['servers'] = servers;
 }
 
 module.exports = {
