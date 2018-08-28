@@ -13,6 +13,7 @@ function gayyiff (x) {
     .setFooter('Hot yiff | Dantè Beta')
     .setImage(post[0]['preview_url'])
     .setTimestamp();
+})
 }
 
 function addCmds(x) {
