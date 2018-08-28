@@ -7,8 +7,8 @@ function gayyiff (x) {
   var blockedtags = new Set(['father_and_son', 'young', 'cub']);
   var request = e621.random("m/m", "E", 1, post => {
   var tags = post[0]['tags'];
-  tags.forEach(function (t){
-    if (blockedtags.has(t))
+
+    if (tags.includes(blockedtags))
     {
       var embed = new Discord.RichEmbed()
         .setTitle("Failed")
@@ -24,7 +24,6 @@ function gayyiff (x) {
         x.msg.channel.send({embed});
       return;
     }
-  })
   var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
