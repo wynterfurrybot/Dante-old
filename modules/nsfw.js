@@ -1,3 +1,5 @@
+const e621 = require('./e621.js');
+
 function gayyiff (x) {
   if(!x.msg.channel.nsfw) return;
   var request = e621.random("m/m", "E", 1, body => {
