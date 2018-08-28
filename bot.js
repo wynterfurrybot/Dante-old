@@ -127,6 +127,7 @@ async function tryCommand(msg) {
   }
 
   cmdFunction({
+    client: client,
     msg: msg,
     args: msgContent.slice(config.prefix.length + cmd.length + 1),
     config: config,

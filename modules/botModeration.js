@@ -3,6 +3,8 @@
 * Do not use as you will not be allowed
 */
 
+const Discord = require('discord.js');
+
 function hasPermission(x, usrId) {
   x.log('checking permission');
   var isPermitted = false;
@@ -27,9 +29,9 @@ function servers(x){
   if (hasPermission(x, x.msg.author.id)) {
     var guilds = x.client.guilds.array();
     var list = "";
-    guilds.forEach(function (g){
-      list = list + g.name;
-    })
+    guilds.forEach(g => {
+      list = list + g.name + '\n';
+    });
     var embed = new Discord.RichEmbed()
       .setTitle("Guild list")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
@@ -38,7 +40,7 @@ function servers(x){
        */
       .setColor('#FF0000')
       .setDescription(list)
-      .setFooter(${x.client.guilds.size} + ' servers | Dantè Beta')
+      .setFooter(`${x.client.guilds.size} servers | Dantè Beta`)
       .setTimestamp();
     x.msg.channel.send({embed});
   }
