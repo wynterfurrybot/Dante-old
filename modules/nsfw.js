@@ -13,7 +13,7 @@ function gayyiff (x) {
      */
     .setColor('#FF0000')
     .setDescription(post[0]['description'] + "\nSource: http://e621.net/post/show/" + post[0]['id'])
-    .setFooter('Hot yiff | Dantè Beta')
+    .setFooter('Tags: ' + post[0]['tags'])
     .setImage(post[0]['sample_url'])
     .setTimestamp();
 
