@@ -297,51 +297,75 @@ async function set(x) {
     }
   })
 
-
-  var type = x.args;
-
-  if (type === "caselogs") {
-    x.database.query("UPDATE `guilds` SET caselogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-      if (err) {
-        x.log(err);
-        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      } else {
-        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-      }
-    })
+  var type;
+  var setArgs;
+  var argsIndex = x.args.indexOf(' ');
+  if (argsIndex == -1) {
+    type = x.args;
+    setArgs = '';
+  } else {
+    type = x.args.slice(0, argsIndex);
+    setArgs = x.args.slice(argsIndex + 1);
   }
 
-  if (type === "messagelogs") {
-    x.database.query("UPDATE `guilds` SET msglogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-      if (err) {
-        x.log(err);
-        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      } else {
-        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-      }
-    })
-  }
+  switch (type) {
+    case "caselogs":
+      x.database.query("UPDATE `guilds` SET caselogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+        if (err) {
+          x.log(err);
+          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+        } else {
+          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+        }
+      });
+      break;
 
-  if (type === "userlogs") {
-    x.database.query("UPDATE `guilds` SET userlogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-      if (err) {
-        x.log(err);
-        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      } else {
-        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-      }
-    })
-  }
+    case "messagelogs":
+      x.database.query("UPDATE `guilds` SET msglogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+        if (err) {
+          x.log(err);
+          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+        } else {
+          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+        }
+      });;
+      break;
 
-  if (type === "otherlogs") {
-    x.database.query("UPDATE `guilds` SET additionallogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-      if (err) {
-        x.log(err);
-        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-      } else {
-        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-      }
-    })
+    case "userlogs":
+      x.database.query("UPDATE `guilds` SET userlogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+        if (err) {
+          x.log(err);
+          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+        } else {
+          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+        }
+      });
+      break;
+
+    case "otherlogs":
+      x.database.query("UPDATE `guilds` SET additionallogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+        if (err) {
+          x.log(err);
+          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+        } else {
+          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+        }
+      });
+      break;
+    
+    case "welcomemessage":
+      x.database.query("UPDATE `guilds` SET welcome_channel = ?, welcome_message = ? WHERE guild_id = ?", [x.msg.channel.id, setArgs, x.msg.guild.id], function(err, result, fields) {
+        if (err) {
+          x.log(err);
+          x.msg.channel.send("An error has occured whilst trying to set the welcome message.");
+        } else {
+          x.msg.channel.send(":ok_hand: Set the welcome message to be " + setArgs + " displayed in this channel.");
+        }
+      })
+      break;
+    
+    default:
+      x.msg.channel.send(`Hmm. I'm not sure what you mean by \`${type}\`. Type \`${x.config.prefix}help set\` for help.`)
   }
 
 

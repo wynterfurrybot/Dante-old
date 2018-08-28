@@ -278,13 +278,8 @@ function addEvents(x) {
     // User logs:
 
     x.on('guildMemberAdd', member => {
-
-
-
         try {
             x.database.query("SELECT * FROM guilds WHERE guild_id = ?", [member.guild.id], function(err, result, fields) {
-
-
                 if (err) {
                     x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
@@ -315,8 +310,7 @@ function addEvents(x) {
                         embed
                     });
 
-                    if(x.msg.guild.id === "462042360226775040")
-                    {
+                    if(x.msg.guild.id === "462042360226775040") {
                       var embed = new Discord.RichEmbed()
                           .setTitle("Member Joined!")
                           .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
@@ -334,7 +328,21 @@ function addEvents(x) {
                 } catch (err) {
                     return;
                 }
-            })
+            });
+
+            x.database.query('SELECT welcome_message, welcome_channel FROM `guilds` WHERE guild_id = ?', [member.guild.id], (err, result, fields) => {
+                if (err) {
+                    x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+                }
+
+                x.log(result[0]);
+
+                if (result[0].welcome_message == null || result[0].welcome_channel == null) {
+                    return;
+                }
+
+                member.guild.channels.get(result[0].welcome_channel).sendMessage(result[0].welcome_message.replace(/(?<!\$)\$user/g, `<@${member.user.id}>`));
+            });
         } catch (err) {
 
         }
@@ -620,7 +628,7 @@ function addEvents(x) {
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
 
         // Add guild to database
-        x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\')', [guild.id, guild.owner.id, guild.name], err => {
+        x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\', NULL)', [guild.id, guild.owner.id, guild.name], err => {
             if (err) {
                 x.log('ERROR! Couldn\'t add new guild to database.');
             }
