@@ -1,4 +1,5 @@
 const e621 = require('./e621.js');
+const Discord = require('discord.js');
 
 function gayyiff (x) {
   if(!x.msg.channel.nsfw) return;
