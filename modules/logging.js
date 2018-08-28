@@ -618,12 +618,27 @@ function addEvents(x) {
         // This event triggers when the bot joins a guild.
         x.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
+
+        // Add guild to database
+        x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\')', [guild.id, guild.owner.id, guild.name], err => {
+            if (err) {
+                x.log('ERROR! Couldn\'t add new guild to database.');
+            }
+        });
+
     });
 
     x.on("guildDelete", guild => {
         // this event triggers when the bot is removed from a guild.
         x.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
+
+        // Remove guild from database
+        x.database.query('DELETE FROM `guilds` WHERE `guild_id`=?', [guild.id], err => {
+            if (err) {
+                x.log('ERROR! Couldn\'t add delete guild from database.');
+            }
+        });
     });
 
 }
