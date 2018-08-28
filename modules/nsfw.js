@@ -11,7 +11,7 @@ function gayyiff (x) {
     if (blockedtags.has(t))
     {
       var embed = new Discord.RichEmbed()
-        .setTitle("Failed"])
+        .setTitle("Failed")
         .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
         /*
          * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
