@@ -6,6 +6,25 @@ function gayyiff (x) {
   var fetch = true;
   var blockedtags = new Set(['father_and_son', 'young', 'cub']);
   var request = e621.random("m/m", "E", 1, post => {
+  var tags = post[0]['tags'];
+  tags.forEach(function (t){
+    if (blockedtags.has(t))
+    {
+      var embed = new Discord.RichEmbed()
+        .setTitle("Failed"])
+        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+        /*
+         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+         */
+        .setColor('#FF0000')
+        .setDescription('Could not post this image.'))
+        .setFooter('Image tags blocked. \nWill fix this tomorrow to generate a new image.')
+        .setTimestamp();
+
+        x.msg.channel.send({embed});
+      return;
+    }
+  })
   var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
