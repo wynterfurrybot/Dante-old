@@ -1,13 +1,15 @@
-Set a moderation channel
+Set a moderation channel or welcome message.
 
 Usage:
-  set [type]
+  set [type] <welcomemessage>
 
-Example:
+Examples:
   set caselogs
-
+  set welcomemessage Welcome $user to our server!
+  
 Types:
   caselogs (Logs of moderation commands)
   messagelogs (Message edited, message deleted)
   userlogs (User joined, user left, user updated)
   otherlogs (Anything else)
+  welcomemessage (To set a welcome message)

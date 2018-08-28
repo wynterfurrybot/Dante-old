@@ -26,7 +26,7 @@ function reload(x) {
   }
 }
 
-function servers(x){
+function servers(x) {
   if (!x.isFromGuild) return;
   if (hasPermission(x, x.msg.author.id)) {
     var guilds = x.client.guilds.array();
@@ -46,6 +46,21 @@ function servers(x){
       .setTimestamp();
     x.msg.channel.send({embed});
   }
+}
+
+function ping(x) {
+  var ping =  Math.round(x.client.ping) + ' ms';
+  var embed = new Discord.RichEmbed()
+    .setTitle("Current Ping")
+    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+    /*
+     * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+     */
+    .setColor('#FF0000')
+    .setDescription(ping)
+    .setFooter(`Pong! | Dantè Beta`)
+    .setTimestamp();
+  x.msg.channel.send({embed});
 }
 
 function addCmds(x) {
