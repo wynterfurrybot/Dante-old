@@ -18,6 +18,7 @@ function hasPermission(x, usrId) {
 }
 
 function reload(x) {
+  if (!x.isFromGuild) return;
   if (hasPermission(x, x.msg.author.id)) {
     x.log('Permission granted. Reloading...');
     x.reloadFunc();
@@ -26,6 +27,7 @@ function reload(x) {
 }
 
 function servers(x){
+  if (!x.isFromGuild) return;
   if (hasPermission(x, x.msg.author.id)) {
     var guilds = x.client.guilds.array();
     var list = "";

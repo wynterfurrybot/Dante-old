@@ -134,11 +134,12 @@ async function tryCommand(msg) {
     database: database,
     log: log,
     on: onWrapper,
-    reloadFunc: reload
+    reloadFunc: reload,
+    isFromGuild: msg.guild != null
   });
 
-  log(`${msgContent} succeded.`)
-  msg.delete();
+  log(`${msgContent} succeded.`);
+  if (msg.guild != null) msg.delete();
   return true;
 }
 

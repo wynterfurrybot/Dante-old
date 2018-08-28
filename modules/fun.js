@@ -4,86 +4,130 @@
  */
 
 function hug(x){
+  x.log(x.isFromGuild);
+  if (!x.isFromGuild) return;
+  x.log(x.isFromGuild);
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
 }
 
 function nuzzle(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has nuzzled* " + x.args + " *neck.* OwO");
 }
 
 function rubs(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has rolled over on their back* \n" + "<@" + x.msg.author.id + "> wants belly rubs!");
 }
 
 function boop(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has booped* " + x.args + " *on the snoot.*");
 }
 
 function flop(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has flopped on* " + x.args + ". oof!");
 }
 
 function pat(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *pats* " + x.args + " *on the head softly, also giving generous scritches behind the ears while at it!*");
 }
 
 function growlat(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *puts his maw to* " + x.args + " *'s face and growls into their ear(s)*");
 }
 
 function glomp(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *pounces* " + x.args + " *, tackling them to the floor and trapping them in a giant hug of death!* \nIf you listen closely, you might hear confessions of love..");
 }
 
 function growl(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("*a light growl is heard from* <@" + x.msg.author.id + ">");
 }
 
 function milk(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* " + x.args + " *and suddenly gives them a litre of milk...* \nI guess they have milk now?");
 }
 
 function snuggle(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has snuggled* " + x.args);
 }
 
 function cookie(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has given* " + x.args + " *a cookie!* \nIt also comes with a free glass of milk!");
 }
 
 function lick(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has licked* " + x.args + " \nApparently they taste good?");
 }
 
 function cinnabon(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has given* " + x.args + " *a cinnanon* \n\nIt also includes a pot of mayple syrup. Canada get over here!");
 }
 
 function throwdict(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has thrown a dictionary at* " + x.args + " \nKNOWLEDGE!");
 }
 
 function confetti(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *randomly throws confetti over* " + x.args + " \nSURPRISE!");
 }
 
 function scream(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *is* " + x.args + " \nTHEREFORE THEY MUST SCREAM!");
 }
 
 function kiss(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has kissed* " + x.args + " \nAre they french.. or just kissing?");
 }
 
 function nap(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has decided to flop on* " + x.args + " \n\nAfter a while, a sound of snoring can be heard.. \n\nUpon further inspection, it appears <@" + x.msg.author.id + "> is fast asleep!");
 }
 
 function slap(x){
+  if (!x.isFromGuild) return;
+
   x.msg.channel.send("<@" + x.msg.author.id + "> *has slapped* " + x.args + " *hard* \nOUCH!");
 }
 
 function furpile(x){
+  if (!x.isFromGuild) return;
+
   x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
 
@@ -132,6 +176,9 @@ function addEvents(x) {
   var respectsPaidDay = new Date().getUTCDay();
 
   x.on('message', msg => {
+    // Not in a server.
+    if (msg.guild == null) return;
+
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
     if (msg.channel.id == '475003135220383744' || fBlockedSet.has(msg.guild.id)) return;
 

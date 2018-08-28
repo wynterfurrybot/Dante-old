@@ -13,6 +13,8 @@ function hasPermission(msg, cmd, permission) {
 }
 
 async function warn(x) {
+  if (!x.isFromGuild) return;
+
   var usr = x.msg.mentions.users.array()[0];
 
   if (!hasPermission(x.msg, 'warn', 'KICK_MEMBERS')) return;
@@ -74,8 +76,10 @@ async function warn(x) {
 }
 
 async function kick(x) {
-  var usr = x.msg.mentions.users.array()[0];
+  if (!x.isFromGuild) return;
   if (!hasPermission(x.msg, 'kick', 'KICK_MEMBERS')) return;
+
+  var usr = x.msg.mentions.users.array()[0];
 
   var member = x.msg.mentions.members.array()[0];
 
@@ -136,8 +140,10 @@ async function kick(x) {
 }
 
 async function ban(x) {
-  var usr = x.msg.mentions.users.array()[0];
+  if (!x.isFromGuild) return;
   if (!hasPermission(x.msg, 'ban', 'BAN_MEMBERS')) return;
+
+  var usr = x.msg.mentions.users.array()[0];
 
   var member = x.msg.mentions.members.array()[0];
 
@@ -281,6 +287,7 @@ async function clear(x) {
 }
 
 async function set(x) {
+  if (!x.isFromGuild) return;
   if (!hasPermission(x.msg, 'set', 'ADMINISTRATOR')) return;
 
   x.database.query("INSERT INTO `guilds` (guild_id, owner_id, name) VALUES (?, ?, ?)", [x.msg.guild.id, x.msg.guild.owner.id, x.msg.guild.name], async function(err, result, fields) {
@@ -341,10 +348,8 @@ async function set(x) {
 }
 
 async function mute(x) {
-
-
+  if (!x.isFromGuild) return;
   if (!hasPermission(x.msg, 'mute', 'MANAGE_MESSAGES')) return;
-
 
   try {
     var usr = x.msg.mentions.members.array()[0];
