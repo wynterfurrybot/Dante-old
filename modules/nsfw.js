@@ -3,8 +3,7 @@ const Discord = require('discord.js');
 
 function gayyiff (x) {
   if(!x.msg.channel.nsfw) return;
-  var request = e621.random("m/m", "E", 1, body => {
-  var post = JSON.parse(body);
+  var request = e621.random("m/m", "E", 1, post => {
   var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
