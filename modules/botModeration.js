@@ -66,6 +66,7 @@ function ping(x) {
 function addCmds(x) {
   x['reload'] = reload;
   x['servers'] = servers;
+  x['ping'] = ping;
 }
 
 module.exports = {
