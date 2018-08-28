@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 function gayyiff (x) {
   if(!x.msg.channel.nsfw) return;
   var fetch = true;
-  var blockedtags = new Set(['father_and_son', 'young', 'cub']);
+  var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34']);
   var request = e621.random("m/m", "E", 1, post => {
   var tags = post[0]['tags'];
 
