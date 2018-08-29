@@ -1,9 +1,17 @@
 const e621 = require('./e621.js');
 const Discord = require('discord.js');
 
-function gayyiff (x) {
+function e621 (x) {
   if(!x.msg.channel.nsfw) return;
-  var request = e621.random("m/m", "E", 1, post => {
+  var params = x.args.split(' ');
+  var tags = params[0];
+  var limit = params[1];
+  if(!limit)
+  {
+    limit = 1;
+  }
+
+  var request = e621.random(tags, "E", limit, post => {
     var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
@@ -15,14 +23,14 @@ function gayyiff (x) {
     .setFooter('Tags: ' + post[0]['tags'])
     .setImage(post[0]['sample_url'])
     .setTimestamp();
-    
+
     x.msg.channel.send({embed});
   })
 }
 
 
 function addCmds(x) {
-  x["gayyiff"] = gayyiff;
+  x["e6"] = e621;
 }
 
 module.exports = {
