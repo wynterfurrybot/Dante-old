@@ -1,0 +1,8 @@
+Generate a random image from E621.
+
+Usage:
+  e6 [tags]
+
+Demos:
+  e6 m/m (Male on Male)
+  e6 m/f (Male on Female)

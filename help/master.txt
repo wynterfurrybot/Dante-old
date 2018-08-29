@@ -13,6 +13,9 @@ logging
   clear
   set
 
+nsfw
+  e6
+
 fun
   cuddle
   hug
