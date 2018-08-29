@@ -4,6 +4,10 @@ const Discord = require('discord.js');
 function e6 (x) {
   if(!x.msg.channel.nsfw) return;
   var request = e621.random(x.args, "E", 1, post => {
+    if(!post)
+    {
+        x.msg.reply('Those tags are banned');
+    }
     var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
