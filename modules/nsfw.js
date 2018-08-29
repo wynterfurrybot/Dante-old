@@ -6,8 +6,6 @@ function gayyiff (x) {
   var fetch = true;
   var blocked = false;
   var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34']);
-
-  do{
     var request = e621.random("m/m", "E", 1, post => {
       var tags = post[0]['tags'];
       blockedtags.forEach(function (tag){
@@ -35,8 +33,6 @@ function gayyiff (x) {
 
       x.msg.channel.send({embed});
     })
-  }
-  while (fetch);
 }
 
 
