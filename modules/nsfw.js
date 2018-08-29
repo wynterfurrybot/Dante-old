@@ -32,7 +32,6 @@ function e6 (x) {
       .setTimestamp();
 
       x.msg.channel.send({embed});
-      break;
       return;
     }
   })
