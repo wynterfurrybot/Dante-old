@@ -28,6 +28,7 @@ function random(tags, rating, limit, callback) {
       {
         var post = false;
         callback(post);
+        return;
       }
       attempts = attempts + 1;
       console.log('contains blocked tag -- getting new image.');
