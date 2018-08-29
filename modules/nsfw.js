@@ -31,7 +31,7 @@ x.log('limit:' + limit);
       if (limit === 2)
       {
         var embed = new Discord.RichEmbed()
-        .setTitle("New yiff image -- score: " + post[0]['score'])
+        .setTitle("New yiff image -- score: " + post[1]['score'])
         .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
         /*
         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
@@ -48,7 +48,7 @@ x.log('limit:' + limit);
       if (limit === 3)
       {
         var embed = new Discord.RichEmbed()
-        .setTitle("New yiff image -- score: " + post[0]['score'])
+        .setTitle("New yiff image -- score: " + post[2]['score'])
         .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
         /*
         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
