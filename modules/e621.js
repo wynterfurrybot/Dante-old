@@ -6,17 +6,6 @@ Agent: Dantè (by Darkmane on e621)
 */
 function random(tags, rating, limit, callback) {
   var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34', 'mlp', 'my_little_pony']);
-  var tgs = tags.split(' ');
-  tgs.forEach(function (tag){
-    if (blockedtags.has(tag)){
-      blocked = true;
-    }
-  });
-  if(blocked)
-  {
-    var post = false;
-    callback(post);
-  }
   request.get({
     "method" : "GET",
     "uri": "https://e621.net/post/index.json?tags=" + tags + "%20order:random+rating:" + rating +"&limit=" + limit,
