@@ -1,7 +1,7 @@
 const e621 = require('./e621.js');
 const Discord = require('discord.js');
 
-function e621 (x) {
+function e6 (x) {
   if(!x.msg.channel.nsfw) return;
   var params = x.args.split(' ');
   var tags = params[0];
@@ -30,7 +30,7 @@ function e621 (x) {
 
 
 function addCmds(x) {
-  x["e6"] = e621;
+  x["e6"] = e6;
 }
 
 module.exports = {
