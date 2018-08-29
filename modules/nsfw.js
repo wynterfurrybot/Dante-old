@@ -1,8 +1,8 @@
 const e621 = require('./e621.js');
 const Discord = require('discord.js');
-
 function e6 (x) {
   if(!x.msg.channel.nsfw) return;
+  var send = true;
   var request = e621.random(x.args, "E", 1, post => {
     try{
       var embed = new Discord.RichEmbed()
@@ -21,6 +21,7 @@ function e6 (x) {
     }
 
     catch{
+      if(send){
       var embed = new Discord.RichEmbed()
       .setTitle('Blocked Image')
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
@@ -32,8 +33,9 @@ function e6 (x) {
       .setTimestamp();
 
       x.msg.channel.send({embed});
-      return;
+      send = false;
     }
+  }
   })
 }
 
