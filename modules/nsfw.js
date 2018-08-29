@@ -11,6 +11,7 @@ function e6 (x) {
     limit = 1;
   }
 
+x.log('limit:' + limit);
   var request = e621.random(tags, "E", limit, post => {
     var embed = new Discord.RichEmbed()
     .setTitle("New yiff image -- score: " + post[0]['score'])
