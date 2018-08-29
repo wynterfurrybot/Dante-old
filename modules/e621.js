@@ -4,6 +4,7 @@ Tags: M/M
 Rating: E
 Agent: Dantè (by Darkmane on e621)
 */
+var attempts = 1;
 function random(tags, rating, limit, callback) {
   var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34', 'mlp', 'my_little_pony']);
   request.get({
@@ -23,6 +24,12 @@ function random(tags, rating, limit, callback) {
       }
     });
     if (blocked) {
+      if attempts(>9)
+      {
+        var post = false;
+        callback(post);
+      }
+      attempts = attempts + 1;
       console.log('contains blocked tag -- getting new image.');
       random(tags, rating, limit, callback);
     } else {
