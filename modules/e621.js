@@ -15,10 +15,10 @@ function random(tags, rating, limit, callback) {
   },function (err, res, body) {
     var post = JSON.parse(body);
     var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34']);
-    var tags = post[0]['tags'];
+    var ts = post[0]['tags'];
     var blocked = false;
     blockedtags.forEach(function (tag){
-      if (tags.includes(tag)){
+      if (ts.includes(tag)){
         blocked = true;
       }
     });
