@@ -61,7 +61,7 @@ function e6 (x) {
         x.msg.channel.send({embed});
       }
   })
-
+}
 
 
 
