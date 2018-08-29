@@ -63,10 +63,24 @@ function ping(x) {
   x.msg.channel.send({embed});
 }
 
+function rebuildGuilds(x) {
+  if (!x.isFromGuild) return;
+  if (hasPermission(x, x.msg.author.id)) {
+    x.client.guilds.forEach(guild => {
+      x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\', NULL, NULL)', [guild.id, guild.owner.id, guild.name], err => {
+        if (err) {
+          x.log('ERROR! Couldn\'t add new guild to database.');
+        }
+      });
+    });
+  }
+}
+
 function addCmds(x) {
   x['reload'] = reload;
   x['servers'] = servers;
   x['ping'] = ping;
+  x['rebuildGuilds'] = rebuildGuilds;
 }
 
 module.exports = {
