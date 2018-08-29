@@ -29,7 +29,7 @@ function e6 (x) {
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('Could not retrieve an image for this search.')
+      .setDescription('Lets just say e621 has a lot of cub porn. \n\nIf you\'re getting this, the bot tried to find a clean image 50 times, but failed.')
       .setTimestamp();
 
       x.msg.channel.send({embed});

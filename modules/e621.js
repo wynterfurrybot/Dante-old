@@ -24,7 +24,7 @@ function random(tags, rating, limit, callback) {
       }
     });
     if (blocked) {
-      if (attempts > 25)
+      if (attempts >= 50)
       {
         var post = false;
         callback(post);
