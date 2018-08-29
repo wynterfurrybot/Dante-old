@@ -14,7 +14,20 @@ function random(tags, rating, limit, callback) {
     }
   },function (err, res, body) {
     var post = JSON.parse(body);
-    callback(post);
+    var blockedtags = new Set(['father_and_son', 'young', 'cub', 'bestiality', 'human', 'r34']);
+    var tags = post[0]['tags'];
+    var blocked = false;
+    blockedtags.forEach(function (tag){
+      if (tags.includes(tag)){
+        blocked = true;
+      }
+    });
+    if (blocked) {
+      console.log('contains blocked tag -- getting new image.');
+      random(tags, rating, limit, callback);
+    } else {
+      callback(post);
+    }
   });
 
 }
