@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 function e6 (x) {
   if(!x.msg.channel.nsfw) return;
   var request = e621.random(x.args, "E", 1, post => {
-    if(!post)
+    if(!post[0]['score'])
     {
       var embed = new Discord.RichEmbed()
       .setTitle("We could not get an image this time")
