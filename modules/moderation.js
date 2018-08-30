@@ -4,7 +4,7 @@
 const Discord = require('discord.js');
 
 function hasPermission(msg, cmd, permission) {
-  if (msg.member.hasPermission(permission) || msg.channel.memberPermissions(msg.member).has(permissiom)) {
+  if (msg.member.hasPermission(permission) || msg.channel.memberPermissions(msg.member).has(permission)) {
     console.log(`${msg.author.username} passed the permission check for ${cmd} on ${msg.channel.name}`);
     return true;
   } else {
