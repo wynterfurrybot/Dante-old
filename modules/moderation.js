@@ -5,8 +5,10 @@ const Discord = require('discord.js');
 
 function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
+    x.log(`${msg.author.username} passed the permission check for ${cmd} on ${msg.channel.name}`);
     return true;
   } else {
+    x.log(`${msg.author.username} did not pass the permission check for ${cmd} on ${msg.channel.name}`);
     msg.author.send(`You don't have permission to use '${cmd}'.`)
     return false;
   }
@@ -352,7 +354,7 @@ async function set(x) {
         }
       });
       break;
-    
+
     case "welcomemessage":
       x.database.query("UPDATE `guilds` SET welcome_channel = ?, welcome_message = ? WHERE guild_id = ?", [x.msg.channel.id, setArgs, x.msg.guild.id], function(err, result, fields) {
         if (err) {
@@ -363,7 +365,7 @@ async function set(x) {
         }
       })
       break;
-    
+
     default:
       x.msg.channel.send(`Hmm. I'm not sure what you mean by \`${type}\`. Type \`${x.config.prefix}help set\` for help.`)
   }
