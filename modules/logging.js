@@ -628,7 +628,7 @@ function addEvents(x) {
         x.client.user.setActivity(`over ${x.client.guilds.size} servers | ${x.config.prefix}help`, { type: 'WATCHING' });
 
         // Add guild to database
-        x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\', NULL)', [guild.id, guild.owner.id, guild.name], err => {
+        x.database.query('INSERT INTO `guilds` VALUES (?, ?, ?, NULL, NULL, NULL, NULL, \'!\', NULL, NULL)', [guild.id, guild.owner.id, guild.name], err => {
             if (err) {
                 x.log('ERROR! Couldn\'t add new guild to database.');
             }
