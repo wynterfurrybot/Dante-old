@@ -5,10 +5,10 @@ const Discord = require('discord.js');
 
 function hasPermission(msg, cmd, permission) {
   if (msg.member.hasPermission(permission)) {
-    x.log(`${msg.author.username} passed the permission check for ${cmd} on ${msg.channel.name}`);
+    console.log(`${msg.author.username} passed the permission check for ${cmd} on ${msg.channel.name}`);
     return true;
   } else {
-    x.log(`${msg.author.username} did not pass the permission check for ${cmd} on ${msg.channel.name}`);
+    console.log(`${msg.author.username} did not pass the permission check for ${cmd} on ${msg.channel.name}`);
     msg.author.send(`You don't have permission to use '${cmd}'.`)
     return false;
   }
