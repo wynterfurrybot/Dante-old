@@ -41,3 +41,5 @@ fun
 
 Type !help [command] to view specific info on a command.
 For example, !help help
+
+Support Server: https://discord.gg/5eNDkdd
