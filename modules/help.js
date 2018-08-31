@@ -29,8 +29,15 @@ function help(x) {
   }
 }
 
+function info(x) {
+  x.msg.channel.send(x.getEmbed(x.config.info, {
+    "guilds": `${x.client.guilds.size}`
+  }));
+}
+
 function addCmds(x) {
   x['help'] = help
+  x['info'] = info
 }
 
 module.exports = {
