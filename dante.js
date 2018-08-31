@@ -66,7 +66,7 @@ function getEmbed(json, variables) {
     .setFooter(insertVariables(json.footer, variables))
     .setColor(json.colour);
   json.fields.forEach(field => {
-    embed.addField(insertVariables(field.prefix, variables), insertVariables(field.message, variables));
+    embed.addField(insertVariables(field.prefix, variables), insertVariables(field.message, variables), field.inline == undefined ? (json.inline == undefined ? false : true) : field.inline);
   });
   return embed;
 }
