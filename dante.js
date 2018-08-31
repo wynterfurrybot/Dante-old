@@ -53,10 +53,29 @@ database.connect(err => {
   console.log('Database: Connection secured!');
 });
 
+function insertVariables(x, variables) {
+  Object.keys(variables).forEach(name => {
+    x = x.replace(new RegExp(`\\\$${name}`, "g"), variables[name]);
+  });
+  return x;
+}
+
+function getEmbed(json, variables) {
+  var embed = new Discord.RichEmbed()
+    .setTitle(insertVariables(json.title, variables))
+    .setFooter(insertVariables(json.footer, variables))
+    .setColor(json.colour);
+  json.fields.forEach(field => {
+    embed.addField(insertVariables(field.prefix, variables), insertVariables(field.message, variables));
+  });
+  return embed;
+}
+
 function loadModules(x) {
   if (enabled.length != 0) enabled[enabled.length - 1] = false;
   enabled.push(true);
   fs.readdirSync('./modules').forEach(file => {
+    console.log(`Reading module ${file}.`)
     delete require.cache[require.resolve(`./modules/${file}`)];
     var cmdModule = require(`./modules/${file}`);
 
@@ -76,7 +95,9 @@ function loadModules(x) {
         config: config,
         log: log,
         on: onWrapper,
-        reloadFunc: reload
+        reloadFunc: reload,
+        insertVariables: insertVariables,
+        getEmbed: getEmbed
       });
     }
   });
@@ -135,7 +156,9 @@ async function tryCommand(msg) {
     log: log,
     on: onWrapper,
     reloadFunc: reload,
-    isFromGuild: msg.guild != null
+    isFromGuild: msg.guild != null,
+    insertVariables: insertVariables,
+    getEmbed: getEmbed
   });
 
   log(`${msgContent} succeded.`);
