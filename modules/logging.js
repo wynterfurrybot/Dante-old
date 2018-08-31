@@ -634,6 +634,13 @@ function addEvents(x) {
             }
         });
 
+        x.client.channels.get(x.config.channelId).send("Dante has been added to " + guild.name + ".");
+
+        var ownerMessage = x.config.ownerMessage;
+        ownerMessage = ownerMessage.replace(/\$prefix/g, x.config.prefix);
+        ownerMessage = ownerMessage.replace(/\$server/g, guild.name);
+        guild.owner.send(ownerMessage);
+
     });
 
     x.on("guildDelete", guild => {
