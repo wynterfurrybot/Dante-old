@@ -76,11 +76,23 @@ function rebuildGuilds(x) {
   }
 }
 
+function messageOwnersAboutSupport(x) {
+  if (hasPermission(x, x.msg.author.id)) {
+    x.client.guilds.forEach(guild => {
+      var ownerMessage = x.args;
+      ownerMessage = ownerMessage.replace(/\$prefix/g, x.config.prefix);
+      ownerMessage = ownerMessage.replace(/\$server/g, guild.name);
+      guild.owner.send(ownerMessage);
+    });
+  }
+}
+
 function addCmds(x) {
   x['reload'] = reload;
   x['servers'] = servers;
   x['ping'] = ping;
   x['rebuildGuilds'] = rebuildGuilds;
+  x['messageOwnersAboutSupport'] = messageOwnersAboutSupport;
 }
 
 module.exports = {
