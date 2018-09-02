@@ -207,7 +207,7 @@ function addEvents(x) {
 
       if (c.includes("kill yourself"))
       {
-        msg.channel.send("I'll pretend I didn't hear that, <@" + msg.author.id + ">");
+        msg.channel.send("no u");
       }
     }
 
