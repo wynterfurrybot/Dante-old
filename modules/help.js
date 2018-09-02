@@ -32,7 +32,7 @@ function help(x) {
 function info(x) {
   x.msg.channel.send(x.getEmbed(x.config.info, {
     "guilds": `${x.client.guilds.size}`,
-    "ping": `${x.client.ping}`
+    "ping": `${Math.round(x.client.ping)}`
   }));
 }
 
