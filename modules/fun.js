@@ -184,11 +184,21 @@ function addEvents(x) {
 
     if(content.startsWith("<@482294943780438016>"))
     {
-      console.log("true");
-    }
+      var c = content.toLowerCase();
+      if c.includes("make me a sandwich"))
+      {
+        msg.channel.send("I can't, I have no condiments.");
+      }
 
-    else{
-      console.log(msg.content);
+      if c.includes("make me a tea"))
+      {
+        msg.channel.send("What do you think I am, your maid? \n\nMake one yourself!");
+      }
+
+      if c.includes("what is your prefix?"))
+      {
+        msg.channel.send("! - Type !help for a list of commands!");
+      }
     }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
