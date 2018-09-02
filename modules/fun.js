@@ -1,7 +1,7 @@
 
 /* Commands not meant to be taken seriously.
- * These are here for fun.
- */
+* These are here for fun.
+*/
 
 function hug(x){
   x.log(x.isFromGuild);
@@ -178,15 +178,27 @@ function addEvents(x) {
   x.on('message', msg => {
     // Not in a server.
     if (msg.guild == null) return;
+    var content = msg.content;
+
+    // Hidden commands -- Mention Dantè for these to work.
+
+    if(content.startsWith("<@482294943780438016>"))
+    {
+      x.log("true");
+    }
+
+    else{
+      x.log(msg.content);
+    }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
     if (msg.channel.id == '475003135220383744' || fBlockedSet.has(msg.guild.id)) return;
 
-    var content = msg.content;
+
     if (content.length == 0) return;
     for (var i = 0; i < content.length; i++) {
       if (content[i].toLowerCase() !== 'f') {
-        return;   
+        return;
       }
     }
 
