@@ -656,6 +656,9 @@ function addEvents(x) {
                 x.log('ERROR! Couldn\'t add delete guild from database.');
             }
         });
+
+        x.client.channels.get(x.config.channelId).send("Dante has been removed from " + guild.name + ".");
+
     });
 
 }
