@@ -199,6 +199,16 @@ function addEvents(x) {
       {
         msg.channel.send("! - Type !help for a list of commands!");
       }
+
+      if (c.includes("get me a vodka"))
+      {
+        msg.channel.send("I'm not adding onto your alcohol problem, <@" + msg.author.id + ">");
+      }
+
+      if (c.includes("kill yourself"))
+      {
+        msg.channel.send("I'll pretend I didn't hear that, <@" + msg.author.id + ">");
+      }
     }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
