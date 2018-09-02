@@ -184,11 +184,11 @@ function addEvents(x) {
 
     if(content.startsWith("<@482294943780438016>"))
     {
-      x.log("true");
+      console.log("true");
     }
 
     else{
-      x.log(msg.content);
+      console.log(msg.content);
     }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
