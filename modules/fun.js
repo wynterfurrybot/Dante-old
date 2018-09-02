@@ -184,18 +184,18 @@ function addEvents(x) {
 
     if(content.startsWith("<@482294943780438016>"))
     {
-      var c = content.toLowerCase();
-      if c.includes("make me a sandwich"))
+    
+      if content.includes("make me a sandwich"))
       {
         msg.channel.send("I can't, I have no condiments.");
       }
 
-      if c.includes("make me a tea"))
+      if content.includes("make me a tea"))
       {
         msg.channel.send("What do you think I am, your maid? \n\nMake one yourself!");
       }
 
-      if c.includes("what is your prefix?"))
+      if content.includes("what is your prefix?"))
       {
         msg.channel.send("! - Type !help for a list of commands!");
       }
