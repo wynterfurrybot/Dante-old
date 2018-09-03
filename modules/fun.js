@@ -210,9 +210,9 @@ function addEvents(x) {
         msg.channel.send("no u");
       }
       
-      if (c.includes("give me heaven"))
+      if (c.includes("open the pod bay doors"))
       {
-        msg.channel.send("https://youtu.be/kJQP7kiw5Fk");
+        msg.channel.send("I'm sorry <@" + msg.author.id + ">" + " ,I'm afraid I can't do that.");
       }
     }
 
