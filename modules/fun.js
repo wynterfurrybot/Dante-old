@@ -209,6 +209,11 @@ function addEvents(x) {
       {
         msg.channel.send("no u");
       }
+      
+      if (c.includes("give me heaven"))
+      {
+        msg.channel.send("https://youtu.be/kJQP7kiw5Fk");
+      }
     }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
