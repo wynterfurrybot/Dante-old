@@ -212,7 +212,7 @@ function addEvents(x) {
       
       if (c.includes("give me heaven"))
       {
-        msg.channel.send("https://youtu.be/kJQP7kiw5Fk");
+        msg.channel.send("<https://youtu.be/dQw4w9WgXcQ>");
       }
     }
 
