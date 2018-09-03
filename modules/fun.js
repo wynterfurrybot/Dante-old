@@ -214,6 +214,11 @@ function addEvents(x) {
       {
         msg.channel.send("I'm sorry <@" + msg.author.id + ">" + " ,I'm afraid I can't do that.");
       }
+      
+       if (c.includes("what is the meaning of life?"))
+      {
+         msg.channel.send("42");
+      }
     }
 
     x.log(msg.guild.id + ', ' + fBlockedSet.has(msg.guild.id));
