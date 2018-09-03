@@ -44,7 +44,7 @@ function pat(x){
 function growlat(x){
   if (!x.isFromGuild) return;
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *puts his maw to* " + x.args + " *'s face and growls into their ear(s)*");
+  x.msg.channel.send("<@" + x.msg.author.id + "> *puts their maw to* " + x.args + " *'s face and growls into their ear(s)*");
 }
 
 function glomp(x){
@@ -86,7 +86,7 @@ function lick(x){
 function cinnabon(x){
   if (!x.isFromGuild) return;
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has given* " + x.args + " *a cinnanon* \n\nIt also includes a pot of mayple syrup. Canada get over here!");
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has given* " + x.args + " *a cinnabon* \n\nIt also includes a pot of mayple syrup. Canada get over here!");
 }
 
 function throwdict(x){
