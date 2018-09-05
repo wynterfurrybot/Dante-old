@@ -44,6 +44,7 @@ function addEvents(x) {
                     .setTimestamp();
 
                 try {
+                    if (messageDelete.author.bot) return;
                     x.client.channels.get(result[0].msglogs).sendMessage({
                         embed
                     });
@@ -106,6 +107,7 @@ function addEvents(x) {
 
 
                 try {
+                  if (oldMessage.author.bot) return;
                     x.client.channels.get(result[0].msglogs).sendMessage({
                         embed
                     });
@@ -437,6 +439,7 @@ function addEvents(x) {
                         embed.setThumbnail(oldmember.avatarURL);
                         embed.setImage(newmember.avatarURL);
                         try {
+                          if (newmember.bot) return;
                             x.client.channels.get(result[0].userlogs).sendMessage({
                                 embed
                             });
