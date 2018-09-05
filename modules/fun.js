@@ -14,7 +14,7 @@ function hug(x){
 function nuzzle(x){
   if (!x.isFromGuild) return;
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has nuzzled* " + x.args + " *neck.* OwO");
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has nuzzled* " + x.args + " *on the neck.* OwO");
 }
 
 function rubs(x){
