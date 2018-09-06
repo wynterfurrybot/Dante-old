@@ -1,6 +1,7 @@
 /* Moderation with criminal records.
-* This makes moderation a lot easier.
-*/
+ * This makes moderation a lot easier.
+ */
+
 const Discord = require('discord.js');
 
 function hasPermission(msg, cmd, permission) {
