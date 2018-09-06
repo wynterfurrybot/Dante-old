@@ -401,6 +401,7 @@ function server(x) {
   var members = guild.memberCount;
   var owner = guild.owner.user.username + "#" + guild.owner.user.discriminator;
   var region = guild.region;
+  var timeout = guild.afkTimeout + " seconds";
 
   var embed = new Discord.RichEmbed()
   .setTitle(guild.name)
@@ -410,7 +411,7 @@ function server(x) {
   */
   .setColor('#FF0000')
   .setThumbnail(guild.iconURL)
-  .setDescription("Members: " + members + "\nChannels: " + channels + "\nOwner: " + owner + "\nRegion: " + region + "\nAFK Timeout: " + guild.afkTimeout)
+  .setDescription("Members: " + members + "\nChannels: " + channels + "\nOwner: " + owner + "\nRegion: " + region + "\nAFK Timeout: " + timeout)
   .setFooter(guild.nameAcronym + ' Info | Dantè Beta')
   .setTimestamp();
 
