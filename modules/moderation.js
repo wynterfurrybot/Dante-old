@@ -395,7 +395,7 @@ async function mute(x) {
 
 function server(x) {
   if (!x.isFromGuild) return;
-  var guild = msg.guild;
+  var guild = x.msg.guild;
   var chans = guild.channels.array();
   var channels = chans.length;
   var members = guild.memberCount;
@@ -414,7 +414,7 @@ function server(x) {
   .setFooter(guild.nameAcronym + ' Info | Dantè Beta')
   .setTimestamp();
 
-  msg.channel.send({embed});
+  x.msg.channel.send({embed});
 
 }
 
