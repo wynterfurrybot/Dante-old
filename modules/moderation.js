@@ -1,6 +1,6 @@
 /* Moderation with criminal records.
- * This makes moderation a lot easier.
- */
+* This makes moderation a lot easier.
+*/
 const Discord = require('discord.js');
 
 function hasPermission(msg, cmd, permission) {
@@ -43,15 +43,15 @@ async function warn(x) {
       }
 
       var embed = new Discord.RichEmbed()
-        .setTitle("Case #" + caseid)
-        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-        /*
-         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-         */
-        .setColor('#FF0000')
-        .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
-        .setFooter('User Warned | Dantè Beta')
-        .setTimestamp();
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Warned | Dantè Beta')
+      .setTimestamp();
 
       try {
         x.msg.guild.channels.get(result[0].caselogs).sendMessage({
@@ -107,15 +107,15 @@ async function kick(x) {
       }
 
       var embed = new Discord.RichEmbed()
-        .setTitle("Case #" + caseid)
-        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-        /*
-         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-         */
-        .setColor('#FF0000')
-        .setDescription('**A new case has been created!** \n\nType: __**KICK**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
-        .setFooter('User Kicked | Dantè Beta')
-        .setTimestamp();
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**KICK**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Kicked | Dantè Beta')
+      .setTimestamp();
 
       try {
         x.msg.guild.channels.get(result[0].caselogs).sendMessage({
@@ -171,15 +171,15 @@ async function ban(x) {
       }
 
       var embed = new Discord.RichEmbed()
-        .setTitle("Case #" + caseid)
-        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-        /*
-         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-         */
-        .setColor('#FF0000')
-        .setDescription('**A new case has been created!** \n\nType: __**BAN**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
-        .setFooter('User Banned | Dantè Beta')
-        .setTimestamp();
+      .setTitle("Case #" + caseid)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('**A new case has been created!** \n\nType: __**BAN**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setFooter('User Banned | Dantè Beta')
+      .setTimestamp();
 
       try {
         x.msg.guild.channels.get(result[0].caselogs).sendMessage({
@@ -219,15 +219,15 @@ async function user(x) {
       })
 
       var embed = new Discord.RichEmbed()
-        .setTitle(usr.user.username)
-        .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-        /*
-         * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-         */
-        .setColor('#FF0000')
-        .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\n\n__Punishments__\n" + punishmentinfo)
-        .setFooter('User Info | Dantè Beta')
-        .setTimestamp();
+      .setTitle(usr.user.username)
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\n\n__Punishments__\n" + punishmentinfo)
+      .setFooter('User Info | Dantè Beta')
+      .setTimestamp();
 
       x.msg.channel.send({
         embed
@@ -247,13 +247,13 @@ async function clear(x) {
     }
 
     if (!deleteCount || deleteCount < 3 || deleteCount > 100)
-      return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+    return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
 
     const fetched = await x.msg.channel.fetchMessages({
       limit: deleteCount
     });
     x.msg.channel.bulkDelete(fetched)
-      .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
+    .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
   } catch (err) {
     x.log(err);
   }
@@ -267,15 +267,15 @@ async function clear(x) {
     x.log(result);
 
     var embed = new Discord.RichEmbed()
-      .setTitle("Bulk delete")
-      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-      /*
-       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-       */
-      .setColor('#FF0000')
-      .setDescription('**' + deleteCount + " messages deleted in <#" + x.msg.channel.id + ">** \nModerator: <@" + x.msg.author.id + ">")
-      .setFooter('Messages purged | Dantè Beta')
-      .setTimestamp();
+    .setTitle("Bulk delete")
+    .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+    /*
+    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+    */
+    .setColor('#FF0000')
+    .setDescription('**' + deleteCount + " messages deleted in <#" + x.msg.channel.id + ">** \nModerator: <@" + x.msg.author.id + ">")
+    .setFooter('Messages purged | Dantè Beta')
+    .setTimestamp();
 
     try {
       x.msg.guild.channels.get(result[0].caselogs).sendMessage({
@@ -312,62 +312,62 @@ async function set(x) {
 
   switch (type) {
     case "caselogs":
-      x.database.query("UPDATE `guilds` SET caselogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-        if (err) {
-          x.log(err);
-          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-        } else {
-          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-        }
-      });
-      break;
+    x.database.query("UPDATE `guilds` SET caselogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      } else {
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+      }
+    });
+    break;
 
     case "messagelogs":
-      x.database.query("UPDATE `guilds` SET msglogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-        if (err) {
-          x.log(err);
-          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-        } else {
-          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-        }
-      });;
-      break;
+    x.database.query("UPDATE `guilds` SET msglogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      } else {
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+      }
+    });;
+    break;
 
     case "userlogs":
-      x.database.query("UPDATE `guilds` SET userlogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-        if (err) {
-          x.log(err);
-          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-        } else {
-          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-        }
-      });
-      break;
+    x.database.query("UPDATE `guilds` SET userlogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      } else {
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+      }
+    });
+    break;
 
     case "otherlogs":
-      x.database.query("UPDATE `guilds` SET additionallogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
-        if (err) {
-          x.log(err);
-          x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
-        } else {
-          x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
-        }
-      });
-      break;
+    x.database.query("UPDATE `guilds` SET additionallogs = ? WHERE guild_id = ?", [x.msg.channel.id, x.msg.guild.id], async function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to update the channel ID.");
+      } else {
+        x.msg.channel.send(":ok_hand: Set the new channel ID to " + x.msg.channel.id);
+      }
+    });
+    break;
 
     case "welcomemessage":
-      x.database.query("UPDATE `guilds` SET welcome_channel = ?, welcome_message = ? WHERE guild_id = ?", [x.msg.channel.id, setArgs, x.msg.guild.id], function(err, result, fields) {
-        if (err) {
-          x.log(err);
-          x.msg.channel.send("An error has occured whilst trying to set the welcome message.");
-        } else {
-          x.msg.channel.send(":ok_hand: Set the welcome message to be " + setArgs + " displayed in this channel.");
-        }
-      })
-      break;
+    x.database.query("UPDATE `guilds` SET welcome_channel = ?, welcome_message = ? WHERE guild_id = ?", [x.msg.channel.id, setArgs, x.msg.guild.id], function(err, result, fields) {
+      if (err) {
+        x.log(err);
+        x.msg.channel.send("An error has occured whilst trying to set the welcome message.");
+      } else {
+        x.msg.channel.send(":ok_hand: Set the welcome message to be " + setArgs + " displayed in this channel.");
+      }
+    })
+    break;
 
     default:
-      x.msg.channel.send(`Hmm. I'm not sure what you mean by \`${type}\`. Type \`${x.config.prefix}help set\` for help.`)
+    x.msg.channel.send(`Hmm. I'm not sure what you mean by \`${type}\`. Type \`${x.config.prefix}help set\` for help.`)
   }
 
 
@@ -393,6 +393,31 @@ async function mute(x) {
 
 }
 
+function server(x) {
+  if (!x.isFromGuild) return;
+  var guild = msg.guild;
+  var chans = guild.channels.array();
+  var channels = chans.length;
+  var members = guild.memberCount;
+  var owner = guild.owner.user.username + "#" + guild.owner.user.discriminator;
+  var region = guild.region;
+
+  var embed = new Discord.RichEmbed()
+  .setTitle(guild.name)
+  .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+  /*
+  * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+  */
+  .setColor('#FF0000')
+  .setThumbnail(guild.iconURL)
+  .setDescription("Members: " + members + "\nChannels: " + channels + "\nOwner: " + owner + "\nRegion: " + region + "\nAFK Timeout: " + guild.afkTimeout)
+  .setFooter(guild.nameAcronym + ' Info | Dantè Beta')
+  .setTimestamp();
+
+  msg.channel.send({embed});
+
+}
+
 async function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;
@@ -406,6 +431,8 @@ async function addCmds(x) {
   x['m'] = mute;
   x['clear'] = clear;
   x['set'] = set;
+  x['server'] = server;
+  x['s'] = server;
 }
 
 module.exports = {
