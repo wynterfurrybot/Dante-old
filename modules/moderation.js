@@ -402,7 +402,7 @@ function server(x) {
   var users = 0;
   var bots = 0;
   var mem = guild.members.array();
-  mem.forEach(function u) {
+  mem.forEach(async function(u) {
     if(u.user.bot)
     {
       // Add to bot count
