@@ -399,7 +399,20 @@ function server(x) {
   var guild = x.msg.guild;
   var chans = guild.channels.array();
   var channels = chans.length;
-  var members = guild.memberCount;
+  var users = 0;
+  var bots = 0;
+  users.forEach(function u) {
+    if(u.user.bot)
+    {
+      // Add to bot count
+      bots = bots +1;
+    }
+    else{
+      users = users + 1;
+    }
+  }
+  var mem = guild.members.array();
+
   var owner = guild.owner.user.username + "#" + guild.owner.user.discriminator;
   var region = guild.region;
   var timeout = guild.afkTimeout + " seconds";
@@ -412,7 +425,7 @@ function server(x) {
   */
   .setColor('#FF0000')
   .setThumbnail(guild.iconURL)
-  .setDescription("Members: " + members + "\nChannels: " + channels + "\nOwner: " + owner + "\nRegion: " + region + "\nAFK Timeout: " + timeout)
+  .setDescription("Users: " + users + "\nBots: " + bots + "\nChannels: " + channels + "\nOwner: " + owner + "\nRegion: " + region + "\nAFK Timeout: " + timeout)
   .setFooter(guild.nameAcronym + ' Info | Dantè Beta')
   .setTimestamp();
 
