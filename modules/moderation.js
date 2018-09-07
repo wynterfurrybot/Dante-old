@@ -401,7 +401,8 @@ function server(x) {
   var channels = chans.length;
   var users = 0;
   var bots = 0;
-  users.forEach(function u) {
+  var mem = guild.members.array();
+  mem.forEach(function u) {
     if(u.user.bot)
     {
       // Add to bot count
@@ -411,8 +412,6 @@ function server(x) {
       users = users + 1;
     }
   })
-  var mem = guild.members.array();
-
   var owner = guild.owner.user.username + "#" + guild.owner.user.discriminator;
   var region = guild.region;
   var timeout = guild.afkTimeout + " seconds";
