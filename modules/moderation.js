@@ -410,7 +410,7 @@ function server(x) {
     else{
       users = users + 1;
     }
-  }
+  })
   var mem = guild.members.array();
 
   var owner = guild.owner.user.username + "#" + guild.owner.user.discriminator;
