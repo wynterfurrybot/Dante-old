@@ -50,7 +50,7 @@ async function warn(x) {
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setDescription('**A new case has been created!** \n\nType: __**WARNING**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>\nModerator: ' +'<@'+ x.msg.author.id + ">")
       .setFooter('User Warned | Dantè Beta')
       .setTimestamp();
 
@@ -114,7 +114,7 @@ async function kick(x) {
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('**A new case has been created!** \n\nType: __**KICK**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setDescription('**A new case has been created!** \n\nType: __**KICK**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>\nModerator: ' +'<@'+ x.msg.author.id + ">")
       .setFooter('User Kicked | Dantè Beta')
       .setTimestamp();
 
@@ -178,7 +178,7 @@ async function ban(x) {
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('**A new case has been created!** \n\nType: __**BAN**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>')
+      .setDescription('**A new case has been created!** \n\nType: __**BAN**__ \nReason: **' + reason + '** \nUser: <@' + usr.id + '>\nModerator: ' +'<@'+ x.msg.author.id + ">")
       .setFooter('User Banned | Dantè Beta')
       .setTimestamp();
 
@@ -279,7 +279,7 @@ async function clear(x) {
     .setTimestamp();
 
     try {
-      x.msg.guild.channels.get(result[0].caselogs).sendMessage({
+      x.msg.guild.channels.get(result[0].msglogs).sendMessage({
         embed
       });
     } catch (err) {
