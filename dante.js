@@ -127,6 +127,12 @@ log('Found commands: ' + cmds);
 async function tryCommand(msg) {
   var msgContent = msg.content;
 
+  if(msgContent.includes("@everyone") || msgContent.includes("@here"))
+  {
+    msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
+    return;
+  }
+
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
     log(`${msgContent} failed because it's too short`);
@@ -169,13 +175,6 @@ async function tryCommand(msg) {
 
 client.on('message', msg => {
   if (msg.author.bot) return;
-  var msgContent = msg.content;
-  console.log(msgContent);
-  if(msgContent.includes("@everyone") || msgContent.includes("@here"))
-  {
-    msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
-    return;
-  }
   tryCommand(msg);
 });
 
