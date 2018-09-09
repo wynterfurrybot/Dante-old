@@ -254,8 +254,6 @@ async function uinfo(x) {
       x.msg.channel.send({
         embed
       });
-    }
-  });
 }
 
 
