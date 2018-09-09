@@ -127,13 +127,6 @@ log('Found commands: ' + cmds);
 async function tryCommand(msg) {
   var msgContent = msg.content;
 
-  if(msgContent.includes("@everyone") || msgContent.includes("@here"))
-  {
-    if (msg.guild != null) msg.delete();
-    msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
-    return;
-  }
-
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
     log(`${msgContent} failed because it's too short`);
@@ -153,6 +146,13 @@ async function tryCommand(msg) {
     // Command wasn't found
     log(`${msgContent} failed because the command wasn't found.`);
     return false;
+  }
+
+  if(msgContent.includes("@everyone") || msgContent.includes("@here"))
+  {
+    if (msg.guild != null) msg.delete();
+    msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
+    return;
   }
 
   cmdFunction({
