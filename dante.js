@@ -129,6 +129,7 @@ async function tryCommand(msg) {
 
   if(msgContent.includes("@everyone") || msgContent.includes("@here"))
   {
+    if (msg.guild != null) msg.delete();
     msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
     return;
   }
