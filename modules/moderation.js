@@ -239,6 +239,12 @@ async function user(x) {
 
 async function uinfo(x) {
   var usr = x.msg.mentions.members.array()[0];
+  var game = usr.user.presence.game;
+
+  if(!game)
+  {
+    game = "Not playing a game";
+  }
 
       var embed = new Discord.RichEmbed()
       .setTitle(usr.user.username)
@@ -247,7 +253,7 @@ async function uinfo(x) {
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
       .setColor('#FF0000')
-      .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\nGame: " + usr.user.presence.game)
+      .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\nGame: " + game)
       .setFooter('User Info | Dantè Beta')
       .setTimestamp();
 
