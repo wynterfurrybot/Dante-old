@@ -8,7 +8,7 @@ var enabled = [];
 
 function onWrapper(eventName, eventFunc) {
   var id = enabled.length - 1;
-  
+
   client.on(eventName, (a, b, c, d) => {
     if (enabled[id]) {
       eventFunc(a, b, c, d);
@@ -126,6 +126,13 @@ log('Found commands: ' + cmds);
 
 async function tryCommand(msg) {
   var msgContent = msg.content;
+
+  if(msgContent.includes("@everyone") || msgContent.includes("@here"))
+  {
+    msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
+    return;
+  }
+
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
     log(`${msgContent} failed because it's too short`);
