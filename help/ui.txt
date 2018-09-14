@@ -1,0 +1,4 @@
+Shows user information
+
+Usage:
+  ui [user]

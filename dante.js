@@ -125,7 +125,7 @@ readline.createInterface({
 log('Found commands: ' + cmds);
 
 async function tryCommand(msg) {
-  var msgContent = msg.content;
+  var msgContent = msg.content.toLowerCase();
 
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
@@ -158,7 +158,7 @@ async function tryCommand(msg) {
   cmdFunction({
     client: client,
     msg: msg,
-    args: msgContent.slice(config.prefix.length + cmd.length + 1),
+    args: msg.content.slice(config.prefix.length + cmd.length + 1),
     config: config,
     database: database,
     log: log,

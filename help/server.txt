@@ -1,0 +1,4 @@
+Shows sever information
+
+Usage:
+  s

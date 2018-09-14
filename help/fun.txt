@@ -1,0 +1,22 @@
+List of commands:
+
+  cuddle
+  hug
+  nuzzle
+  rubs
+  boop
+  flop
+  pat
+  growlat
+  glomp
+  growl
+  milk
+  snuggle
+  cookie
+  lick
+  cinnabon
+  throwdict
+  confetti
+  scream
+  kiss
+  nap

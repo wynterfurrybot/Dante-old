@@ -1,0 +1,4 @@
+Shows user information (including punishments)
+
+Usage:
+  user [user]

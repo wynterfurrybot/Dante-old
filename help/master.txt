@@ -8,6 +8,9 @@ moderation
   kick
   ban
   warn
+  user
+  ui
+  server
 
 logging
   clear
