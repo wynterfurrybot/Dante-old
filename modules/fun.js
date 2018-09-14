@@ -144,6 +144,11 @@ function furpile(x){
   });
 }
 
+function smolfox(x) {
+  if (x.msg.guild.id != "462041783438934036") return;
+  x.msg.channel.send("*picks up <@193060560101703680> and forces him to slap *" + x.args);
+}
+
 function addCmds(x) {
   x['hug'] = hug;
   x['cuddle'] = hug;
@@ -167,6 +172,8 @@ function addCmds(x) {
   x['nap'] = nap;
   x['slap'] = slap;
   x['furpile'] = furpile;
+  x['smolfoxslap'] = smolfox;
+  x['sfs'] = smolfox;
 }
 
 var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);
@@ -209,12 +216,12 @@ function addEvents(x) {
       {
         msg.channel.send("no u");
       }
-      
+
       if (c.includes("open the pod bay doors"))
       {
         msg.channel.send("I'm sorry <@" + msg.author.id + ">" + " ,I'm afraid I can't do that.");
       }
-      
+
        if (c.includes("what is the meaning of life?"))
       {
          msg.channel.send("42");
