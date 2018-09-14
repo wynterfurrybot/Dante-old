@@ -119,12 +119,6 @@ function nap(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *has decided to flop on* " + x.args + " \n\nAfter a while, a sound of snoring can be heard.. \n\nUpon further inspection, it appears <@" + x.msg.author.id + "> is fast asleep!");
 }
 
-function slap(x){
-  if (!x.isFromGuild) return;
-
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has slapped* " + x.args + " *hard* \nOUCH!");
-}
-
 function furpile(x){
   if (!x.isFromGuild) return;
 
@@ -142,11 +136,6 @@ function furpile(x){
 
 
   });
-}
-
-function smolfox(x) {
-  if (x.msg.guild.id != "462041783438934036") return;
-  x.msg.channel.send("*picks up <@193060560101703680> and forces him to slap* " + x.args);
 }
 
 function addCmds(x) {
@@ -170,9 +159,7 @@ function addCmds(x) {
   x['scream'] = scream;
   x['kiss'] = kiss;
   x['nap'] = nap;
-  x['slap'] = slap;
   x['furpile'] = furpile;
-  x['smolfoxslap'] = smolfox;
   x['sfs'] = smolfox;
 }
 
