@@ -146,7 +146,7 @@ function furpile(x){
 
 function smolfox(x) {
   if (x.msg.guild.id != "462041783438934036") return;
-  x.msg.channel.send("*picks up <@193060560101703680> and forces him to slap *" + x.args);
+  x.msg.channel.send("*picks up <@193060560101703680> and forces him to slap* " + x.args);
 }
 
 function addCmds(x) {
