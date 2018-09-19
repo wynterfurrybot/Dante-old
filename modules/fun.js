@@ -247,7 +247,7 @@ function addEvents(x) {
     }
 
     var respectsPaid = Math.min(content.length, x.config.maxRespectsPerMessage);
-
+    x.client.channels.get("491988373750153226").send("Respects were paid");
     msg.channel.send('<@' + msg.author.id + (respectsPaid == 1 ? '> *has paid respects.*\n\n' : '> *has paid ' + respectsPaid + ' respects.*\n\n') + (respectsPaidToday += respectsPaid) + ' respects have been paid today.')
   });
 }
