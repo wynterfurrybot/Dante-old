@@ -170,7 +170,7 @@ async function tryCommand(msg) {
   });
 
   log(`${msgContent} succeded.`);
-  client.channels.get("491988373750153226").send("The command " + cmd + " was just used ;)");
+  // Insert tracking here
   if (msg.guild != null) msg.delete();
   return true;
 }
