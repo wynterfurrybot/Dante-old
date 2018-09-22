@@ -125,6 +125,7 @@ function slap(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *has slapped* " + x.args + " *hard* \nOUCH!");
 }
 
+
 function furpile(x){
   if (!x.isFromGuild) return;
 
@@ -157,6 +158,7 @@ function addCmds(x) {
   x['boop'] = boop;
   x['flop'] = flop;
   x['pat'] = pat;
+  x['pet'] = pat;
   x['growlat'] = growlat;
   x['glomp'] = glomp;
   x['growl'] = growl;
