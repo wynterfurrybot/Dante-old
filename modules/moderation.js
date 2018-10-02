@@ -225,7 +225,7 @@ async function user(x) {
       /*
       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
       */
-      .setImage(usr.user.avatarURL);
+      .setImage(usr.user.avatarURL)
       .setColor('#FF0000')
       .setDescription('Username: ' + usr.user.username + "#" + usr.user.discriminator + '\nID: ' + usr.id + '\nJoined discord: ' + usr.user.createdAt + "\nJoined server: " + usr.joinedAt + "\n\n__Punishments__\n" + punishmentinfo)
       .setFooter('User Info | Dantè Beta')
