@@ -146,7 +146,7 @@ function furpile(x){
           if (err) {
             console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
           }
-          
+
         })
       }
 
@@ -154,37 +154,7 @@ function furpile(x){
     });
   }
 
-  else {
-    x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' " + x.msg.channel.id, + "', '" + usr.id + "', 1)" function (err, result, fields) {
-
-
-      if (err) {
-        console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
-
-        // Because the database is set to only allow one user at a time to be piled, try to update.
-
-        x.database.query("UPDATE `furpile` SET furpileuser = " + usr.id + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
-
-
-          if (err) {
-            console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
-          }
-
-          else{
-            x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
-          }
-
-
-        });
-      }
-
-      else{
-        x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
-      }
-
-
-    });
-  }
+  
 
 
 
