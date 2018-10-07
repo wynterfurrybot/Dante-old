@@ -128,9 +128,8 @@ function slap(x){
 
 function furpile(x){
   if (!x.isFromGuild) return;
-  var usr = x.msg.mentions.users.array()[0];
-try{
-  var id = usr.id;
+
+ if(x.args.includes('<@')){
   x.log('adding to furpile');
   // Assume the user is adding onto the pile
   x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
@@ -158,7 +157,8 @@ try{
 
 
 
-  catch(e) {
+  else {
+    var usr = x.msg.mentions.users.array()[0];
     x.log('new furpile');
     x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' "+ x.msg.channel.id, + "', '" + usr.id + "', 1)", function (err, result, fields) {
 
