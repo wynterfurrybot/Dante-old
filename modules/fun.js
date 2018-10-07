@@ -129,63 +129,7 @@ function slap(x){
 function furpile(x){
   if (!x.isFromGuild) return;
 
- if(x.args.includes('<@')){
-  x.log('adding to furpile');
-  // Assume the user is adding onto the pile
-  x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
-
-
-    if (err) {
-      console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
-    }
-
-    else{
-      var count = result[0].count + 1;
-      x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them!")
-      x.database.query("UPDATE `furpile` SET count = " + count + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
-
-        if (err) {
-          console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
-        }
-
-      })
-    }
-
-
-  });
-}
-
-
-
-  else {
-    var usr = x.msg.mentions.users.array()[0];
-    x.log('new furpile');
-    x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' "+ x.msg.channel.id, + "', '" + usr.id + "', 1)", function (err, result, fields) {
-
-      if (err) {
-        x.log('ERROR: Could not insert into database ' + err);
-        // Because the database is set to only allow one user at a time to be piled, try to update.
-        x.database.query("UPDATE `furpile` SET furpileuser = " + usr.id + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
-          if (!err)
-          {
-            x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
-          }
-          else{
-            x.log('ERROR: Could not insert into database ' + err);
-          }
-        })
-      }
-
-      else{
-        x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
-      }
-    })
-
-  }
-
-
-
-
+x.msg.channel.send("I honestly can't be fucked to fix this. \n\nSend all complaints to gayfaggot@furrycentr.al")
 }
 
 function smolfox(x) {
