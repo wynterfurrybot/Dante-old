@@ -129,33 +129,36 @@ function slap(x){
 function furpile(x){
   if (!x.isFromGuild) return;
   var usr = x.msg.mentions.users.array()[0];
-  if (!Array.isArray(usr) || !usr.length){
-    x.log('adding to furpile');
-    // Assume the user is adding onto the pile
-    x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
+try{
+  var id = usr.id;
+  x.log('adding to furpile');
+  // Assume the user is adding onto the pile
+  x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
 
-      if (err) {
-        console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
-      }
+    if (err) {
+      console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+    }
 
-      else{
-        var count = result[0].count + 1;
-        x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them!")
-        x.database.query("UPDATE `furpile` SET count = " + count + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
+    else{
+      var count = result[0].count + 1;
+      x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them!")
+      x.database.query("UPDATE `furpile` SET count = " + count + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
-          if (err) {
-            console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
-          }
+        if (err) {
+          console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
+        }
 
-        })
-      }
+      })
+    }
 
 
-    });
-  }
+  });
+}
 
-  else {
+
+
+  catch(e) {
     x.log('new furpile');
     x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' "+ x.msg.channel.id, + "', '" + usr.id + "', 1)", function (err, result, fields) {
 
