@@ -128,21 +128,67 @@ function slap(x){
 
 function furpile(x){
   if (!x.isFromGuild) return;
-
-  x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
-
-
-    if (err) {
-      console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
-    }
-
-    else{
-      var count = result[0].count;
-      x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them! \n\nDEMO: Furpile isn't done yet!")
-    }
+  var usr = x.msg.mentions.users.array()[0];
+  if (!usr){
+    // Assume the user is adding onto the pile
+    x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
 
-  });
+      if (err) {
+        console.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
+      }
+
+      else{
+        var count = result[0].count + 1;
+        x.msg.channel.send("OwO! <@" + result[0].furpileuser + "> now has " + count + " users piling on them!")
+        x.database.query("UPDATE `furpile` SET count = " + count + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
+
+          if (err) {
+            console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
+          }
+          
+        })
+      }
+
+
+    });
+  }
+
+  else {
+    x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' " + x.msg.channel.id, + "', '" + usr.id + "', 1)" function (err, result, fields) {
+
+
+      if (err) {
+        console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
+
+        // Because the database is set to only allow one user at a time to be piled, try to update.
+
+        x.database.query("UPDATE `furpile` SET furpileuser = " + usr.id + "WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
+
+
+          if (err) {
+            console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
+          }
+
+          else{
+            x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
+          }
+
+
+        });
+      }
+
+      else{
+        x.msg.channel.send("OwO! <@" + x.msg.author.id + "> has started a furpile on <@" + result[0].furpileuser + ">!")
+      }
+
+
+    });
+  }
+
+
+
+
 }
 
 function smolfox(x) {
