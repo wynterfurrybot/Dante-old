@@ -129,7 +129,7 @@ function slap(x){
 function furpile(x){
   if (!x.isFromGuild) return;
   var usr = x.msg.mentions.users.array()[0];
-  if (!usr){
+  if (!usr.id){
     // Assume the user is adding onto the pile
     x.database.query("SELECT * FROM `furpile` WHERE channel = " + x.msg.channel.id, function (err, result, fields) {
 
