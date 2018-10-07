@@ -155,7 +155,7 @@ function furpile(x){
   }
 
   else {
-    x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' "+ x.msg.channel.id, + "', '" + usr.id + "', 1)" function (err, result, fields) {
+    x.database.query("INSERT INTO `furpile` (channel,furpileuser, count) VALUES (' "+ x.msg.channel.id, + "', '" + usr.id + "', 1)", function (err, result, fields) {
 
       if (err) {
         console.log('ERROR: '.gray + ' Could not insert into database '.red + err.toString().red);
