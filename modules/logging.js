@@ -289,6 +289,22 @@ function addEvents(x) {
                 if (x.logging) {
                     x.log('Logging: '.gray + ' User Joined: '.cyan + member.displayName);
                 }
+				
+				 var punishments = 0;
+
+  x.database.query("SELECT * FROM `cases` WHERE userid = ?", [member.id], async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+    } else {
+
+      result.forEach(async function(data, pos, array) {
+       punishments = punishments + 1;
+      })
+if(punishments >=3){
+						x.client.channels.get(result[0].userlogs).sendMessage("@here Warning: This person is a known troublemaker across servers that use Dantè. \n\nuse !u @user to list their punishments.");
+					}
+	}
+	})
 
                 var embed = new Discord.RichEmbed()
                     .setTitle("Member Joined!")
@@ -311,22 +327,18 @@ function addEvents(x) {
                     x.client.channels.get(result[0].userlogs).sendMessage({
                         embed
                     });
-
-                    if(x.msg.guild.id === "462042360226775040") {
-                      var embed = new Discord.RichEmbed()
-                          .setTitle("Member Joined!")
-                          .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-                          .setDescription("Welcome! \n1. Please read #rules \n2.Go to #give-me-a-role and use reactions to get the roles you wish to have \n3.return to this channel (#new-furs) and say the word 'done'")
-                          /*
-                           * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-                           */
-                          .setColor('#00ff11')
-                          .setFooter('Welcome! | Dantè Debugging Beta')
-                          .setTimestamp();
-
-                      x.client.channels.get(result[0].userlogs).sendMessage("<@" + member.id + ">");
-                      x.client.channels.get(result[0].userlogs).sendMessage({embed});
-                    }
+					
+					
+					
+					/*
+					var createdat =  new Date(member.user.createdAt);
+					var now = new Date();
+					
+					if (now.getDate === createdat.getDate && now.getMonth === createdat.getMonth && now.getFullYear === createdat.getFullYear)
+					{
+						x.client.channels.get(result[0].userlogs).sendMessage("@here Warning: This person's account is very newly created. \n\nThis has a high chance of being a troll / raider.");
+					} */
+					
                 } catch (err) {
                     return;
                 }
@@ -518,18 +530,47 @@ function addEvents(x) {
                         return;
                     }
                 }
-
-                if (oldmember.roles.length != newmember.roles.length) {
-                    embed.setDescription('Users roles were updated');
-
-                    try {
+				
+   
+var or=Array.from(oldmember.roles.values());
+	var nr=Array.from(newmember.roles.values());
+	var added=[];
+	var removed=[];
+	for(i=0;i<or.length;i++) {
+    	if(nr.indexOf(or[i]) ==-1) {
+    		removed.push(or[i]);
+        }
+    }
+    
+    for(i=0;i<nr.length;i++) {
+    	if(or.indexOf(nr[i]) ==-1) {
+    		added.push(nr[i]);
+        }
+    }
+    
+	if(added.length > 0 || removed.length > 0) {
+	    if(added.length > 0) {
+	        embed.setDescription("Role added to user: \n**" + added[0].name + "**");
+			try {
                         x.client.channels.get(result[0].userlogs).sendMessage({
                             embed
                         });
                     } catch (err) {
                         return;
                     }
-                }
+	    } else if(removed.length > 0) {
+	       embed.setDescription("Role removed from user: \n**" + removed[0].name + "**");
+		   try {
+                        x.client.channels.get(result[0].userlogs).sendMessage({
+                            embed
+                        });
+                    } catch (err) {
+                        return;
+                    }
+	    }
+    }
+	
+	if(typeof data == "undefined" || typeof data.fields == "undefined") return;
 
 
 

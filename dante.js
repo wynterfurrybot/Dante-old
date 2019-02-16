@@ -126,6 +126,14 @@ log('Found commands: ' + cmds);
 
 async function tryCommand(msg) {
   var msgContent = msg.content.toLowerCase();
+  
+    if(msgContent.includes("grabify.link"))
+  {
+    if (msg.guild != null) msg.delete();
+	msg.guild.fetchMember(msg.author).then(usr => usr.ban());
+    msg.reply("Automatically banned.");
+    return;
+  }
 
   if (msgContent.length <= config.prefix) {
     // Too short to be a command
@@ -154,6 +162,8 @@ async function tryCommand(msg) {
     msg.reply("For the server's safety, I cannot mention everyone. My apologies.");
     return;
   }
+  
+
 
   cmdFunction({
     client: client,

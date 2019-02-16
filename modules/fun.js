@@ -2,31 +2,78 @@
 /* Commands not meant to be taken seriously.
 * These are here for fun.
 */
+const Discord = require('discord.js');
 
 function hug(x){
   x.log(x.isFromGuild);
   if (!x.isFromGuild) return;
   x.log(x.isFromGuild);
+  
+  
+      var embed = new Discord.RichEmbed()
+      .setTitle("User Hugged!")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*")
+      .setFooter('User Hugged | Dantè Beta')
+      .setTimestamp();	
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*");
+x.msg.channel.send({embed});
 }
 
 function nuzzle(x){
   if (!x.isFromGuild) return;
+  
+  var embed = new Discord.RichEmbed()
+      .setTitle("User Nuzzled!")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription("<@" + x.msg.author.id + "> *has nuzzled* " + x.args + " *on the neck.* OwO")
+      .setFooter('User nuzzled | Dantè Beta')
+      .setTimestamp();	
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has nuzzled* " + x.args + " *on the neck.* OwO");
+x.msg.channel.send({embed});
 }
 
 function rubs(x){
   if (!x.isFromGuild) return;
+var embed = new Discord.RichEmbed()
+      .setTitle("User Wants Belly Rubs!!")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription("<@" + x.msg.author.id + "> *has rolled over on their back* \n" + "<@" + x.msg.author.id + "> wants belly rubs!")
+      .setFooter('User Wants Belly Rubs!! | Dantè Beta')
+      .setTimestamp();	
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has rolled over on their back* \n" + "<@" + x.msg.author.id + "> wants belly rubs!");
+x.msg.channel.send({embed});
 }
 
 function boop(x){
   if (!x.isFromGuild) return;
+  
+  var embed = new Discord.RichEmbed()
+      .setTitle("User Booped")
+      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
+      /*
+      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+      */
+      .setColor('#FF0000')
+      .setDescription("<@" + x.msg.author.id + "> *has booped* " + x.args + " *on the snoot.*")
+      .setFooter('User Booped | Dantè Beta')
+      .setTimestamp();	
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has booped* " + x.args + " *on the snoot.*");
+x.msg.channel.send({embed});
+
+  
 }
 
 function flop(x){
@@ -129,7 +176,7 @@ function slap(x){
 function furpile(x){
   if (!x.isFromGuild) return;
 
-x.msg.channel.send("I honestly can't be fucked to fix this. \n\nSend all complaints to gayfaggot@furrycentr.al")
+x.msg.channel.send("Coming soon!")
 }
 
 function smolfox(x) {
@@ -137,9 +184,16 @@ function smolfox(x) {
   x.msg.channel.send("*picks up <@193060560101703680> and forces him to slap* " + x.args);
 }
 
+function bite(x){
+  if (!x.isFromGuild) return;
+
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has bit* " + x.args + " *hard* \nOUCH!");
+}
+
 function addCmds(x) {
   x['hug'] = hug;
   x['cuddle'] = hug;
+  x['hugs'] = hug;
   x['nuzzle'] = nuzzle;
   x['rubs'] = rubs;
   x['boop'] = boop;
@@ -163,6 +217,7 @@ function addCmds(x) {
   x['furpile'] = furpile;
   x['smolfoxslap'] = smolfox;
   x['sfs'] = smolfox;
+  x['bite'] = bite;
 }
 
 var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);

@@ -39,8 +39,14 @@ function e6 (x) {
   })
 }
 
+function yiff (x) {
+  if(!x.msg.channel.nsfw) return;
+  x.msg.channel.send("<@" + x.msg.author.id + "> *mounts* " + x.args + " *, fucking them super hard* \nSaucy!");
+}
+
 function addCmds(x) {
   x["e6"] = e6;
+  x["yiff"] = yiff;
 }
 
 module.exports = {

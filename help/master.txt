@@ -42,6 +42,10 @@ fun
   nap
   slap
 
+christmas
+	advent
+	snowball
+
 Type !help [command] to view specific info on a command.
 For example, !help help
 
