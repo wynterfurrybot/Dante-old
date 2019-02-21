@@ -265,7 +265,7 @@ function addCmds(x) {
   x['sfs'] = smolfox;
   x['bite'] = bite;
   x['howl'] = howl;
-  x['awoo'] = awoo;
+  x['awoo'] = howl;
 }
 
 var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);
