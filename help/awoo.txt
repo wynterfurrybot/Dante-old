@@ -1,0 +1,4 @@
+Let out a howl!
+
+Usage:
+  howl
