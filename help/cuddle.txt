@@ -1,4 +1,4 @@
-Hugs a user
+Cuddles a user
 
 Usage:
-  hug [user]
+  cuddle [user]
