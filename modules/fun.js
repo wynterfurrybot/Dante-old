@@ -230,6 +230,12 @@ function bite(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *has bit* " + x.args + " *hard* \nOUCH!");
 }
 
+function howl(x){
+  if (!x.isFromGuild) return;
+
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has let out a deafening howl!* \n\nArwooooooooooooooooooooooo!");
+}
+
 function addCmds(x) {
   x['hug'] = hug;
   x['cuddle'] = cuddle;
@@ -258,6 +264,8 @@ function addCmds(x) {
   x['smolfoxslap'] = smolfox;
   x['sfs'] = smolfox;
   x['bite'] = bite;
+  x['howl'] = howl;
+  x['awoo'] = awoo;
 }
 
 var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);
