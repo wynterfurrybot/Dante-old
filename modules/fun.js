@@ -3,25 +3,42 @@
 * These are here for fun.
 */
 const Discord = require('discord.js');
+const furrybot = require('./furrybotapi.js');
 
 function hug(x){
-  x.log(x.isFromGuild);
-  if (!x.isFromGuild) return;
-  x.log(x.isFromGuild);
-  
-  
-      var embed = new Discord.RichEmbed()
-      .setTitle("User Hugged!")
-      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-      /*
-      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-      */
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.hug(img => {
+
+       var embed = new Discord.RichEmbed()
       .setColor('#FF0000')
-      .setDescription("<@" + x.msg.author.id + "> *walks up to* "  + x.args + " *sneakily, when they aren't looking, pouncing them from behind and trapping them in a big hug!*")
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has trapped " + x.args + " in a big hug!**")
       .setFooter('User Hugged | Dantè Beta')
       .setTimestamp();	
 
-x.msg.channel.send({embed});
+      x.msg.channel.send({embed});
+    
+	})
+}
+
+function cuddle(x){
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.cuddle(img => {
+
+       var embed = new Discord.RichEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has trapped " + x.args + " in a massive cuddle!**")
+      .setFooter('User Cuddled | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function nuzzle(x){
@@ -58,22 +75,21 @@ x.msg.channel.send({embed});
 }
 
 function boop(x){
-  if (!x.isFromGuild) return;
-  
-  var embed = new Discord.RichEmbed()
-      .setTitle("User Booped")
-      .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
-      /*
-      * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-      */
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.boop(img => {
+
+       var embed = new Discord.RichEmbed()
       .setColor('#FF0000')
-      .setDescription("<@" + x.msg.author.id + "> *has booped* " + x.args + " *on the snoot.*")
-      .setFooter('User Booped | Dantè Beta')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has booped " + x.args + " on the snoot!**")
+      .setFooter('User Boopedd | Dantè Beta')
       .setTimestamp();	
 
-x.msg.channel.send({embed});
-
-  
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function flop(x){
@@ -125,9 +141,21 @@ function cookie(x){
 }
 
 function lick(x){
-  if (!x.isFromGuild) return;
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.lick(img => {
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has licked* " + x.args + " \nApparently they taste good?");
+       var embed = new Discord.RichEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has licked " + x.args + "right on the face!**")
+      .setFooter('User Cuddled | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function cinnabon(x){
@@ -155,9 +183,21 @@ function scream(x){
 }
 
 function kiss(x){
-  if (!x.isFromGuild) return;
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.kiss(img => {
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has kissed* " + x.args + " \nAre they french.. or just kissing?");
+       var embed = new Discord.RichEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has kissed " + x.args + " gently on the lips!**")
+      .setFooter('User Kissed | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function nap(x){
@@ -192,7 +232,7 @@ function bite(x){
 
 function addCmds(x) {
   x['hug'] = hug;
-  x['cuddle'] = hug;
+  x['cuddle'] = cuddle;
   x['hugs'] = hug;
   x['nuzzle'] = nuzzle;
   x['rubs'] = rubs;
