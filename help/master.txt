@@ -41,9 +41,10 @@ fun
   kiss
   nap
   slap
+  howl
+  awoo
 
 christmas
-	advent
 	snowball
 
 Type !help [command] to view specific info on a command.
