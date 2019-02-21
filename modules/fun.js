@@ -230,6 +230,12 @@ function bite(x){
   x.msg.channel.send("<@" + x.msg.author.id + "> *has bit* " + x.args + " *hard* \nOUCH!");
 }
 
+function bap(x){
+  if (!x.isFromGuild) return;
+
+  x.msg.channel.send("<@" + x.msg.author.id + "> *has bapped* " + x.args + " *with a newspaper* <:bap:466685455295971340>");
+}
+
 function howl(x){
   if (!x.isFromGuild) return;
 
