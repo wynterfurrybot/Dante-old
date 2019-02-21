@@ -150,7 +150,7 @@ function lick(x){
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has licked " + x.args + "right on the face!**")
-      .setFooter('User Cuddled | Dantè Beta')
+      .setFooter('User Licked | Dantè Beta')
       .setTimestamp();	
 
       x.msg.channel.send({embed});
