@@ -1,5 +1,5 @@
 # Dantè
-A multipurpose discord bot by Jørn the (red) fox and Darkmane The Lion
+A multipurpose discord bot by Darkmane The Lion
 
 Prefix: !
 
