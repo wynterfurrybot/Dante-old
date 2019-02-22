@@ -1,6 +1,6 @@
+'use strict';
+
 const Action = require('./Action');
-const Constants = require('../../util/Constants');
-const Util = require('../../util/Util');
 
 class ChannelUpdateAction extends Action {
   handle(data) {
@@ -8,27 +8,15 @@ class ChannelUpdateAction extends Action {
 
     const channel = client.channels.get(data.id);
     if (channel) {
-      const oldChannel = Util.cloneObject(channel);
-      channel.setup(data);
-      client.emit(Constants.Events.CHANNEL_UPDATE, oldChannel, channel);
+      const old = channel._update(data);
       return {
-        old: oldChannel,
+        old,
         updated: channel,
       };
     }
 
-    return {
-      old: null,
-      updated: null,
-    };
+    return {};
   }
 }
-
-/**
- * Emitted whenever a channel is updated - e.g. name change, topic change.
- * @event Client#channelUpdate
- * @param {Channel} oldChannel The channel before the update
- * @param {Channel} newChannel The channel after the update
- */
 
 module.exports = ChannelUpdateAction;

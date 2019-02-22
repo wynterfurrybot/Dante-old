@@ -32,7 +32,7 @@ function addEvents(x) {
                     x.log('Deleted Message: '.gray + ' Content: '.cyan + messageDelete.content);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Message Deleted")
                     .setAuthor("Dantè Debugging", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -45,9 +45,10 @@ function addEvents(x) {
 
                 try {
                     if (messageDelete.author.bot) return;
-                    x.client.channels.get(result[0].msglogs).sendMessage({
-                        embed
-                    });
+                    x.client.channels.fetch(result[0].msglogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -94,7 +95,7 @@ function addEvents(x) {
                     x.log('Logging: '.gray + ' Old message: '.cyan + oldMessage.content + ' New message: ' + newMessage.content + '\n\nMessage ID:\n' + newMessage.id);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Message Edited")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -108,9 +109,10 @@ function addEvents(x) {
 
                 try {
                   if (oldMessage.author.bot) return;
-                    x.client.channels.get(result[0].msglogs).sendMessage({
-                        embed
-                    });
+                    x.client.channels.fetch(result[0].msglogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -139,7 +141,7 @@ function addEvents(x) {
                     x.log('Logging: '.gray + ' Channel Created: '.cyan + channel.id);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Channel Created!")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -156,9 +158,10 @@ function addEvents(x) {
 
 
                 try {
-                    x.client.channels.get(result[0].additionallogs).sendMessage({
-                        embed
-                    });
+                   x.client.channels.fetch(result[0].additionallogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -184,7 +187,7 @@ function addEvents(x) {
                     x.log('Logging: '.gray + ' Channel Destroyed: '.cyan + channel.id);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle(":wastebasket: Channel Removed!")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -201,9 +204,10 @@ function addEvents(x) {
 
 
                 try {
-                    x.client.channels.get(result[0].additionallogs).sendMessage({
-                        embed
-                    });
+                    x.client.channels.fetch(result[0].additionallogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -229,7 +233,7 @@ function addEvents(x) {
                     x.log('Logging: '.gray + ' Channel Updated: '.cyan + oldchan.id);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Channel Updated")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -259,9 +263,10 @@ function addEvents(x) {
 
                     embed.setDescription('Channel topic changed! \n\nPrevious topic: ' + oldchan.topic + '\nNew topic: ' + newchan.topic);
                     try {
-                        x.client.channels.get(result[0].additionallogs).sendMessage({
-                            embed
-                        });
+                       x.client.channels.fetch(result[0].additionallogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
@@ -301,12 +306,16 @@ function addEvents(x) {
        punishments = punishments + 1;
       })
 if(punishments >=3){
-						x.client.channels.get(result[0].userlogs).sendMessage("@here Warning: This person is a known troublemaker across servers that use Dantè. \n\nuse !u @user to list their punishments.");
+	 x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send("@here Warning: This person is a known troublemaker across servers that use Dantè. \n\nuse !u @user to list their punishments.");
+					})
+						
 					}
 	}
 	})
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Member Joined!")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -324,9 +333,10 @@ if(punishments >=3){
 
 
                 try {
-                    x.client.channels.get(result[0].userlogs).sendMessage({
-                        embed
-                    });
+                   x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
 					
 					
 					
@@ -344,7 +354,7 @@ if(punishments >=3){
                 }
             });
 
-            x.database.query('SELECT welcome_message, welcome_channel FROM `guilds` WHERE guild_id = ?', [member.guild.id], (err, result, fields) => {
+           x.database.query('SELECT welcome_message, welcome_channel FROM `guilds` WHERE guild_id = ?', [member.guild.id], (err, result, fields) => {
                 if (err) {
                     x.log('ERROR: '.gray + ' Could not select from database '.red + err.toString().red);
                 }
@@ -355,7 +365,7 @@ if(punishments >=3){
                     return;
                 }
 
-                member.guild.channels.get(result[0].welcome_channel).sendMessage(result[0].welcome_message.replace(/(?<!\$)\$user/g, `<@${member.user.id}>`));
+                x.client.channels.get(result[0].welcome_channel).send(result[0].welcome_message.replace(/(?<!\$)\$user/g, `<@${member.user.id}>`));
             });
         } catch (err) {
 
@@ -379,7 +389,7 @@ if(punishments >=3){
                     x.log('Logging: '.gray + ' User Left: '.cyan + member.displayName);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Member Left!")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -392,9 +402,10 @@ if(punishments >=3){
 
 
                 try {
-                    x.client.channels.get(result[0].userlogs).sendMessage({
-                        embed
-                    });
+                     x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -404,6 +415,28 @@ if(punishments >=3){
         }
 
     });
+	
+
+	
+	x.on('messageReactionAdd', (reaction, usr) => {
+		
+		x.log("Reaction added");
+		
+		var channel = reaction.message.channel;
+		var emoji = reaction.emoji.name;
+		var gm = reaction.message.guild.members.fetch(usr).then(function (user)
+		{
+			if(emoji === String.fromCodePoint(129409) && reaction.message.id === "548283204369383424")
+		{
+			console.log(emoji);
+			if(reaction.message.guild.me.roles.highest.rawPosition <= reaction.message.guild.roles.get('548280137880174592').rawPosition) return channel.send("That role is higher than, or as high as my highest role.");
+			
+			channel.send("The lion emoji was used!");
+			user.addRole('548280137880174592',"Reaction Role");
+		}
+		})
+		
+	})
 
     x.on('userUpdate', (oldmember, newmember) => {
         try {
@@ -423,7 +456,7 @@ if(punishments >=3){
                         x.log(' User Updated: '.cyan + oldmember.displayName);
                     }
 
-                    var embed = new Discord.RichEmbed()
+                    var embed = new Discord.MessageEmbed()
                         .setTitle("Member Updated Details")
                         .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                         /*
@@ -436,9 +469,10 @@ if(punishments >=3){
                     if (oldmember.username != newmember.username) {
                         embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.username + '\nNew name: ' + newmember.username);
                         try {
-                            x.client.channels.get(result[0].userlogs).sendMessage({
-                                embed
-                            });
+                            x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                         } catch (err) {
                             return;
                         }
@@ -452,9 +486,10 @@ if(punishments >=3){
                         embed.setImage(newmember.avatarURL);
                         try {
                           if (newmember.bot) return;
-                            x.client.channels.get(result[0].userlogs).sendMessage({
-                                embed
-                            });
+                            x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                         } catch (err) {
                             x.log(err);
                             return;
@@ -486,7 +521,7 @@ if(punishments >=3){
                     x.log('Logging: '.gray + ' User Updated: '.cyan + oldmember.displayName);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Member Updated Details")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -499,9 +534,10 @@ if(punishments >=3){
                 if (oldmember.nickname != newmember.nickname) {
                     embed.setDescription('Nickname changed: \nDetails: \n\nOld name: ' + oldmember.nickname + '\nNew name: ' + newmember.nickname);
                     try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({
-                            embed
-                        });
+                        x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
@@ -510,9 +546,10 @@ if(punishments >=3){
                 if (oldmember.user.username != newmember.user.username) {
                     embed.setDescription('Username changed: \nDetails: \n\nOld name: ' + oldmember.user.username + '\nNew name: ' + newmember.user.username);
                     try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({
-                            embed
-                        });
+                        x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
@@ -523,9 +560,10 @@ if(punishments >=3){
                     embed.setThumbnail(oldmember.user.avatarURL);
                     embed.setImage(newmember.user.avatarURL);
                     try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({
-                            embed
-                        });
+                        x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
@@ -552,18 +590,20 @@ var or=Array.from(oldmember.roles.values());
 	    if(added.length > 0) {
 	        embed.setDescription("Role added to user: \n**" + added[0].name + "**");
 			try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({
-                            embed
-                        });
+                        x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
 	    } else if(removed.length > 0) {
 	       embed.setDescription("Role removed from user: \n**" + removed[0].name + "**");
 		   try {
-                        x.client.channels.get(result[0].userlogs).sendMessage({
-                            embed
-                        });
+                         x.client.channels.fetch(result[0].userlogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                     } catch (err) {
                         return;
                     }
@@ -597,7 +637,7 @@ var or=Array.from(oldmember.roles.values());
                     x.log('Logging: '.gray + ' User Banned: '.cyan + member.username);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Member Banned")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -610,9 +650,10 @@ var or=Array.from(oldmember.roles.values());
 
 
                 try {
-                    x.client.channels.get(result[0].caselogs).sendMessage({
-                        embed
-                    });
+                    x.client.channels.fetch(result[0].caselogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }
@@ -637,7 +678,7 @@ var or=Array.from(oldmember.roles.values());
                     x.log('Logging: '.gray + ' User unbanned: '.cyan + member.username);
                 }
 
-                var embed = new Discord.RichEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setTitle("Member Pardoned")
                     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
                     /*
@@ -650,9 +691,10 @@ var or=Array.from(oldmember.roles.values());
 
 
                 try {
-                    x.client.channels.get(result[0].caselogs).sendMessage({
-                        embed
-                    });
+                    x.client.channels.fetch(result[0].caselogs).then(function (channel)
+					{
+						channel.send({embed});
+					})
                 } catch (err) {
                     return;
                 }

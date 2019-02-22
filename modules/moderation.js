@@ -43,7 +43,7 @@ async function warn(x) {
         x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
       }
 
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle("Case #" + caseid)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -55,9 +55,9 @@ async function warn(x) {
       .setTimestamp();
 
       try {
-        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
-          embed
-        });
+       x.client.channels.get(result[0].caselogs).send({
+                        embed
+                    });
       } catch (err) {
         x.log('ERROR - warn - ' + err);
       }
@@ -107,7 +107,7 @@ async function kick(x) {
         x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
       }
 
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle("Case #" + caseid)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -119,15 +119,17 @@ async function kick(x) {
       .setTimestamp();
 
       try {
-        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
-          embed
-        });
+        x.client.channels.get(result[0].caselogs).send({
+                        embed
+                    });
       } catch (err) {
         x.log('ERROR - kick - ' + err);
       }
-      member.kick();
+ 
       usr.send("You have been kicked from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
-
+	  
+      member.kick();
+	  
       x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (?, ?, ?, ?, ?, \"KICK\")", [caseid, x.msg.guild.id, usr.id, x.msg.author.id, reason], async function(err, result, fields) {
 
         if (err) {
@@ -171,7 +173,7 @@ async function ban(x) {
         x.log(reason + ', ' + x.args + ', ' + (x.args.indexOf(' ') + 1))
       }
 
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle("Case #" + caseid)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -183,14 +185,16 @@ async function ban(x) {
       .setTimestamp();
 
       try {
-        x.msg.guild.channels.get(result[0].caselogs).sendMessage({
-          embed
-        });
+        x.client.channels.get(result[0].caselogs).send({
+                        embed
+                    });
       } catch (err) {
         x.log('ERROR - ban - ' + err);
       }
-      member.ban();
+      
       usr.send("You have been banned from " + x.msg.guild.name + " for the following reason: \n\n" + reason);
+	  
+	  member.ban();
 
       x.database.query("INSERT INTO `cases` (`caseref`, `serverid`, `userid`, `modid`, `reason`, `type`) VALUES (?, ?, ?, ?, ?, \"BAN\")", [caseid, x.msg.guild.id, usr.id, x.msg.author.id, reason], async function(err, result, fields) {
 
@@ -219,7 +223,7 @@ async function user(x) {
         punishmentinfo = punishmentinfo + "type: " + data.type + "\nreason: " + data.reason + "\nref: " + data.caseref + "\n\n";
       })
 
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle(usr.user.username)
       .setAuthor(usr.user.username + " (click for full pfp)", usr.user.avatarURL, usr.user.avatarURL)
       /*
@@ -246,7 +250,7 @@ async function uinfo(x) {
     game = "Not playing a game";
   }
 
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle(usr.user.username)
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -293,7 +297,7 @@ async function clear(x) {
 
     x.log(result);
 
-    var embed = new Discord.RichEmbed()
+    var embed = new Discord.MessageEmbed()
     .setTitle("Bulk delete")
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
     /*
@@ -305,9 +309,9 @@ async function clear(x) {
     .setTimestamp();
 
     try {
-      x.msg.guild.channels.get(result[0].msglogs).sendMessage({
-        embed
-      });
+      x.client.channels.get(result[0].msglogs).send({
+                        embed
+                    });
     } catch (err) {
       x.log('ERROR - ban - ' + err);
     }
@@ -442,7 +446,7 @@ function server(x) {
   var region = guild.region;
   var timeout = guild.afkTimeout + " seconds";
 
-  var embed = new Discord.RichEmbed()
+  var embed = new Discord.MessageEmbed()
   .setTitle(guild.name)
   .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
   /*

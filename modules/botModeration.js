@@ -34,7 +34,7 @@ function servers(x) {
     guilds.forEach(g => {
       list = list + g.name + '\n';
     });
-    var embed = new Discord.RichEmbed()
+    var embed = new Discord.MessageEmbed()
       .setTitle("Guild list")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -49,8 +49,8 @@ function servers(x) {
 }
 
 function ping(x) {
-  var ping =  Math.round(x.client.ping) + ' ms';
-  var embed = new Discord.RichEmbed()
+  var ping =  Math.round(x.client.ws.ping) + ' ms';
+  var embed = new Discord.MessageEmbed()
     .setTitle("Current Ping")
     .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
     /*

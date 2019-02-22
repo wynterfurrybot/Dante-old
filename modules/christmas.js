@@ -22,7 +22,7 @@ else{
 	
 	
 	
-	var embed = new Discord.RichEmbed()
+	var embed = new Discord.MessageEmbed()
       .setTitle(num + " days until christmas!")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -53,7 +53,7 @@ function snowball (x){
 		return;
 	}
 	snowballs = snowballs + 1;
-	var embed = new Discord.RichEmbed()
+	var embed = new Discord.MessageEmbed()
       .setTitle("SNOWBALL FIGHT")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*

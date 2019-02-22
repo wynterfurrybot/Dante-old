@@ -5,7 +5,7 @@ function e6 (x) {
   var send = true;
   var request = e621.random(x.args, "E", 1, post => {
     try{
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle("New yiff image -- score: " + post[0]['score'])
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -22,7 +22,7 @@ function e6 (x) {
 
     catch{
       if(send){
-      var embed = new Discord.RichEmbed()
+      var embed = new Discord.MessageEmbed()
       .setTitle('Blocked Image')
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*

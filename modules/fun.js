@@ -11,7 +11,7 @@ function hug(x){
 	
 	var request = furrybot.hug(img => {
 
-       var embed = new Discord.RichEmbed()
+       var embed = new Discord.MessageEmbed()
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has trapped " + x.args + " in a big hug!**")
@@ -29,7 +29,7 @@ function cuddle(x){
 	
 	var request = furrybot.cuddle(img => {
 
-       var embed = new Discord.RichEmbed()
+       var embed = new Discord.MessageEmbed()
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has trapped " + x.args + " in a massive cuddle!**")
@@ -44,7 +44,7 @@ function cuddle(x){
 function nuzzle(x){
   if (!x.isFromGuild) return;
   
-  var embed = new Discord.RichEmbed()
+  var embed = new Discord.MessageEmbed()
       .setTitle("User Nuzzled!")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -60,7 +60,7 @@ x.msg.channel.send({embed});
 
 function rubs(x){
   if (!x.isFromGuild) return;
-var embed = new Discord.RichEmbed()
+var embed = new Discord.MessageEmbed()
       .setTitle("User Wants Belly Rubs!!")
       .setAuthor("Dantè", "https://i.imgur.com/FUUg9dM.png")
       /*
@@ -80,7 +80,7 @@ function boop(x){
 	
 	var request = furrybot.boop(img => {
 
-       var embed = new Discord.RichEmbed()
+       var embed = new Discord.MessageEmbed()
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has booped " + x.args + " on the snoot!**")
@@ -146,7 +146,7 @@ function lick(x){
 	
 	var request = furrybot.lick(img => {
 
-       var embed = new Discord.RichEmbed()
+       var embed = new Discord.MessageEmbed()
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has licked " + x.args + "right on the face!**")
@@ -188,7 +188,7 @@ function kiss(x){
 	
 	var request = furrybot.kiss(img => {
 
-       var embed = new Discord.RichEmbed()
+       var embed = new Discord.MessageEmbed()
       .setColor('#FF0000')
 	  .setImage(img)
       .setDescription("**"+x.msg.author.username + " has kissed " + x.args + " gently on the lips!**")
