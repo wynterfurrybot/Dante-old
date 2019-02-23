@@ -26,6 +26,8 @@ function reload(x) {
   }
 }
 
+
+
 function servers(x) {
   if (!x.isFromGuild) return;
   if (hasPermission(x, x.msg.author.id)) {
@@ -63,6 +65,33 @@ function ping(x) {
   x.msg.channel.send({embed});
 }
 
+
+function bugreport(x) {
+  // We need as much info here as possible.
+  
+  var channel = x.msg.channel;
+  var server = x.msg.guild.name + " (" + x.msg.guild.id + ")";
+  
+ 
+  
+  var embed = new Discord.MessageEmbed()
+    .setTitle("Bug report")
+    .setAuthor(x.msg.author.username + "#" + x.msg.author.discriminator, x.msg.author.avatarURL)
+    /*
+     * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+     */
+    .setColor('#FF0000')
+    .setDescription("New bug report! \nDetails: \n\n" + x.args)
+    .setFooter("BUG FOUND! | Dantè Beta |" + server)
+    .setTimestamp();
+ 
+ x.client.channels.fetch("483990346838310923").then(function (ch)
+					{
+						ch.send("<@512608629992456192>", {embed});
+					
+					})
+}
+
 function rebuildGuilds(x) {
   if (!x.isFromGuild) return;
   if (hasPermission(x, x.msg.author.id)) {
@@ -93,6 +122,7 @@ function addCmds(x) {
   x['ping'] = ping;
   x['rebuildGuilds'] = rebuildGuilds;
   x['messageOwnersAboutSupport'] = messageOwnersAboutSupport;
+  x['bugreport'] = bugreport;
 }
 
 module.exports = {

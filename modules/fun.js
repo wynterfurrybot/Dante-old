@@ -93,9 +93,21 @@ function boop(x){
 }
 
 function flop(x){
-  if (!x.isFromGuild) return;
+	
+	  if (!x.isFromGuild) return;
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has flopped on* " + x.args + ". oof!");
+	 var request = furrybot.flop(img => {
+
+       var embed = new Discord.MessageEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has flopped on " + x.args + "!**")
+      .setFooter('EVERYBODY DO THE FLOP | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function pat(x){
@@ -237,9 +249,35 @@ function bap(x){
 }
 
 function howl(x){
-  if (!x.isFromGuild) return;
+	
+	  if (!x.isFromGuild) return;
 
-  x.msg.channel.send("<@" + x.msg.author.id + "> *has let out a deafening howl!* \n\nArwooooooooooooooooooooooo!");
+	 var request = furrybot.awoo(img => {
+
+       var embed = new Discord.MessageEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has let out a big howl!** ARWOOOOO! ")
+      .setFooter('ArwooOooooo! | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
+}
+
+function chirp(x){
+	
+	  if (!x.isFromGuild) return;
+	  
+       var embed = new Discord.MessageEmbed()
+      .setColor('#FF0000')
+	  .setImage("https://res.cloudinary.com/teepublic/image/private/s--kU8cORs---/t_Preview/b_rgb:ffffff,c_limit,f_jpg,h_630,q_90,w_630/v1525778638/production/designs/2665954_0.jpg")
+      .setDescription("**"+x.msg.author.username + " has let out a chirp!**")
+      .setFooter('Birb! | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
 }
 
 function addCmds(x) {
@@ -273,7 +311,7 @@ function addCmds(x) {
   x['howl'] = howl;
   x['awoo'] = howl;
   x['bap'] = bap;
-  
+  x['chirp'] = chirp;
 }
 
 var fBlockedSet = new Set(['264445053596991498', '110373943822540800']);

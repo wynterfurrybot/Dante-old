@@ -50,4 +50,6 @@ christmas
 Type !help [command] to view specific info on a command.
 For example, !help help
 
+Found a bug? Use !bugreport.
+
 Support Server: https://discord.gg/5eNDkdd

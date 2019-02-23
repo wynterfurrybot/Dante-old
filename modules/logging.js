@@ -426,17 +426,56 @@ if(punishments >=3){
 		var emoji = reaction.emoji.name;
 		var gm = reaction.message.guild.members.fetch(usr).then(function (user)
 		{
-			if(emoji === String.fromCodePoint(129409) && reaction.message.id === "548283204369383424")
+			
+			 x.database.query("SELECT * FROM `reactionroles`", async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+    } else {
+
+      result.forEach(async function(data, pos, array) {
+        if(emoji === String.fromCodePoint(data.emoji) && reaction.message.id === data.messageid)
 		{
 			console.log(emoji);
-			if(reaction.message.guild.me.roles.highest.rawPosition <= reaction.message.guild.roles.get('548280137880174592').rawPosition) return channel.send("That role is higher than, or as high as my highest role.");
+			console.log(user.id);
+			if(reaction.message.guild.me.roles.highest.rawPosition <= reaction.message.guild.roles.get(data.roleid).rawPosition) return user.send("The role you have requested is higher than, or as high as my highest role. \n\nPlease inform the guild owner about this error.");
 			
-			channel.send("The lion emoji was used!");
-			user.addRole('548280137880174592',"Reaction Role");
+			user.roles.add(data.roleid,"Reaction Role");
 		}
-		})
+      }) 
+	}
+}) // db end
+}) // fetch member end
+}) // message reaction end
+
+
+	x.on('messageReactionRemove', (reaction, usr) => {
 		
-	})
+		x.log("Reaction removed");
+		
+		var channel = reaction.message.channel;
+		var emoji = reaction.emoji.name;
+		var gm = reaction.message.guild.members.fetch(usr).then(function (user)
+		{
+			
+			 x.database.query("SELECT * FROM `reactionroles`", async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+    } else {
+
+      result.forEach(async function(data, pos, array) {
+        if(emoji === String.fromCodePoint(data.emoji) && reaction.message.id === data.messageid)
+		{
+			console.log(emoji);
+			console.log(user.id);
+			if(reaction.message.guild.me.roles.highest.rawPosition <= reaction.message.guild.roles.get(data.roleid).rawPosition) return user.send("The role you have requested is higher than, or as high as my highest role. \n\nPlease inform the guild owner about this error.");
+			
+			user.roles.remove(data.roleid,"Reaction Role");
+		}
+      }) 
+	}
+}) // db end
+}) // fetch member end
+}) // message reaction end
 
     x.on('userUpdate', (oldmember, newmember) => {
         try {

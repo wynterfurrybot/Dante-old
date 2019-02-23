@@ -1,5 +1,6 @@
 const e621 = require('./e621.js');
 const Discord = require('discord.js');
+const furrybot = require('./furrybotapi.js');
 function e6 (x) {
   if(!x.msg.channel.nsfw) return;
   var send = true;
@@ -39,9 +40,22 @@ function e6 (x) {
   })
 }
 
-function yiff (x) {
-  if(!x.msg.channel.nsfw) return;
-  x.msg.channel.send("<@" + x.msg.author.id + "> *mounts* " + x.args + " *, fucking them super hard* \nSaucy!");
+function yiff(x){
+	
+	  if (!x.isFromGuild) return;
+	
+	var request = furrybot.bang(img => {
+
+       var embed = new Discord.MessageEmbed()
+      .setColor('#FF0000')
+	  .setImage(img)
+      .setDescription("**"+x.msg.author.username + " has sexual intercourse with " + x.args + "!**")
+      .setFooter('User Fucked | Dantè Beta')
+      .setTimestamp();	
+
+      x.msg.channel.send({embed});
+    
+	})
 }
 
 function addCmds(x) {

@@ -91,10 +91,68 @@ function cuddle(callback) {
   });
 }
 
+function flop(callback) {
+  request.get({
+    "method" : "GET",
+    "uri": "https://api.furry.bot/furry/sfw/flop",
+    "followRedirect":false,
+	"headers": {
+      'User-Agent': 'DanteBot 0.1 Beta'
+    }
+  },function (err, res, body) {
+	  
+	  var inp = String(body);
+	  var resp = JSON.parse(inp);
+	  var img = resp.response.image;
+	  
+      callback(img);
+  });
+}
+
+function awoo(callback) {
+  request.get({
+    "method" : "GET",
+    "uri": "https://api.furry.bot/furry/sfw/howl",
+    "followRedirect":false,
+	"headers": {
+      'User-Agent': 'DanteBot 0.1 Beta'
+    }
+  },function (err, res, body) {
+	  
+	  var inp = String(body);
+	  var resp = JSON.parse(inp);
+	  var img = resp.response.image;
+	  
+      callback(img);
+  });
+}
+
+
+function bang(callback) {
+  request.get({
+    "method" : "GET",
+    "uri": "https://api.furry.bot/furry/nsfw/yiff/gay",
+    "followRedirect":false,
+	"headers": {
+      'User-Agent': 'DanteBot 0.1 Beta'
+    }
+  },function (err, res, body) {
+	  
+	  var inp = String(body);
+	  var resp = JSON.parse(inp);
+	  var img = resp.response.image;
+	  
+      callback(img);
+  });
+}
+
 module.exports = {
   hug: hug,
   kiss:kiss,
   lick:lick,
   boop:boop,
- cuddle:cuddle
+ cuddle:cuddle,
+ flop:flop,
+ awoo:awoo,
+ bang:bang
 }

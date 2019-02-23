@@ -272,17 +272,14 @@ async function clear(x) {
 
   try {
     var deleteCount = parseInt(x.args);
-    deleteCount = deleteCount + 1;
-    if (deleteCount >= 101) {
-      deleteCount = 100;
-    }
+    
 
     if (!deleteCount || deleteCount < 3 || deleteCount > 100)
     return x.msg.reply("Please provide a number between 2 and 100 for the number of messages to delete");
 
-    const fetched = await x.msg.channel.fetchMessages({
+    const fetched = await x.msg.channel.messages.fetch({
       limit: deleteCount
-    });
+    })
     x.msg.channel.bulkDelete(fetched)
     .catch(error => x.msg.reply(`Couldn't delete messages because of: ${error}`));
   } catch (err) {
@@ -462,6 +459,42 @@ function server(x) {
 
 }
 
+function asar(x){
+	if (!hasPermission(x.msg, 'asar', 'MANAGE_ROLES')) return;
+	var xa = String(x.args);
+	var xas = xa.split(" ");
+	var emoji = xas[2].codePointAt(0);
+	
+	
+	  x.database.query("INSERT INTO `reactionroles` (messageid, emoji, roleid) VALUES (?, ?, ?)", [xas[0], emoji, xas[3]], async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+    }
+	else{
+		console.log(result.insertId);
+
+		x.msg.channel.send("Sucessfully added a reaction role! - ID: `" + result.insertId + "`");
+		x.client.channels.fetch(xas[1]).then(function (channel){
+			channel.messages.fetch(xas[0]).then(message => message.react(xas[2]));
+		});
+	}
+  })
+}
+
+function rsar(x){	
+     if (!hasPermission(x.msg, 'rsar', 'MANAGE_ROLES')) return;
+	  x.database.query("DELETE from `reactionroles` WHERE ID = ?", [x.args], async function(err, result, fields) {
+    if (err) {
+      x.log(err);
+    }
+	else{
+		console.log(result.insertId);
+
+		x.msg.channel.send("Sucessfully removed a reaction role with the ID: `" + x.args + "` \n\n**NOTE: THIS DOES NOT REMOVE THE BOTS REACTION FROM THE ORIGINAL MESSAGE**");
+	}
+  })
+}
+
 async function addCmds(x) {
   x['warn'] = warn;
   x['w'] = warn;
@@ -479,6 +512,8 @@ async function addCmds(x) {
   x['set'] = set;
   x['server'] = server;
   x['s'] = server;
+  x['asar'] = asar;
+  x['rsar'] = rsar;
 }
 
 module.exports = {
