@@ -17,5 +17,5 @@ What can Dantè do?
    * Kiss your lover!
    * And much, much more.
    
-**[Sound good? Add the bot today](https://discordapp.com/oauth2/authorize?client_id=482294943780438016&scope=bot&permissions=402779270)**
+Dante v3 is no longer supported, please see Dantè v4 at https://github.com/wynterfurrybot/dantev4
 
